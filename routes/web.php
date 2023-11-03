@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// ==================Lading Page==================
+
+
+
+// ==================Admin Dasboard ==================
 Route::get('/admin', function () {
     return view('backend.dashboard');
 });
