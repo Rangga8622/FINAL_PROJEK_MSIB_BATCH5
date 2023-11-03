@@ -18,6 +18,25 @@ Route::get('/', function () {
 });
 
 
+
+
+// ==================Lading Page==================
+
+
+
+// ==================Admin Dasboard ==================
+
+// ==================Lading Page==================
+
+
+
+// ==================Admin Dasboard ==================
 Route::get('/admin', function () {
-    return view('backend.index');
+    return view('backend.dashboard');
+});
+Route::get('/table', function () {
+    return view('backend.table');
+});
+Route::get('/form', function () {
+    return view('backend.form');
 });
