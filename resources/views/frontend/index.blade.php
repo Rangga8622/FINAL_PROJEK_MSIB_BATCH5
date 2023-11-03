@@ -11,10 +11,10 @@
 
     <title>Pendaftaran Organisasi Mahasiswa di Kampus</title>
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/maicons.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/vendor/animate/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/maicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/animate/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/theme.css') }}">
 
 
 </head>
@@ -26,15 +26,17 @@
 
     @include('frontend.header')
 
-    <main>
-        @yield('content')
-        <!-- Blog -->
+        <main>
+            @yield('content')
+        </main>
 
-            <script src="{{ asset('frontend/js/jquery-3.5.1.min.js') }}"></script>
-            <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('frontend/js/google-maps.js') }}"></script>
-            <script src="{{ asset('frontend/vendor/wow/wow.min.js') }}"></script>
-            <script src="{{ asset('frontend/js/theme.js') }}"></script>
+    @include('frontend.footer')
+
+        <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
+        <script src="{{ asset('frontend/assets/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('frontend/assets/js/google-maps.js') }}"></script>
+        <script src="{{ asset('frontend/assets/vendor/wow/wow.min.js') }}"></script>
+        <script src="{{ asset('frontend/assets/js/theme.js') }}"></script>
 
 </body>
 
