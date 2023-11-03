@@ -18,5 +18,11 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function () {
-    return view('backend.index');
+    return view('backend.dashboard');
+});
+Route::get('/table', function () {
+    return view('backend.table');
+});
+Route::get('/form', function () {
+    return view('backend.form');
 });
