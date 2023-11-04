@@ -1,5 +1,6 @@
-
-<div class="page-section" id="about">
+@extends('frontend.index')
+@section('content')
+    <div class="page-section" id="about">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 py-3 wow fadeInUp">
@@ -19,8 +20,8 @@
                 </div>
             </div>
         </div> <!-- .container -->
-</div> <!-- .page-section -->
-<div class="page-section bg-light">
+    </div> <!-- .page-section -->
+    <div class="page-section bg-light">
         <div class="container">
             <div class="text-center wow fadeInUp">
                 <div class="subhead">Our services</div>
@@ -103,4 +104,5 @@
                 </div>
             </div>
         </div> <!-- .container -->
-</div> <!-- .page-section -->
+    </div><!-- .page-section -->
+@endsection

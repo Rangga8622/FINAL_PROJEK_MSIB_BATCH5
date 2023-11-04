@@ -15,28 +15,27 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/animate/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
 
 
 </head>
 
 <body>
 
-    <!-- Back to top button -->
-    <div class="back-to-top"></div>
 
     @include('frontend.header')
 
-        <main>
-            @yield('content')
-        </main>
+    <main>
+        @yield('content')
+    </main>
 
     @include('frontend.footer')
 
-        <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
-        <script src="{{ asset('frontend/assets/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('frontend/assets/js/google-maps.js') }}"></script>
-        <script src="{{ asset('frontend/assets/vendor/wow/wow.min.js') }}"></script>
-        <script src="{{ asset('frontend/assets/js/theme.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/google-maps.js') }}"></script>
+    <script src="{{ asset('frontend/assets/vendor/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/theme.js') }}"></script>
 
 </body>
 

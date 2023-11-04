@@ -1,3 +1,6 @@
+@extends('frontend.index')
+@section('content')
+
 <div class="page-section">
         <div class="container">
             <div class="row">
@@ -40,3 +43,5 @@
             </div>
         </div> <!-- .container -->
     </div> <!-- .page-section -->
+
+@endsection

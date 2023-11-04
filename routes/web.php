@@ -17,7 +17,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 // ==================Lading Page==================
+
+Route::get('home', function () {
+    return view('frontend.home');
+});
+
+Route::get('service', function () {
+    return view('frontend.service');
+});
+
+Route::get('about', function () {
+    return view('frontend.about');
+});
+
+Route::get('blog', function () {
+    return view('frontend.blog');
+});
+
+Route::get('contact', function () {
+    return view('frontend.contact');
+});
+
+
+
 
 
 
