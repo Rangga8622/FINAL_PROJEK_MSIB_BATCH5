@@ -1,3 +1,4 @@
+
 @extends('frontend.index')
 @section('content')
     <div class="container">
@@ -61,3 +62,4 @@
         </div>
     </div>
 @endsection
+
