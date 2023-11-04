@@ -1,6 +1,7 @@
 @extends('frontend.index')
 
 @section('content')
+
     <div class="container">
         <div class="page-banner">
             <div class="row justify-content-center align-items-center h-100">
@@ -19,7 +20,7 @@
 
     <div class="page-section">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-lg-4">
                     <div class="card-service wow fadeInUp">
                         <div class="header">
