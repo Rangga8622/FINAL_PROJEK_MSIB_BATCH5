@@ -1,9 +1,8 @@
 @extends('frontend.index')
 @section('content')
-
-<div class="page-section">
+    <div class="page-section ">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-lg-4">
                     <div class="card-service wow fadeInUp">
                         <div class="header">
@@ -43,5 +42,4 @@
             </div>
         </div> <!-- .container -->
     </div> <!-- .page-section -->
-
 @endsection
