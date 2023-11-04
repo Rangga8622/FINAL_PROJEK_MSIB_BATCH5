@@ -40,6 +40,9 @@ Route::get('contact', function () {
     return view('frontend.contact');
 });
 
+Route::get('pendaftaran', function () {
+    return view('frontend.pendaftaran');
+});
 
 
 
