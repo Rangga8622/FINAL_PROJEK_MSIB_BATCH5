@@ -2,6 +2,7 @@
 @section('content')
     <div class="page-section">
         <div class="container">
+
             <div class="row text-center align-items-center">
                 <div class="col-lg-4 py-3">
                     <div class="display-4 text-center text-primary"><span class="mai-pin"></span></div>
@@ -20,12 +21,13 @@
                     <p class="mb-0"><a href="#" class="text-secondary">support@seogram.com</a></p>
                     <p class="mb-0"><a href="#" class="text-secondary">hello@seogram.com</a></p>
                 </div>
-            </div>
-        </div>
 
-        <div class="container-fluid ">
-            <div class="row">
-                <div class="col-lg-12">
+            </div>
+            </>
+
+            <div class="container-fluid ">
+
+                <div class="col-lg-12 mb-5 mb-lg-0">
                     <form action="#" class="contact-form py-5 px-lg-5">
                         <h2 class="mb-4 font-weight-medium text-secondary">Get in touch</h2>
                         <div class="row form-group">
@@ -74,7 +76,7 @@
                         <div id="google-maps"></div>
                     </div>
                 </div>
+
             </div>
         </div>
-    </div>
-@endsection
+    @endsection
