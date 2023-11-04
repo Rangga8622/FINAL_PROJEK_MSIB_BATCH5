@@ -26,7 +26,9 @@
     @include('frontend.header')
 
     <main>
-        @yield('content')
+        
+            @yield('content')
+
     </main>
 
     @include('frontend.footer')
