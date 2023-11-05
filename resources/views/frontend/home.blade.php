@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-md-6 py-5 wow zoomIn">
                         <div class="img-fluid text-center">
-                            <img src="{{ asset('frontend/assets/img/banner_image_1.svg') }}" alt="">
+                            <img src="{{ asset('frontend/assets/img/home.png') }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6 col-lg-4 col-xl-3 py-3 wow zoomIn">
+                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
                     <div class="features">
                         <div class="header mb-5">
                             <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
@@ -40,7 +40,7 @@
                         <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 py-3 wow zoomIn">
+                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
                     <div class="features">
                         <div class="header mb-5">
                             <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
@@ -49,7 +49,7 @@
                         <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 py-3 wow zoomIn">
+                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
                     <div class="features">
                         <div class="header mb-5">
                             <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
@@ -58,7 +58,7 @@
                         <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 py-3 wow zoomIn">
+                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
                     <div class="features">
                         <div class="header mb-5">
                             <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
@@ -67,7 +67,7 @@
                         <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
                     </div>
                 </div>
-                <div class="col-sm-6 col-lg-4 col-xl-3 py-3 wow zoomIn">
+                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
                     <div class="features">
                         <div class="header mb-5">
                             <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
