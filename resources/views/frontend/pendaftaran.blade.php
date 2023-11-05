@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="animate__animated animate__zoomIn">
+    <div class="animate__animated animate__fadeIn animate__delay-1s">
         <div class="page-section">
             <div class="container">
                 <div class="row justify-content-center">
