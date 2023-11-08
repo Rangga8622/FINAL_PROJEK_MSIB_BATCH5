@@ -8,7 +8,7 @@
 			<br/>Deskripsi: {{ $rs->deskripsi }}
 			<br/>Email: Rp. {{ $rs->email}}
 			<br/>No. HP: {{ $rs->hp }} 
-			<br/>Kategori: {{ $rs->kategori->nama }}
+			<br/>Kategori: {{ $rs->kategori}}
 			
 		</p>
 		<a href="{{ url('/organisasi') }}" class="btn btn-primary">Go Back</a>
