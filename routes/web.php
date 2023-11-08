@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\OrganisasiController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,3 +65,11 @@ Route::get('/table', function () {
 Route::get('/form', function () {
     return view('backend.form');
 });
+
+
+// ==================Controller resource ==================
+Route::resource('jurusan', JurusanController::class);
+Route::resource('mahasiswa', MahasiswaController::class);
+Route::resource('pendaftaran', PendaftaranController::class);
+Route::resource('kategori', KategoriController::class);
+Route::resource('organisasi', OrganisasiController::class);
