@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Mahasiswa; //panggil model
+use App\Models\Jurusan; // Import the Jurusan model
+use Illuminate\Support\Facades\DB; // jika pakai query builder
+use Illuminate\Database\Eloquent\Model;
 class MahasiswaController extends Controller
 {
     /**
@@ -11,7 +14,8 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        //
+        $ar_Mahasiswa = Mahasiswa::all(); //eloquent
+        return view('backend.mahasiswa.index', compact('ar_mahasiswa'));
     }
 
     /**
