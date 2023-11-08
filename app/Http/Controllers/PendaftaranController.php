@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Pendaftaran;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 class PendaftaranController extends Controller
 {
     /**
@@ -11,7 +13,8 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        //
+        $ar_pendaftaran = Pendaftaran::all();
+        return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
     }
 
     /**
