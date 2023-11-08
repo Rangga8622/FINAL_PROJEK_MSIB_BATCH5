@@ -14,7 +14,8 @@ class Organisasi extends Model
     protected $fillable = [
         'kode', 'nama', 'deskripsi', 'email', 'hp', 'idkategori'
     ];
-    public function kategori(): BelongsTo
+    public $timestamps = false;
+    public function kategori()
     {
         return $this->belongsTo(Kategori::class);
     }

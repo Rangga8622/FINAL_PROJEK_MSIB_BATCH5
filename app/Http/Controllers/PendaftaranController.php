@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pendaftaran;
-use Illuminate\Support\Facades\DB;
+use App\Models\Pendaftaran; //panggil model
+use App\Models\Jurusan; // Import the Jurusan model
+use Illuminate\Support\Facades\DB; // jika pakai query builder
 use Illuminate\Database\Eloquent\Model;
+
 class PendaftaranController extends Controller
 {
     /**
@@ -13,9 +15,10 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        $ar_pendaftaran = Pendaftaran::all();
+        $ar_pendaftaran = Pendaftaran::all(); //eloquent
         return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,7 +41,8 @@ class PendaftaranController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $rs = Pendaftaran::find($id);
+        return view('backend.pendaftaran.detail', compact('rs'));
     }
 
     /**

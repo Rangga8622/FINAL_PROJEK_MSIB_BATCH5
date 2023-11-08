@@ -11,6 +11,7 @@ class Jurusan extends Model
     use HasFactory;
     protected $table = 'jurusan';
     protected $fillable = ['kode','nama'];
+    public $timestamps = false;
     public function mahasiswa(): HasMany
     {
         return $this->hasMany(Mahasiswa::class);
