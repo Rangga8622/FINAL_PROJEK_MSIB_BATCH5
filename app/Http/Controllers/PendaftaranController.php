@@ -19,6 +19,7 @@ class PendaftaranController extends Controller
         return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -40,7 +41,8 @@ class PendaftaranController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $rs = Pendaftaran::find($id);
+        return view('backend.pendaftaran.detail', compact('rs'));
     }
 
     /**
