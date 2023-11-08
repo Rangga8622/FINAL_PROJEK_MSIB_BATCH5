@@ -33,6 +33,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ url('/pendaftaran') }}">
+                <i class="ti-view-list-alt menu-icon"></i>
+                <span class="menu-title">Pendaftaran</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="{{ url('/form') }}">
                 <i class="ti-layout-list-post menu-icon"></i>
                 <span class="menu-title">Form elements</span>

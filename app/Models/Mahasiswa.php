@@ -15,6 +15,7 @@ class Mahasiswa extends Model
         'idjurusan', 'nama', 'semester', 'gender', 'nohp', 'email',
         'cv', 'foto', 'barcode'
     ];
+    public $timestamps = false;
     public function jurusan(): BelongsTo
     {
         return $this->belongsTo(Jurusan::class);

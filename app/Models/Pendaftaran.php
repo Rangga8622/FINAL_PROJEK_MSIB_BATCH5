@@ -13,6 +13,7 @@ class Pendaftaran extends Model
     protected $fillable = [
         'idmahasiswa', 'idorganisasi', 'tanggal_pendaftaran', 'status_pendaftaran', 'keterangan'
     ];
+    public $timestamps = false;
     public function mahasiswa(): BelongsTo
     {
         return $this->belongsTo(Mahasiswa::class);
