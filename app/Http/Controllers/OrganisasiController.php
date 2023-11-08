@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Organisasi;
+use App\Models\Kategori;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class OrganisasiController extends Controller
 {
@@ -11,7 +15,8 @@ class OrganisasiController extends Controller
      */
     public function index()
     {
-        //
+        $ar_organisasi = Organisasi::all();
+        return view('backend.organisasi.index', compact('ar_organisasi'));
     }
 
     /**
@@ -35,7 +40,8 @@ class OrganisasiController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $rs = Organisasi::find($id);
+        return view('backend.organisasi.detail', compact('rs'));
     }
 
     /**

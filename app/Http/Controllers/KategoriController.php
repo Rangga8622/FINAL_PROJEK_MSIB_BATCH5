@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Kategori;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 
 class KategoriController extends Controller
 {
@@ -11,7 +14,8 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        $ar_kategori = Kategori::all();
+        return view('backend.kategori.index', compact('ar_kategori'));
     }
 
     /**
@@ -33,9 +37,9 @@ class KategoriController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        
     }
 
     /**

@@ -4,12 +4,31 @@
       <a class="nav-link" href="{{ url('/admin') }}">
         <i class="ti-shield menu-icon"></i>
         <span class="menu-title">Dashboard</span>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <i class="ti-view-list-alt menu-icon"></i>
+            <span class="menu-title">Master Data</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ url('/kategori')}}">Kategori</a></li>
+              <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Jurusan</a></li>
+            </ul>
+          </div>
+        </li>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('/organisasi') }}">
+        <i class="ti-view-list-alt menu-icon"></i>
+        <span class="menu-title">Organisasi</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{{ url('/table') }}">
         <i class="ti-view-list-alt menu-icon"></i>
-        <span class="menu-title">Tables</span>
+        <span class="menu-title">--</span>
       </a>
     </li>
     <li class="nav-item">
@@ -17,19 +36,6 @@
         <i class="ti-layout-list-post menu-icon"></i>
         <span class="menu-title">Form elements</span>
       </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <i class="ti-palette menu-icon"></i>
-        <span class="menu-title">UI Elements</span>
-        <i class="menu-arrow"></i>
-      </a>
-      <div class="collapse" id="ui-basic">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-        </ul>
-      </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="pages/charts/chartjs.html">
