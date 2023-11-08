@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Jurusan; //panggil model
+use Illuminate\Support\Facades\DB; // jika pakai query builder
+use Illuminate\Database\Eloquent\Model;
 
 class JurusanController extends Controller
 {
@@ -11,7 +14,8 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        //
+        $ar_jurusan = Jurusan::all(); //eloquent
+        return view('backend.jurusan.index', compact('ar_jurusan'));
     }
 
     /**
