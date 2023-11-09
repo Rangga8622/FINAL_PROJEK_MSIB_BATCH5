@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pendaftaran; //panggil model
-use App\Models\Jurusan; // Import the Jurusan model
+use App\Models\Mahasiswa; // Import the Jurusan model
 use Illuminate\Support\Facades\DB; // jika pakai query builder
 use Illuminate\Database\Eloquent\Model;
 
