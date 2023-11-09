@@ -22,75 +22,71 @@
         </div>
     </header>
 
+
     <div class="page-section bg-light">
         <div class="container">
-            <div class="text-center wow fadeInUp">
+            <div class="row justify-content-center">
+                <div class="text-center wow fadeInUp">
+                    <h2 class="title-section">KELOMPOK 5 MENTOR 2</h2>
 
-                <h2 class="title-section">KELOMPOK 5 MENTOR 2</h2>
-                <div class="divider mx-auto"></div>
+                </div>
+            </div>
+            <br><br>
+            <div class="row justify-content-center no-gutters">
+
+                <div class="col-2 wow zoomIn">
+                    <div class="features">
+                        <div class="text-center">
+                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
+                        </div>
+                        <h4>Ketua Kelompok</h4>
+                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
+                    </div>
+                </div>
+
+                <div class="col-2 wow zoomIn">
+                    <div class="features">
+                        <div class="text-center">
+                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
+                        </div>
+
+                        <h4>Ketua Kelompok</h4>
+                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
+                    </div>
+                </div>
+
+                <div class="col-2 wow zoomIn">
+                    <div class="features">
+                        <div class="text-center">
+                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
+                        </div>
+                        <h4>Ketua Kelompok</h4>
+                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
+                    </div>
+                </div>
+
+                <div class="col-2 wow zoomIn">
+                    <div class="features">
+                        <div class="text-center">
+                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
+                        </div>
+                        <h4>Ketua Kelompok</h4>
+                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
+                    </div>
+                </div>
+
+                <div class="col-2 wow zoomIn">
+                    <div class="features">
+                        <div class="text-center">
+                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
+                        </div>
+                        <h4>Ketua Kelompok</h4>
+                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="row">
-
-                
-
-                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
-
-                    <div class="features">
-                        <div class="header mb-5">
-                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
-                        </div>
-                        <h4>Ketua Kelompok</h4>
-                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
-
-                    <div class="features">
-                        <div class="header mb-5">
-                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
-                        </div>
-                        <h4>Ketua Kelompok</h4>
-                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
-
-                    <div class="features">
-                        <div class="header mb-5">
-                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
-                        </div>
-                        <h4>Ketua Kelompok</h4>
-                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
-
-                    <div class="features">
-                        <div class="header mb-5">
-                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
-                        </div>
-                        <h4>Ketua Kelompok</h4>
-                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-lg-4 col-xl-2 py-3 wow zoomIn">
-
-                    <div class="features">
-                        <div class="header mb-5">
-                            <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
-                        </div>
-                        <h4>Ketua Kelompok</h4>
-                        <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
-                    </div>
-                </div>
-
-
-            </div>
-        </div> <!-- .container -->
-    </div><!-- .page-section -->
+        </div>
+    </div>
 @endsection
