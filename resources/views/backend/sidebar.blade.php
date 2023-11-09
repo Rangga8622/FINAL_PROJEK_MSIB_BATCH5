@@ -14,7 +14,7 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('/kategori') }}">Kategori</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Jurusan</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('/jurusan') }}">Jurusan</a></li>
                 </ul>
             </div>
         </li>

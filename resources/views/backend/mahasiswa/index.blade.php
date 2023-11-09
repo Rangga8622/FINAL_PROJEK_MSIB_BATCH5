@@ -24,7 +24,7 @@
                                     @foreach ($ar_mahasiswa as $m)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $m->idjurusan }}</td>
+                                            <td>{{ $m->jurusan->nama }}</td>
                                             <td>{{ $m->nama }}</td>
                                             <td>{{ $m->semester }}</td>
                                             <td>{{ $m->gender }}</td>

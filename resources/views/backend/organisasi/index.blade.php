@@ -1,7 +1,7 @@
 @extends('backend.index')
 @section('content')
     @php
-        $ar_judul = ['No', 'Kode', 'Nama', 'Action'];
+        $ar_judul = ['No', 'Kode', 'Kategori', 'Nama', 'Action'];
         $no = 1;
     @endphp
 
@@ -32,6 +32,7 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $o->kode }}</td>
+                                            <td>{{ $o->kategori->nama }}</td>
                                             <td>{{ $o->nama }}</td>
                                             <td>
                                                 <form method="POST" action="">

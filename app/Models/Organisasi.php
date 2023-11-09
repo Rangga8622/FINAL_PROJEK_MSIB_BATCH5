@@ -17,8 +17,9 @@ class Organisasi extends Model
     public $timestamps = false;
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class);
+        return $this->belongsTo(Kategori::class, 'idkategori');
     }
+
     public function pendaftaran(): HasMany
     {
         return $this->hasMany(Pendaftaran::class);
