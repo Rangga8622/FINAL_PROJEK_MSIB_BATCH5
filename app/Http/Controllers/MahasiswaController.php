@@ -139,6 +139,8 @@ class MahasiswaController extends Controller
     public function destroy(string $id)
     {
         $post = Mahasiswa::find($id);
+        if(!empty($post->foto)) unlink('backend/mhs/foto/'.$post->foto);
+        if(!empty($post->cv)) unlink('backend/mhs/cv/'.$post->cv);
         Mahasiswa::where('id',$id)->delete();
         return redirect()->route('mahasiswa.index')
       ->with('success', 'Data Mahasiswa Berhasil Dihapus');
