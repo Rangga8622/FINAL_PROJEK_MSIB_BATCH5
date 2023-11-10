@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Daftar Mahasiswa</h4>
-                <a href="" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
+                <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
                     <i class="bi bi-clipboard-plus"></i> Tambah
                 </a>
                 <div class="table-responsive">

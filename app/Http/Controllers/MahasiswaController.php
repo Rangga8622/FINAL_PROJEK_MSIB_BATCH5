@@ -24,7 +24,10 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        //ambil master data kategori u/ dilooping di select option form
+        $ar_mahasiswa = Mahasiswa::all();
+        $ar_gender = ['L', 'P'];
+        return view('backend.mahasiswa.form', compact('ar_mahasiswa','ar_gender'));
     }
 
     /**
