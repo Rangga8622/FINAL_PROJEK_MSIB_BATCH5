@@ -1,7 +1,7 @@
 @extends('backend.index')
 @section('content')
     @php
-        $ar_judul = ['No', 'Jurusan', 'Nama', 'Semester', 'Gender', 'Action'];
+        $ar_judul = ['No',  'Nama','Jurusan', 'Semester', 'Gender', 'Action'];
         $no = 1;
     @endphp
 
@@ -9,6 +9,9 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Daftar Mahasiswa</h4>
+                <a href="" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
+                    <i class="bi bi-clipboard-plus"></i> Tambah
+                </a>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -22,12 +25,15 @@
                             @foreach ($ar_mahasiswa as $m)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $m->jurusan->nama }}</td>
                                     <td>{{ $m->nama }}</td>
+                                    <td>{{ $m->jurusan->nama }}</td>
                                     <td>{{ $m->semester }}</td>
                                     <td>{{ $m->gender }}</td>
                                     <td>
-                                        <form method="POST" action="">
+                                        <form method="POST" action="{{ route('mahasiswa.destroy', $m->id) }}">
+                                            @csrf
+                                            @method('DELETE')	
+
                                             <a class="btn btn-info btn-xs" href="{{ route('mahasiswa.show', $m->id) }}"
                                                 title="Detail Mahasiswa">
                                                 <i class="bi bi-eye"></i>
