@@ -28,15 +28,16 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row mb-3">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <ol class="breadcrumb bg-light p-3 rounded">
+                                <li class="breadcrumb-item"><a href="#" class="text-primary">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Library</li>
                             </ol>
                         </nav>
                     </div>
                 </div>
+
 
                 <div class="row">
                     <div class="col-md-12">
