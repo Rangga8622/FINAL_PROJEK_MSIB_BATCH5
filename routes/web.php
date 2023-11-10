@@ -20,9 +20,9 @@ use App\Http\Controllers\OrganisasiController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('frontend.home');
+});
 
 
 // ==================Lading Page==================

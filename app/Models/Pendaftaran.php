@@ -14,12 +14,12 @@ class Pendaftaran extends Model
         'idmahasiswa', 'idorganisasi', 'tanggal_pendaftaran', 'status_pendaftaran', 'keterangan'
     ];
     public $timestamps = false;
-    public function mahasiswa(): BelongsTo
+    public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class);
+        return $this->belongsTo(Mahasiswa::class, 'idmahasiswa');
     }
-    public function organisasi(): BelongsTo
+    public function organisasi()
     {
-        return $this->belongsTo(Organisasi::class);
+        return $this->belongsTo(Organisasi::class, 'idorganisasi');
     }
 }
