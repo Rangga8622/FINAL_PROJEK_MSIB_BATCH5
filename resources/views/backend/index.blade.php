@@ -21,35 +21,60 @@
 
 <body>
     @include('backend.navbar')
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
-        @include('backend.sidebar')
-        <!-- partial -->
-        <div class="main-panel">
-            <br>
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
-            @if ($message = Session::get('error'))
-                <div class="alert alert-danger">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
-            @yield('content')
-            <!-- content-wrapper ends -->
-            <!-- partial:partials/_footer.html -->
-            @include('backend.footer')
 
-            <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        @include('backend.sidebar')
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <p>{{ $message }}</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        @if ($message = Session::get('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <p>{{ $message }}</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        @yield('content')
+                    </div>
+                </div>
+
+                @include('backend.footer')
+            </div>
         </div>
-        <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
+
+
+
+
+
+
+
 
     <!-- plugins:js -->
     <script src="{{ asset('backend/vendors/base/vendor.bundle.base.js') }}"></script>
