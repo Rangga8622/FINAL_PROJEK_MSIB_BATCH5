@@ -63,8 +63,11 @@ class OrganisasiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(string $id)
     {
-        //
+        Organisasi::where('id',$id)->delete();
+        return redirect()->route('organisasi.index')
+                        ->with('success','Data organisasi Berhasil Dihapus');
     }
 }

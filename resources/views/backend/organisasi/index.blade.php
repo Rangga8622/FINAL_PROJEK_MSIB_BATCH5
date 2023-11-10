@@ -26,7 +26,9 @@
                             <td>{{ $o->kategori->nama }}</td>
                             <td>{{ $o->nama }}</td>
                             <td>
-                                <form method="POST" action="">
+                                <form method="POST" action="{{ route('organisasi.destroy', $o->id) }}">
+                                    @csrf
+                                    @method('DELETE')	
                                     <a href="{{ route('organisasi.show', $o->id) }}"
                                         title="Detail Organisasi" class="btn btn-info btn-xs ">
                                         <i class="bi bi-eye"></i>

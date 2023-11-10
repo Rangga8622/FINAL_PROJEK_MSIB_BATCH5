@@ -1,7 +1,7 @@
 @extends('backend.index')
 @section('content')
     @php
-        $ar_judul = ['No',  'Nama','Jurusan', 'Semester', 'Gender', 'Action'];
+        $ar_judul = ['No', 'Nama', 'Jurusan', 'Semester', 'Gender', 'Action'];
         $no = 1;
     @endphp
 
@@ -32,7 +32,7 @@
                                     <td>
                                         <form method="POST" action="{{ route('mahasiswa.destroy', $m->id) }}">
                                             @csrf
-                                            @method('DELETE')	
+                                            @method('DELETE')
 
                                             <a class="btn btn-info btn-xs" href="{{ route('mahasiswa.show', $m->id) }}"
                                                 title="Detail Mahasiswa">
