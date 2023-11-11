@@ -9,8 +9,6 @@
                         <h1 class="card-title text-center fw-bold fs-2 m-0">{{ $rs->nama }}</h1>
                     </div>
 
-
-
                     <div class="card-body">
                         <div class="text-center">
 
@@ -48,10 +46,6 @@
                                         <i class="bi bi-file-earmark-pdf-fill"></i> Download CV
                                     </a>
 
-
-
-
-
                                     <embed src="{{ asset('backend/mhs/cv') }}/{{ $rs->cv }}" type="application/pdf"
                                         id="cvEmbed" style="display: none;" />
 
@@ -69,7 +63,7 @@
                                         });
                                     </script>
                                 @else
-                                    {{-- Display a message if no CV is available --}}
+
                                     <span class="text-muted">Tidak Ada CV</span>
                                 @endif
                             </li>
