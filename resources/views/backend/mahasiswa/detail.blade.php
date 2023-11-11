@@ -5,9 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow">
-                    <div class="card-header text-white">
-                        <h1 class="card-title text-center fw-bold">{{ $rs->nama }}</h1>
+                    <div class="card-header text-white d-flex align-items-center justify-content-center">
+                        <h1 class="card-title text-center fw-bold fs-2 m-0">{{ $rs->nama }}</h1>
                     </div>
+
+
 
                     <div class="card-body">
                         <div class="text-center">
