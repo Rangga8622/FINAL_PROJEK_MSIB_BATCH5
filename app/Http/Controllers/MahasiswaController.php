@@ -45,7 +45,7 @@ class MahasiswaController extends Controller
                 'gender' => 'required',
                 'nohp' => 'required|max:45',
                 'email' => 'required|max:45',
-                'cv' => 'required|mimes:pdf,doc|min:2|max:10000',
+                'cv' => 'nullable|mimes:pdf,doc|min:2|max:10000',
                 'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|min:2|max:9000',
 
             ],
@@ -61,7 +61,6 @@ class MahasiswaController extends Controller
                 'nohp.max' => 'No HP Maksimal 45 Karakter',
                 'email.required' => 'Email Wajib Diisi',
                 'email.max' => 'Email Maksimal 45 Karakter',
-                'cv.required' => 'CV Wajib Diupload',
                 'cv.mimes' => 'Format CV Wajib PDF/DOC',
                 'cv.min' => 'Ukuran Minimum CV 2 KB',
                 'cv.max' => 'Ukuran Maximum CV 10 MB',
@@ -142,7 +141,7 @@ class MahasiswaController extends Controller
                 'gender' => 'required',
                 'nohp' => 'required|max:45',
                 'email' => 'required|max:45',
-                'cv' => 'required|mimes:pdf,doc|min:2|max:10000',
+                'cv' => 'nullable|mimes:pdf,doc|min:2|max:10000',
                 'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|min:2|max:9000',
 
             ],
@@ -158,7 +157,6 @@ class MahasiswaController extends Controller
                 'nohp.max' => 'No HP Maksimal 45 Karakter',
                 'email.required' => 'Email Wajib Diisi',
                 'email.max' => 'Email Maksimal 45 Karakter',
-                'cv.required' => 'CV Wajib Diupload',
                 'cv.mimes' => 'Format CV Wajib PDF/DOC',
                 'cv.min' => 'Ukuran Minimum CV 2 KB',
                 'cv.max' => 'Ukuran Maximum CV 10 MB',
@@ -173,7 +171,7 @@ class MahasiswaController extends Controller
         if(!empty($request->cv)){
             if(!empty($namaFileCvLama)) unlink('backend/mhs/cv/'.$namaFileCvLama);
             $fileNamee = 'mhscv_'.date("Ymd_h-i-s").'.'.$request->cv->extension();
-            $request->cv->move(public_path('backend/mhs/cv/'),$fileName);
+            $request->cv->move(public_path('backend/mhs/cv/'),$fileNamee);
         }
         else{
             $fileNamee = $namaFileCvLama;
