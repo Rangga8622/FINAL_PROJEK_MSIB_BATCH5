@@ -71,7 +71,7 @@
                                 <input type="file" class="form-control" name="foto" />
                             </div>
                             <button type="submit" class="btn btn-primary me-2">Update</button>
-                            <a href="{{ url('/mahasiswa') }}" class="btn btn-light">Cancel</a>
+                            <a href="{{ route('mahasiswa.index') }}" class="btn btn-light">Cancel</a>
                         </form>
                     </div>
                 </div>
