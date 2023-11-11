@@ -122,7 +122,11 @@ class MahasiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $rs = Mahasiswa::find($id);
+        $ar_jurusan = Jurusan::all();
+        $ar_gender = ['L', 'P'];
+
+        return view('backend.mahasiswa.form_edit', compact('rs', 'ar_jurusan', 'ar_gender'));
     }
 
     /**
@@ -130,7 +134,84 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate(
+            [
+                'nama' => 'required|max:45',
+                'idjurusan' => 'required|integer',
+                'semester' => 'required|max:45',
+                'gender' => 'required',
+                'nohp' => 'required|max:45',
+                'email' => 'required|max:45',
+                'cv' => 'required|mimes:pdf,doc|min:2|max:10000',
+                'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|min:2|max:9000',
+
+            ],
+            [
+                'nama.required' => 'Nama Wajib Diisi',
+                'nama.max' => 'Nama Maksimal 45 Karakter',
+                'idjurusan.required' => 'Jurusan Wajib Diisi',
+                'idjurusan.integer' => 'Jurusan Wajib Dipilih',
+                'semester.required' => 'Semester Wajib Diisi',
+                'semester.max' => 'Semester Wajib Diisi',
+                'gender.required' => 'Gender Wajib Dipilih',
+                'nohp.required' => 'No HP Wajib Diisi',
+                'nohp.max' => 'No HP Maksimal 45 Karakter',
+                'email.required' => 'Email Wajib Diisi',
+                'email.max' => 'Email Maksimal 45 Karakter',
+                'cv.required' => 'CV Wajib Diupload',
+                'cv.mimes' => 'Format CV Wajib PDF/DOC',
+                'cv.min' => 'Ukuran Minimum CV 2 KB',
+                'cv.max' => 'Ukuran Maximum CV 10 MB',
+                'foto.image' => 'Foto Harus Berupa Gambar',
+                'foto.mimes' => 'Foto Harus Format JPG, JPEG, PNG, GIF, SVG',
+            ]
+        );
+        $cv = DB::table('mahasiswa')->select('cv')->where('id',$id)->get();
+        foreach($cv as $c){
+            $namaFileCvLama = $c->cv;
+        }
+        if(!empty($request->cv)){
+            if(!empty($namaFileCvLama)) unlink('backend/mhs/cv/'.$namaFileCvLama);
+            $fileNamee = 'mhscv_'.date("Ymd_h-i-s").'.'.$request->cv->extension();
+            $request->cv->move(public_path('backend/mhs/cv/'),$fileName);
+        }
+        else{
+            $fileNamee = $namaFileCvLama;
+        }
+        $foto = DB::table('mahasiswa')->select('foto')->where('id',$id)->get();
+        foreach($foto as $f){
+            $namaFileFotoLama = $f->foto;
+        }
+        if(!empty($request->foto)){
+            if(!empty($namaFileFotoLama)) unlink('backend/mhs/foto/'.$namaFileFotoLama);
+            $fileName = 'mhs_'.date("Ymd_h-i-s").'.'.$request->foto->extension();
+            $request->foto->move(public_path('backend/mhs/foto/'),$fileName);
+        }
+        else{
+            $fileName = $namaFileFotoLama;
+        }
+        
+
+
+
+        DB::table('mahasiswa')->where('id',$id)->update(
+            
+            [
+                'nama'=>$request->nama,
+                'idjurusan'=>$request->idjurusan,
+                'semester'=>$request->semester,
+                'gender'=>$request->gender,
+                'nohp'=>$request->nohp,
+                'email'=>$request->email,
+                'cv'=>$fileNamee,
+                'foto'=>$fileName,
+            ]
+            );
+
+            return redirect('/mahasiswa'.'/'.$id)
+                        ->with('success','Data Mahasiswa Berhasil Diubah');
+           
+            
     }
 
     /**
