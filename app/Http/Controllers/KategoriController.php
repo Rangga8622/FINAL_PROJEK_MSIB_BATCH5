@@ -23,7 +23,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.kategori.create');
     }
 
     /**
@@ -31,7 +31,18 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi data yang diterima dari formulir
+        $validatedData = $request->validate(
+            [
+                'nama' => 'required|max:45',
+            ]
+
+        );
+
+        // Simpan data kategori baru
+        Kategori::create($validatedData);
+
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     /**
@@ -39,7 +50,6 @@ class KategoriController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
