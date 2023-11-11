@@ -15,9 +15,10 @@ class Mahasiswa extends Model
         'idjurusan', 'nama', 'semester', 'gender', 'nohp', 'email',
         'cv', 'foto', 'barcode'
     ];
-    public function jurusan(): BelongsTo
+    public $timestamps = false;
+    public function jurusan()
     {
-        return $this->belongsTo(Jurusan::class);
+        return $this->belongsTo(Jurusan::class, 'idjurusan');
     }
     public function pendaftaran(): HasMany
     {

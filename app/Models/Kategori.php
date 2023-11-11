@@ -11,6 +11,7 @@ class Kategori extends Model
     use HasFactory;
     protected $table = 'kategori';
     protected $fillable = ['nama'];
+    public $timestamps = false;
     public function organisasi(): HasMany
     {
         return $this->hasMany(Organisasi::class);

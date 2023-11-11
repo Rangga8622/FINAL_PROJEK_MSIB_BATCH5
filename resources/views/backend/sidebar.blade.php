@@ -2,23 +2,22 @@
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/admin') }}">
-                <i class="ti-shield menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
+              <i class="ti-shield menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+        </li> 
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                aria-controls="ui-basic">
-                <i class="ti-view-list-alt menu-icon"></i>
-                <span class="menu-title">Master Data</span>
-                <i class="menu-arrow"></i>
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="ti-palette menu-icon"></i>
+              <span class="menu-title">Master Data</span>
+              <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('/kategori') }}">Kategori</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Jurusan</a></li>
-                </ul>
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/kategori') }}">Kategori</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/jurusan') }}">Jurusan</a></li>
+              </ul>
             </div>
-        </li>
-        </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ url('/organisasi') }}">
