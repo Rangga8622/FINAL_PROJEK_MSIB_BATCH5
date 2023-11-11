@@ -30,10 +30,10 @@
                                 <strong>Semester:</strong> {{ $rs->semester }}
                             </li>
                             <li class="list-group-item">
-                                <strong>Jenis Kelamin:</strong> {{ $rs->jenis_kelamin }}
+                                <strong>Jenis Kelamin:</strong> {{ $rs->gender }}
                             </li>
                             <li class="list-group-item">
-                                <strong>No HP:</strong> {{ $rs->no_hp }}
+                                <strong>No HP:</strong> {{ $rs->nohp }}
                             </li>
                             <li class="list-group-item">
                                 <strong>Email:</strong> {{ $rs->email }}
@@ -63,7 +63,6 @@
                                         });
                                     </script>
                                 @else
-
                                     <span class="text-muted">Tidak Ada CV</span>
                                 @endif
                             </li>
