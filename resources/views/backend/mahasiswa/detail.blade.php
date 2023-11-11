@@ -47,29 +47,13 @@
                                     </a>
 
                                     <embed src="{{ asset('backend/mhs/cv') }}/{{ $rs->cv }}" type="application/pdf"
-                                        id="cvEmbed" style="display: none;" />
+                                        style="display: none;" />
 
-                                    <script>
-                                        document.querySelector('a').addEventListener('click', function(event) {
-
-                                            event.preventDefault();
-
-
-                                            var cvLink = document.querySelector('a');
-                                            var cvEmbed = document.getElementById('cvEmbed');
-
-                                            cvLink.style.display = 'none';
-                                            cvEmbed.style.display = 'block';
-                                        });
-                                    </script>
+                                    
                                 @else
                                     <span class="text-muted">Tidak Ada CV</span>
                                 @endif
                             </li>
-
-
-
-
 
                             <li class="list-group-item">
                                 <strong>Barcode:</strong> {{ $rs->barcode }}
