@@ -73,3 +73,7 @@ Route::resource('/mahasiswa', MahasiswaController::class);
 Route::resource('/pendaftaran', PendaftaranController::class);
 Route::resource('/kategori', KategoriController::class);
 Route::resource('/organisasi', OrganisasiController::class);
+
+
+
+
