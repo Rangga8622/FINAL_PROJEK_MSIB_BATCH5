@@ -59,8 +59,8 @@
                                 <label for="ket">Keterangan</label>
                                 <textarea class="form-control" name="keterangan" id="keterangan" rows="5" placeholder="Keterangan"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary me-2">Submit</button>
-                            <a href="{{ url('/pendaftaran') }}" class="btn btn-light">Cancel</a>
+                            <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                            <a href="{{ url('/pendaftaran') }}" class="btn btn-light">Kembali</a>
                         </form>
                     </div>
                 </div>

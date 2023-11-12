@@ -31,12 +31,15 @@
                                     <td>{{ $p->status_pendaftaran }}</td>
                                     <td>{{ $p->keterangan }}</td>
                                     <td>
-                                        <form method="POST" action="">
+                                        <form method="POST" action="{{ route('pendaftaran.destroy', $p->id) }}">
+                                            @csrf
+                                            @method('DELETE')
                                             <a class="btn btn-info btn-xs" href="{{ route('pendaftaran.show', $p->id) }}"
                                                 title="Detail Pendaftaran">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a class="btn btn-warning btn-xs" href="{{ route('pendaftaran.edit', $p->id) }}" title="Ubah Pendaftaran">
+                                            <a class="btn btn-warning btn-xs"
+                                                href="{{ route('pendaftaran.edit', $p->id) }}" title="Ubah Pendaftaran">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
                                             <button type="submit" title="Hapus Mahasiswa" class="btn btn-danger btn-xs"

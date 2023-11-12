@@ -69,11 +69,10 @@
 
                             <div class="form-group">
                                 <label for="ket">Keterangan</label>
-                                <textarea class="form-control" name="keterangan" id="keterangan" rows="5" placeholder="Keterangan"
-                                    value="{{ $rs->keterangan }}"></textarea>
+                                <textarea class="form-control" name="keterangan" id="keterangan" rows="5" placeholder="Keterangan">{{ $rs->keterangan }}</textarea>
                             </div>
                             <button type="submit" class="btn btn-primary me-2">Update</button>
-                            <a href="{{ url('/pendaftaran') }}" class="btn btn-light">Cancel</a>
+                            <a href="{{ url('/pendaftaran') }}" class="btn btn-light">Kembali</a>
                         </form>
                     </div>
                 </div>

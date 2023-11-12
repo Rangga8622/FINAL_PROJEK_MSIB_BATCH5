@@ -30,7 +30,7 @@ class PendaftaranController extends Controller
         $ar_mahasiswa = Mahasiswa::all();
         $ar_organisasi = Organisasi::all();
         $ar_status = ['diproses', 'diterima', 'ditolak'];
-        return view('backend.pendaftaran.form', compact('ar_mahasiswa','ar_organisasi', 'ar_status'));
+        return view('backend.pendaftaran.form', compact('ar_mahasiswa', 'ar_organisasi', 'ar_status'));
     }
 
     /**
@@ -55,25 +55,25 @@ class PendaftaranController extends Controller
                 'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
                 'status_pendaftaran.required' => 'Status Wajib Diisi',
 
-            ]);
-            try{
-                DB::table('pendaftaran')->insert(
-                    [
-                        'idmahasiswa'=>$request->idmahasiswa,
-                        'idorganisasi'=>$request->idorganisasi,
-                        'tanggal_pendaftaran'=>$request->tanggal_pendaftaran,
-                        'status_pendaftaran'=>$request->status_pendaftaran,
-                        'keterangan'=>$request->keterangan
-                    ]
-                    );
-                    return redirect()->route('pendaftaran.index')
-                            ->with('success','Data Asset Baru Berhasil Disimpan');
-            }
-            catch (\Exception $e){
-                //return redirect()->back()
-                return redirect()->route('pendaftaran.index')
-                    ->with('error', 'Terjadi Kesalahan Saat Input Data!');
-            }
+            ]
+        );
+        try {
+            DB::table('pendaftaran')->insert(
+                [
+                    'idmahasiswa' => $request->idmahasiswa,
+                    'idorganisasi' => $request->idorganisasi,
+                    'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
+                    'status_pendaftaran' => $request->status_pendaftaran,
+                    'keterangan' => $request->keterangan
+                ]
+            );
+            return redirect()->route('pendaftaran.index')
+                ->with('success', 'Data Asset Baru Berhasil Disimpan');
+        } catch (\Exception $e) {
+            //return redirect()->back()
+            return redirect()->route('pendaftaran.index')
+                ->with('error', 'Terjadi Kesalahan Saat Input Data!');
+        }
     }
 
     /**
@@ -94,7 +94,7 @@ class PendaftaranController extends Controller
         $ar_mahasiswa = Mahasiswa::all();
         $ar_organisasi = Organisasi::all();
         $ar_status = ['diproses', 'diterima', 'ditolak'];
-        return view('backend.pendaftaran.form_edit', compact('rs','ar_mahasiswa','ar_organisasi', 'ar_status'));
+        return view('backend.pendaftaran.form_edit', compact('rs', 'ar_mahasiswa', 'ar_organisasi', 'ar_status'));
     }
 
     /**
@@ -119,25 +119,25 @@ class PendaftaranController extends Controller
                 'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
                 'status_pendaftaran.required' => 'Status Wajib Diisi',
 
-            ]);
-            try{
-                DB::table('pendaftaran')->update(
-                    [
-                        'idmahasiswa'=>$request->idmahasiswa,
-                        'idorganisasi'=>$request->idorganisasi,
-                        'tanggal_pendaftaran'=>$request->tanggal_pendaftaran,
-                        'status_pendaftaran'=>$request->status_pendaftaran,
-                        'keterangan'=>$request->keterangan
-                    ]
-                    );
-                    return redirect()->route('pendaftaran.index')
-                            ->with('success','Data Asset Baru Berhasil Diupdate');
-            }
-            catch (\Exception $e){
-                //return redirect()->back()
-                return redirect()->route('pendaftaran.index')
-                    ->with('error', 'Terjadi Kesalahan Saat Input Data!');
-            }
+            ]
+        );
+        try {
+            DB::table('pendaftaran')->update(
+                [
+                    'idmahasiswa' => $request->idmahasiswa,
+                    'idorganisasi' => $request->idorganisasi,
+                    'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
+                    'status_pendaftaran' => $request->status_pendaftaran,
+                    'keterangan' => $request->keterangan
+                ]
+            );
+            return redirect()->route('pendaftaran.index')
+                ->with('success', 'Data Asset Baru Berhasil Diupdate');
+        } catch (\Exception $e) {
+            //return redirect()->back()
+            return redirect()->route('pendaftaran.index')
+                ->with('error', 'Terjadi Kesalahan Saat Input Data!');
+        }
     }
 
     /**
@@ -145,6 +145,8 @@ class PendaftaranController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Pendaftaran::where('id', $id)->delete();
+        return redirect()->route('pendaftaran.index')
+            ->with('success', 'Data Pendaftaran Berhasil Dihapus');
     }
 }
