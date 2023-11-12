@@ -9,6 +9,9 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Tabel Pendaftaran</h4>
+                <a href="{{ route('pendaftaran.create') }}" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
+                    <i class="bi bi-clipboard-plus"></i> Tambah
+                </a>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -33,7 +36,7 @@
                                                 title="Detail Pendaftaran">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a class="btn btn-warning btn-xs" href="#" title="Ubah Mahasiswa">
+                                            <a class="btn btn-warning btn-xs" href="{{ route('pendaftaran.edit', $p->id) }}" title="Ubah Pendaftaran">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
                                             <button type="submit" title="Hapus Mahasiswa" class="btn btn-danger btn-xs"
