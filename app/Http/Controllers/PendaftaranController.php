@@ -101,44 +101,44 @@ class PendaftaranController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $validated = $request->validate(
-            [
-                'idmahasiswa' => 'required|integer',
-                'idorganisasi' => 'required|integer',
-                'tanggal_pendaftaran' => 'required',
-                'status_pendaftaran' => 'required',
-                'ket' => 'nullable',
+{
+    $validated = $request->validate(
+        [
+            'idmahasiswa' => 'required|integer',
+            'idorganisasi' => 'required|integer',
+            'tanggal_pendaftaran' => 'required',
+            'status_pendaftaran' => 'required',
+            'ket' => 'nullable',
+        ],
+        [
+            'idmahasiswa.required' => 'Nama Wajib Diisi',
+            'idmahasiswa.integer' => 'Nama Wajib Diisi',
+            'idorganisasi.required' => 'Organisasi Wajib Diisi',
+            'idorganisasi.integer' => 'Organisasi Wajib Diisi',
+            'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
+            'status_pendaftaran.required' => 'Status Wajib Diisi',
+        ]
+    );
 
-            ],
-            [
-                'idmahasiswa.required' => 'Nama Wajib Diisi',
-                'idmahasiswa.integer' => 'Nama Wajib Diisi',
-                'idorganisasi.required' => 'Organisasi Wajib Diisi',
-                'idorganisasi.integer' => 'Organisasi Wajib Diisi',
-                'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
-                'status_pendaftaran.required' => 'Status Wajib Diisi',
+    try {
+        // Find the record by its ID
+        $pendaftaran = Pendaftaran::find($id);
 
-            ]
-        );
-        try {
-            DB::table('pendaftaran')->update(
-                [
-                    'idmahasiswa' => $request->idmahasiswa,
-                    'idorganisasi' => $request->idorganisasi,
-                    'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
-                    'status_pendaftaran' => $request->status_pendaftaran,
-                    'keterangan' => $request->keterangan
-                ]
-            );
-            return redirect()->route('pendaftaran.index')
-                ->with('success', 'Data Asset Baru Berhasil Diupdate');
-        } catch (\Exception $e) {
-            //return redirect()->back()
-            return redirect()->route('pendaftaran.index')
-                ->with('error', 'Terjadi Kesalahan Saat Input Data!');
-        }
+        // Update the record using Eloquent's update method
+        $pendaftaran->update([
+            'idmahasiswa' => $request->idmahasiswa,
+            'idorganisasi' => $request->idorganisasi,
+            'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
+            'status_pendaftaran' => $request->status_pendaftaran,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('pendaftaran.index')->with('success', 'Data Pendaftaran Berhasil Diupdate');
+    } catch (\Exception $e) {
+        return redirect()->route('pendaftaran.index')->with('error', 'Terjadi Kesalahan Saat Input Data!');
     }
+}
+
 
     /**
      * Remove the specified resource from storage.
