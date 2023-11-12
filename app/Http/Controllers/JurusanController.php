@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Jurusan; //panggil model
 use Illuminate\Support\Facades\DB; // jika pakai query builder
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class JurusanController extends Controller
 {
@@ -23,7 +25,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.jurusan.create');
     }
 
     /**
@@ -31,8 +33,29 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'kode' => 'required|integer',
+                'nama' => 'required|max:45',
+            ]
+
+        );
+
+        try {
+            DB::table('jurusan')->insert([
+                'kode' => $request->kode,
+                'nama' => $request->nama,
+            ]);
+
+
+            return redirect()->route('jurusan.index')
+                ->with('success', 'Data Organisasi Baru Berhasil Disimpan');
+        } catch (\Exception $e) {
+            return redirect()->route('organisasi.index')
+                ->with('error', 'Terjadi Kesalahan Saat Input Data!');
+        }
     }
+
 
     /**
      * Display the specified resource.

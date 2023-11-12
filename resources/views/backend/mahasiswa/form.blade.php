@@ -65,8 +65,8 @@
               <label for="basic-url" class="form-label">Foto</label>
                 <input type="file" class="form-control" name="foto" />
             </div>
-            <button type="submit" class="btn btn-primary me-2">Submit</button>
-            <a href="{{ url('/mahasiswa') }}" class="btn btn-light">Cancel</a>
+            <button type="submit" class="btn btn-primary me-2">Simpan</button>
+            <a href="{{ url('/mahasiswa') }}" class="btn btn-light">Kembali</a>
           </form>
         </div>
       </div>

@@ -19,6 +19,17 @@
     <link rel="shortcut icon" href="{{ asset('backend/images/favicon.png') }}" />
 </head>
 
+<style>
+    .sidebar.active {
+        width: 250px;
+        left: 0;
+    }
+
+    .sidebar.active+.content {
+        margin-left: 250px;
+    }
+</style>
+
 <body>
     @include('backend.navbar')
 
@@ -94,6 +105,20 @@
     <!-- Custom js for this page-->
     <script src="{{ asset('backend/js/dashboard.js') }}"></script>
     <!-- End custom js for this page-->
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Kode JavaScript toggle sidebar
+        const toggle = document.querySelector('.navbar-toggler');
+        const sidebar = document.querySelector('.sidebar');
+
+        toggle.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+        });
+    </script>
 </body>
 
 </html>

@@ -63,7 +63,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <button class="btn btn-light">Batal</button>
+                            <a href="{{ url('/mahasiswa') }}" class="btn btn-light">Kembali</a>
                         </form>
                     </div>
                 </div>
