@@ -22,6 +22,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php $no = $ar_organisasi->firstItem() - 0 ; @endphp
                             @foreach ($ar_organisasi as $o)
                                 <tr>
                                     <td>{{ $no++ }}</td>
@@ -51,6 +52,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $ar_organisasi->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

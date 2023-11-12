@@ -17,7 +17,7 @@ class OrganisasiController extends Controller
      */
     public function index()
     {
-        $ar_organisasi = Organisasi::all();
+        $ar_organisasi = Organisasi::paginate(5);
         return view('backend.organisasi.index', compact('ar_organisasi'));
     }
 
