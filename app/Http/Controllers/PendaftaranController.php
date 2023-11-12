@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pendaftaran; //panggil model
 use App\Models\Mahasiswa; // Import the Jurusan model
+use App\Models\Organisasi; // Import the Jurusan model
 use Illuminate\Support\Facades\DB; // jika pakai query builder
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 
 class PendaftaranController extends Controller
 {
@@ -25,15 +27,53 @@ class PendaftaranController extends Controller
      */
     public function create()
     {
-        //
+        $ar_mahasiswa = Mahasiswa::all();
+        $ar_organisasi = Organisasi::all();
+        $ar_status = ['diproses', 'diterima', 'ditolak'];
+        return view('backend.pendaftaran.form', compact('ar_mahasiswa','ar_organisasi', 'ar_status'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate(
+            [
+                'idmahasiswa' => 'required|integer',
+                'idorganisasi' => 'required|integer',
+                'tanggal_pendaftaran' => 'required',
+                'status_pendaftaran' => 'required',
+                'ket' => 'nullable',
+
+            ],
+            [
+                'idmahasiswa.required' => 'Nama Wajib Diisi',
+                'idmahasiswa.integer' => 'Nama Wajib Diisi',
+                'idorganisasi.required' => 'Organisasi Wajib Diisi',
+                'idorganisasi.integer' => 'Organisasi Wajib Diisi',
+                'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
+                'status_pendaftaran.required' => 'Status Wajib Diisi',
+
+            ]);
+            try{
+                DB::table('pendaftaran')->insert(
+                    [
+                        'idmahasiswa'=>$request->idmahasiswa,
+                        'idorganisasi'=>$request->idorganisasi,
+                        'tanggal_pendaftaran'=>$request->tanggal_pendaftaran,
+                        'status_pendaftaran'=>$request->status_pendaftaran,
+                        'keterangan'=>$request->keterangan
+                    ]
+                    );
+                    return redirect()->route('pendaftaran.index')
+                            ->with('success','Data Asset Baru Berhasil Disimpan');
+            }
+            catch (\Exception $e){
+                //return redirect()->back()
+                return redirect()->route('pendaftaran.index')
+                    ->with('error', 'Terjadi Kesalahan Saat Input Data!');
+            }
     }
 
     /**

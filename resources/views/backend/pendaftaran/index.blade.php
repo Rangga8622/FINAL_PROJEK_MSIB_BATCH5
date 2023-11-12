@@ -9,6 +9,9 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Tabel Pendaftaran</h4>
+                <a href="{{ route('pendaftaran.create') }}" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
+                    <i class="bi bi-clipboard-plus"></i> Tambah
+                </a>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
