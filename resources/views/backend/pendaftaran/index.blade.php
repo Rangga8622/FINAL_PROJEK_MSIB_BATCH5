@@ -36,7 +36,7 @@
                                                 title="Detail Pendaftaran">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a class="btn btn-warning btn-xs" href="#" title="Ubah Mahasiswa">
+                                            <a class="btn btn-warning btn-xs" href="{{ route('pendaftaran.edit', $p->id) }}" title="Ubah Pendaftaran">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
                                             <button type="submit" title="Hapus Mahasiswa" class="btn btn-danger btn-xs"

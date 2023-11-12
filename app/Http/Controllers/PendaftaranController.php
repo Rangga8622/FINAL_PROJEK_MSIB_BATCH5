@@ -90,7 +90,11 @@ class PendaftaranController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $rs = Pendaftaran::find($id);
+        $ar_mahasiswa = Mahasiswa::all();
+        $ar_organisasi = Organisasi::all();
+        $ar_status = ['diproses', 'diterima', 'ditolak'];
+        return view('backend.pendaftaran.form_edit', compact('rs','ar_mahasiswa','ar_organisasi', 'ar_status'));
     }
 
     /**
@@ -98,7 +102,42 @@ class PendaftaranController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate(
+            [
+                'idmahasiswa' => 'required|integer',
+                'idorganisasi' => 'required|integer',
+                'tanggal_pendaftaran' => 'required',
+                'status_pendaftaran' => 'required',
+                'ket' => 'nullable',
+
+            ],
+            [
+                'idmahasiswa.required' => 'Nama Wajib Diisi',
+                'idmahasiswa.integer' => 'Nama Wajib Diisi',
+                'idorganisasi.required' => 'Organisasi Wajib Diisi',
+                'idorganisasi.integer' => 'Organisasi Wajib Diisi',
+                'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
+                'status_pendaftaran.required' => 'Status Wajib Diisi',
+
+            ]);
+            try{
+                DB::table('pendaftaran')->update(
+                    [
+                        'idmahasiswa'=>$request->idmahasiswa,
+                        'idorganisasi'=>$request->idorganisasi,
+                        'tanggal_pendaftaran'=>$request->tanggal_pendaftaran,
+                        'status_pendaftaran'=>$request->status_pendaftaran,
+                        'keterangan'=>$request->keterangan
+                    ]
+                    );
+                    return redirect()->route('pendaftaran.index')
+                            ->with('success','Data Asset Baru Berhasil Diupdate');
+            }
+            catch (\Exception $e){
+                //return redirect()->back()
+                return redirect()->route('pendaftaran.index')
+                    ->with('error', 'Terjadi Kesalahan Saat Input Data!');
+            }
     }
 
     /**
