@@ -12,10 +12,24 @@ class KategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ar_kategori = Kategori::paginate(5);
-        return view('backend.kategori.index', compact('ar_kategori'));
+
+        $search = $request->query('search');
+
+        // query eloquent
+        $ar_kategori = Kategori::query();
+
+        // jika ada parameter search
+        if ($search) {
+            $ar_kategori = $ar_kategori->where('nama', 'like', '%' . $search . '%');
+        }
+
+        $ar_kategori = $ar_kategori->paginate(5);
+
+        return view('backend.kategori.index', [
+            'ar_kategori' => $ar_kategori
+        ]);
     }
 
     /**

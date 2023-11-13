@@ -19,17 +19,6 @@
     <link rel="shortcut icon" href="{{ asset('backend/images/favicon.png') }}" />
 </head>
 
-<style>
-    .sidebar.active {
-        width: 250px;
-        left: 0;
-    }
-
-    .sidebar.active+.content {
-        margin-left: 250px;
-    }
-</style>
-
 <body>
     @include('backend.navbar')
 
@@ -81,12 +70,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 
 
     <!-- plugins:js -->
