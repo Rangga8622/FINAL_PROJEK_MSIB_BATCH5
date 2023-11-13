@@ -17,7 +17,7 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        $ar_pendaftaran = Pendaftaran::all(); //eloquent
+        $ar_pendaftaran = Pendaftaran::paginate(5); //eloquent
         return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
     }
 

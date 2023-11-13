@@ -14,7 +14,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $ar_kategori = Kategori::all();
+        $ar_kategori = Kategori::paginate(5);
         return view('backend.kategori.index', compact('ar_kategori'));
     }
 

@@ -22,6 +22,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php $no = $ar_mahasiswa->firstItem() - 0 ; @endphp
                             @foreach ($ar_mahasiswa as $m)
                                 <tr>
                                     <td>{{ $no++ }}</td>
@@ -38,7 +39,8 @@
                                                 title="Detail Mahasiswa">
                                                 <i class="bi bi-eye"></i>
                                             </a>
-                                            <a class="btn btn-warning btn-xs" href="{{ route('mahasiswa.edit', $m->id) }}" title="Ubah Mahasiswa">
+                                            <a class="btn btn-warning btn-xs" href="{{ route('mahasiswa.edit', $m->id) }}"
+                                                title="Ubah Mahasiswa">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
                                             <button type="submit" title="Hapus Mahasiswa" class="btn btn-danger btn-xs"
@@ -52,6 +54,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $ar_mahasiswa->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

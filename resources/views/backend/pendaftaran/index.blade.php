@@ -22,6 +22,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php $no = $ar_pendaftaran->firstItem() - 0 ; @endphp
                             @foreach ($ar_pendaftaran as $p)
                                 <tr>
                                     <td>{{ $no++ }}</td>
@@ -53,6 +54,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $ar_pendaftaran->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>

@@ -17,7 +17,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $ar_mahasiswa = Mahasiswa::all();
+        $ar_mahasiswa = Mahasiswa::paginate(5);
         return view('backend.mahasiswa.index', compact('ar_mahasiswa'));
     }
 
@@ -188,12 +188,12 @@ class MahasiswaController extends Controller
         else{
             $fileName = $namaFileFotoLama;
         }
-        
+
 
 
 
         DB::table('mahasiswa')->where('id',$id)->update(
-            
+
             [
                 'nama'=>$request->nama,
                 'idjurusan'=>$request->idjurusan,
@@ -208,8 +208,8 @@ class MahasiswaController extends Controller
 
             return redirect('/mahasiswa'.'/'.$id)
                         ->with('success','Data Mahasiswa Berhasil Diubah');
-           
-            
+
+
     }
 
     /**

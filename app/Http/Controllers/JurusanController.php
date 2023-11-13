@@ -14,10 +14,25 @@ class JurusanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ar_jurusan = Jurusan::all(); //eloquent
-        return view('backend.jurusan.index', compact('ar_jurusan'));
+
+        $search = $request->query('search');
+
+        // query eloquent
+        $ar_jurusan = Jurusan::query();
+
+        // jika ada parameter search
+        if ($search) {
+            $ar_jurusan = $ar_jurusan->where('nama', 'like', '%' . $search . '%')
+                ->orWhere('kode', 'like', '%' . $search . '%');
+        }
+
+        $ar_jurusan = $ar_jurusan->paginate(5);
+
+        return view('backend.jurusan.index', [
+            'ar_jurusan' => $ar_jurusan
+        ]);
     }
 
     /**

@@ -8,10 +8,22 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Tabel Jurusan</h4>
-                <button type="button" class="btn btn-primary btn-xs" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="bi bi-clipboard-plus"></i> Tambah
-                </button>
+                <div class="d-flex justify-content-between mb-2">
 
+                    <div>
+                        <button type="button" class="btn btn-primary btn-xs">
+                            <i class="bi bi-clipboard-plus"></i> Tambah
+                        </button>
+                    </div>
+
+                    <div>
+                        <form action="{{ url('jurusan') }}" method="get" class="d-flex">
+                            <input type="text" name="search" class="form-control" />
+                            <button type="submit" class="btn btn-primary ">Cari</button>
+                        </form>
+                    </div>
+
+                </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -22,6 +34,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php $no = $ar_jurusan->firstItem() - 0 ; @endphp
                             @foreach ($ar_jurusan as $k)
                                 <tr>
                                     <td>{{ $no++ }}</td>
@@ -32,6 +45,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-end mt-5">
+                        {{ $ar_jurusan->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>

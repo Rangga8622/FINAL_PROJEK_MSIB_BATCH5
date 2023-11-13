@@ -22,6 +22,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php $no = $ar_kategori->firstItem() - 0 ; @endphp
                             @foreach ($ar_kategori as $k)
                                 <tr>
                                     <td>{{ $no++ }}</td>
@@ -31,6 +32,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-end mt-5">
+
+                        {{ $ar_kategori->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>
