@@ -74,7 +74,7 @@ class OrganisasiController extends Controller
             ]);
 
             return redirect()->route('organisasi.index')
-                ->with('success', 'Data Organisasi Baru Berhasil Disimpan');
+                ->with('success', 'Data Organisasi Baru Berhasil Di Simpan');
         } catch (\Exception $e) {
             return redirect()->route('organisasi.index')
                 ->with('error', 'Terjadi Kesalahan Saat Input Data!');

@@ -64,7 +64,7 @@ class JurusanController extends Controller
 
 
             return redirect()->route('jurusan.index')
-                ->with('success', 'Data Organisasi Baru Berhasil Disimpan');
+                ->with('success', 'Data Organisasi Berhasil Di Simpan');
         } catch (\Exception $e) {
             return redirect()->route('organisasi.index')
                 ->with('error', 'Terjadi Kesalahan Saat Input Data!');

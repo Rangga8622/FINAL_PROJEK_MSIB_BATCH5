@@ -98,7 +98,7 @@ class MahasiswaController extends Controller
                 ]
             );
             return redirect()->route('mahasiswa.index')
-                ->with('success', 'Data Asset Baru Berhasil Disimpan');
+                ->with('success', 'Data Asset Baru Berhasil Di Simpan');
         } catch (\Exception $e) {
             //return redirect()->back()
             return redirect()->route('mahasiswa.index')

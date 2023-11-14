@@ -56,7 +56,7 @@ class KategoriController extends Controller
         // Simpan data kategori baru
         Kategori::create($validatedData);
 
-        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
+        return redirect()->route('kategori.index')->with('success', 'Data Kategori berhasil ditambahkan.');
     }
 
     /**
