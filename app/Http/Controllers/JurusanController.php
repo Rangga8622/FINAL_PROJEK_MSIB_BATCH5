@@ -28,7 +28,7 @@ class JurusanController extends Controller
                 ->orWhere('kode', 'like', '%' . $search . '%');
         }
 
-        $ar_jurusan = $ar_jurusan->paginate(5);
+        $ar_jurusan = $ar_jurusan->paginate(10);
 
         return view('backend.jurusan.index', [
             'ar_jurusan' => $ar_jurusan

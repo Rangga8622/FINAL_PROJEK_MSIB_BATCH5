@@ -54,7 +54,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $ar_mahasiswa->links('pagination::bootstrap-4') }}
+                    <div class="d-flex justify-content-end mt-5">
+
+                        {{ $ar_mahasiswa->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
             </div>
         </div>

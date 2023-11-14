@@ -25,7 +25,7 @@ class KategoriController extends Controller
             $ar_kategori = $ar_kategori->where('nama', 'like', '%' . $search . '%');
         }
 
-        $ar_kategori = $ar_kategori->paginate(5);
+        $ar_kategori = $ar_kategori->paginate(10);
 
         return view('backend.kategori.index', [
             'ar_kategori' => $ar_kategori

@@ -9,9 +9,32 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Tabel Organisasi</h4>
-                <a href="{{ route('organisasi.create') }}" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
-                    <i class="bi bi-clipboard-plus"></i> Tambah
-                </a>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>
+                        <a href="{{ route('organisasi.create') }}" class="btn btn-primary btn-xs"
+                            title="Tambah Data Mahasiswa">
+                            <i class="bi bi-clipboard-plus"></i> Tambah
+                        </a>
+                    </div>
+
+                    <div>
+                        <form action="{{ url('organisasi') }}" method="get" class="d-flex">
+
+                            <input type="text" name="search" class="form-control form-control-xs" />
+
+                            <button type="submit" class="btn btn-primary ">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-search"></i>
+                                    <span class="ms-1">Cari</span>
+                                </div>
+
+                            </button>
+
+                        </form>
+                    </div>
+
+                </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -52,7 +75,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $ar_organisasi->links('pagination::bootstrap-4') }}
+                    <div class="d-flex justify-content-end mt-5">
+
+                        {{ $ar_organisasi->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
             </div>
         </div>

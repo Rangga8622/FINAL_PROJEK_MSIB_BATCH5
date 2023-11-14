@@ -17,7 +17,9 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        $ar_pendaftaran = Pendaftaran::paginate(5); //eloquent
+        $ar_pendaftaran = Pendaftaran::query(); //eloquent
+
+        $ar_pendaftaran = $ar_pendaftaran->paginate(10);
         return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
     }
 
@@ -101,43 +103,43 @@ class PendaftaranController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-{
-    $validated = $request->validate(
-        [
-            'idmahasiswa' => 'required|integer',
-            'idorganisasi' => 'required|integer',
-            'tanggal_pendaftaran' => 'required',
-            'status_pendaftaran' => 'required',
-            'ket' => 'nullable',
-        ],
-        [
-            'idmahasiswa.required' => 'Nama Wajib Diisi',
-            'idmahasiswa.integer' => 'Nama Wajib Diisi',
-            'idorganisasi.required' => 'Organisasi Wajib Diisi',
-            'idorganisasi.integer' => 'Organisasi Wajib Diisi',
-            'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
-            'status_pendaftaran.required' => 'Status Wajib Diisi',
-        ]
-    );
+    {
+        $validated = $request->validate(
+            [
+                'idmahasiswa' => 'required|integer',
+                'idorganisasi' => 'required|integer',
+                'tanggal_pendaftaran' => 'required',
+                'status_pendaftaran' => 'required',
+                'ket' => 'nullable',
+            ],
+            [
+                'idmahasiswa.required' => 'Nama Wajib Diisi',
+                'idmahasiswa.integer' => 'Nama Wajib Diisi',
+                'idorganisasi.required' => 'Organisasi Wajib Diisi',
+                'idorganisasi.integer' => 'Organisasi Wajib Diisi',
+                'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
+                'status_pendaftaran.required' => 'Status Wajib Diisi',
+            ]
+        );
 
-    try {
-        // Find the record by its ID
-        $pendaftaran = Pendaftaran::find($id);
+        try {
+            // Find the record by its ID
+            $pendaftaran = Pendaftaran::find($id);
 
-        // Update the record using Eloquent's update method
-        $pendaftaran->update([
-            'idmahasiswa' => $request->idmahasiswa,
-            'idorganisasi' => $request->idorganisasi,
-            'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
-            'status_pendaftaran' => $request->status_pendaftaran,
-            'keterangan' => $request->keterangan,
-        ]);
+            // Update the record using Eloquent's update method
+            $pendaftaran->update([
+                'idmahasiswa' => $request->idmahasiswa,
+                'idorganisasi' => $request->idorganisasi,
+                'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
+                'status_pendaftaran' => $request->status_pendaftaran,
+                'keterangan' => $request->keterangan,
+            ]);
 
-        return redirect()->route('pendaftaran.index')->with('success', 'Data Pendaftaran Berhasil Diupdate');
-    } catch (\Exception $e) {
-        return redirect()->route('pendaftaran.index')->with('error', 'Terjadi Kesalahan Saat Input Data!');
+            return redirect()->route('pendaftaran.index')->with('success', 'Data Pendaftaran Berhasil Diupdate');
+        } catch (\Exception $e) {
+            return redirect()->route('pendaftaran.index')->with('error', 'Terjadi Kesalahan Saat Input Data!');
+        }
     }
-}
 
 
     /**

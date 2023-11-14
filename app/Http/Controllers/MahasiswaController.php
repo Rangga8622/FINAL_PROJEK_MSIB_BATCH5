@@ -17,7 +17,9 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $ar_mahasiswa = Mahasiswa::paginate(5);
+        $ar_mahasiswa = Mahasiswa::query();
+
+        $ar_mahasiswa = $ar_mahasiswa->paginate(10);
         return view('backend.mahasiswa.index', compact('ar_mahasiswa'));
     }
 
@@ -29,7 +31,7 @@ class MahasiswaController extends Controller
         //ambil master data kategori u/ dilooping di select option form
         $ar_jurusan = Jurusan::all();
         $ar_gender = ['L', 'P'];
-        return view('backend.mahasiswa.form', compact('ar_jurusan','ar_gender'));
+        return view('backend.mahasiswa.form', compact('ar_jurusan', 'ar_gender'));
     }
 
     /**
@@ -68,43 +70,40 @@ class MahasiswaController extends Controller
                 'foto.mimes' => 'Foto Harus Format JPG, JPEG, PNG, GIF, SVG',
             ]
 
-            );
-            if (!empty($request->cv)){
-                $fileNamee = 'mhscv_'.date("Ymd_h-i-s").'.'.$request->cv->extension();
-                $request->cv->move(public_path('backend/mhs/cv'),$fileNamee);
-            }
-            else{
-                $fileNamee = '';
-            }
-            if(!empty($request->foto)){
-                $fileName = 'mhs_'.date("Ymd_h-i-s").'.'.$request->foto->extension();
-                $request->foto->move(public_path('backend/mhs/foto'),$fileName);
-            }
-            else{
-                $fileName = '';
-            }
+        );
+        if (!empty($request->cv)) {
+            $fileNamee = 'mhscv_' . date("Ymd_h-i-s") . '.' . $request->cv->extension();
+            $request->cv->move(public_path('backend/mhs/cv'), $fileNamee);
+        } else {
+            $fileNamee = '';
+        }
+        if (!empty($request->foto)) {
+            $fileName = 'mhs_' . date("Ymd_h-i-s") . '.' . $request->foto->extension();
+            $request->foto->move(public_path('backend/mhs/foto'), $fileName);
+        } else {
+            $fileName = '';
+        }
 
-            try{
-                DB::table('mahasiswa')->insert(
-                    [
-                        'nama'=>$request->nama,
-                        'idjurusan'=>$request->idjurusan,
-                        'semester'=>$request->semester,
-                        'gender'=>$request->gender,
-                        'nohp'=>$request->nohp,
-                        'email'=>$request->email,
-                        'cv'=>$fileNamee,
-                        'foto'=>$fileName,
-                    ]
-                    );
-                    return redirect()->route('mahasiswa.index')
-                            ->with('success','Data Asset Baru Berhasil Disimpan');
-            }
-            catch (\Exception $e){
-                //return redirect()->back()
-                return redirect()->route('mahasiswa.index')
-                    ->with('error', 'Terjadi Kesalahan Saat Input Data!');
-            }
+        try {
+            DB::table('mahasiswa')->insert(
+                [
+                    'nama' => $request->nama,
+                    'idjurusan' => $request->idjurusan,
+                    'semester' => $request->semester,
+                    'gender' => $request->gender,
+                    'nohp' => $request->nohp,
+                    'email' => $request->email,
+                    'cv' => $fileNamee,
+                    'foto' => $fileName,
+                ]
+            );
+            return redirect()->route('mahasiswa.index')
+                ->with('success', 'Data Asset Baru Berhasil Disimpan');
+        } catch (\Exception $e) {
+            //return redirect()->back()
+            return redirect()->route('mahasiswa.index')
+                ->with('error', 'Terjadi Kesalahan Saat Input Data!');
+        }
     }
 
     /**
@@ -164,52 +163,48 @@ class MahasiswaController extends Controller
                 'foto.mimes' => 'Foto Harus Format JPG, JPEG, PNG, GIF, SVG',
             ]
         );
-        $cv = DB::table('mahasiswa')->select('cv')->where('id',$id)->get();
-        foreach($cv as $c){
+        $cv = DB::table('mahasiswa')->select('cv')->where('id', $id)->get();
+        foreach ($cv as $c) {
             $namaFileCvLama = $c->cv;
         }
-        if(!empty($request->cv)){
-            if(!empty($namaFileCvLama)) unlink('backend/mhs/cv/'.$namaFileCvLama);
-            $fileNamee = 'mhscv_'.date("Ymd_h-i-s").'.'.$request->cv->extension();
-            $request->cv->move(public_path('backend/mhs/cv/'),$fileNamee);
-        }
-        else{
+        if (!empty($request->cv)) {
+            if (!empty($namaFileCvLama)) unlink('backend/mhs/cv/' . $namaFileCvLama);
+            $fileNamee = 'mhscv_' . date("Ymd_h-i-s") . '.' . $request->cv->extension();
+            $request->cv->move(public_path('backend/mhs/cv/'), $fileNamee);
+        } else {
             $fileNamee = $namaFileCvLama;
         }
-        $foto = DB::table('mahasiswa')->select('foto')->where('id',$id)->get();
-        foreach($foto as $f){
+        $foto = DB::table('mahasiswa')->select('foto')->where('id', $id)->get();
+        foreach ($foto as $f) {
             $namaFileFotoLama = $f->foto;
         }
-        if(!empty($request->foto)){
-            if(!empty($namaFileFotoLama)) unlink('backend/mhs/foto/'.$namaFileFotoLama);
-            $fileName = 'mhs_'.date("Ymd_h-i-s").'.'.$request->foto->extension();
-            $request->foto->move(public_path('backend/mhs/foto/'),$fileName);
-        }
-        else{
+        if (!empty($request->foto)) {
+            if (!empty($namaFileFotoLama)) unlink('backend/mhs/foto/' . $namaFileFotoLama);
+            $fileName = 'mhs_' . date("Ymd_h-i-s") . '.' . $request->foto->extension();
+            $request->foto->move(public_path('backend/mhs/foto/'), $fileName);
+        } else {
             $fileName = $namaFileFotoLama;
         }
 
 
 
 
-        DB::table('mahasiswa')->where('id',$id)->update(
+        DB::table('mahasiswa')->where('id', $id)->update(
 
             [
-                'nama'=>$request->nama,
-                'idjurusan'=>$request->idjurusan,
-                'semester'=>$request->semester,
-                'gender'=>$request->gender,
-                'nohp'=>$request->nohp,
-                'email'=>$request->email,
-                'cv'=>$fileNamee,
-                'foto'=>$fileName,
+                'nama' => $request->nama,
+                'idjurusan' => $request->idjurusan,
+                'semester' => $request->semester,
+                'gender' => $request->gender,
+                'nohp' => $request->nohp,
+                'email' => $request->email,
+                'cv' => $fileNamee,
+                'foto' => $fileName,
             ]
-            );
+        );
 
-            return redirect('/mahasiswa'.'/'.$id)
-                        ->with('success','Data Mahasiswa Berhasil Diubah');
-
-
+        return redirect('/mahasiswa' . '/' . $id)
+            ->with('success', 'Data Mahasiswa Berhasil Diubah');
     }
 
     /**
@@ -218,10 +213,10 @@ class MahasiswaController extends Controller
     public function destroy(string $id)
     {
         $post = Mahasiswa::find($id);
-        if(!empty($post->foto)) unlink('backend/mhs/foto/'.$post->foto);
-        if(!empty($post->cv)) unlink('backend/mhs/cv/'.$post->cv);
-        Mahasiswa::where('id',$id)->delete();
+        if (!empty($post->foto)) unlink('backend/mhs/foto/' . $post->foto);
+        if (!empty($post->cv)) unlink('backend/mhs/cv/' . $post->cv);
+        Mahasiswa::where('id', $id)->delete();
         return redirect()->route('mahasiswa.index')
-      ->with('success', 'Data Mahasiswa Berhasil Dihapus');
+            ->with('success', 'Data Mahasiswa Berhasil Dihapus');
     }
 }
