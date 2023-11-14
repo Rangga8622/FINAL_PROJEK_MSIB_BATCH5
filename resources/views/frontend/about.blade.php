@@ -21,23 +21,23 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 py-3 wow fadeInUp">
                     <span class="subhead">About us</span>
-                    <h2 class="title-section">The number #1 SEO Service Company</h2>
+                    <h2 class="title-section">Organisation Enrollment System : Sistem Pendaftaran Organisasi</h2>
                     <div class="divider"></div>
 
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                        labore et dolore magna aliquyam erat, sed diam voluptua.</p>
-                    <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>
-                    <a href="{{ url('about') }}" class="btn btn-primary mt-3">Read More</a>
+                    <p>Sistem pendaftaran organisasi yang canggih dan efisien telah dirancang untuk menyederhanakan proses
+                        pendaftaran dan pengelolaan anggota, memastikan kelancaran administrasi, dan memperkuat
+                        keterhubungan antara anggota organisasi.</p>
+                    <p>Dengan menggunakan teknologi terkini, sistem ini
+                        memungkinkan calon anggota untuk mendaftar secara online melalui antarmuka yang ramah pengguna,
+                        meminimalkan kerumitan dan waktu yang dibutuhkan dalam pengumpulan data dan dokumen.</p>
+
                 </div>
                 <div class="col-lg-6 py-3 wow fadeInRight">
                     <div class="img-fluid py-3 text-center">
-                        <img src="{{ asset('frontend/assets/img/about_frame.png') }}" alt="">
+                        <img src="{{ asset('frontend/assets/img/about.png') }}" alt="">
                     </div>
                 </div>
             </div>
         </div> <!-- .container -->
     </div> <!-- .page-section -->
-
-
-    
 @endsection

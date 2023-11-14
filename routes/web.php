@@ -7,6 +7,8 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OrganisasiController;
+use App\Http\Controllers\DashboardController;
+
 
 
 /*
@@ -66,6 +68,9 @@ Route::get('/form', function () {
     return view('backend.form');
 });
 
+Route::get('dashboard', [DashboardController::class, 'index']);
+
+
 
 // ==================Controller resource ==================
 Route::resource('/jurusan', JurusanController::class);
@@ -73,7 +78,3 @@ Route::resource('/mahasiswa', MahasiswaController::class);
 Route::resource('/pendaftaran', PendaftaranController::class);
 Route::resource('/kategori', KategoriController::class);
 Route::resource('/organisasi', OrganisasiController::class);
-
-
-
-
