@@ -20,6 +20,8 @@
 </head>
 
 <body>
+@include('sweetalert::alert')
+
     @include('backend.navbar')
 
     <div class="container-fluid page-body-wrapper">
