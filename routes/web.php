@@ -58,9 +58,11 @@ Route::get('/pendaftaran', function () {
 
 
 // ==================Admin Dasboard ==================
-Route::get('/admin', function () {
-    return view('backend.dashboard');
-});
+// Route::get('/admin', function () {
+//     return view('backend.dashboard');
+// });
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
 Route::get('/table', function () {
     return view('backend.table');
 });
@@ -68,7 +70,6 @@ Route::get('/form', function () {
     return view('backend.form');
 });
 
-Route::get('dashboard', [DashboardController::class, 'index']);
 
 
 

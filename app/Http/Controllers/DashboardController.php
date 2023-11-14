@@ -3,21 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB; // jika pakai query builder
-use Illuminate\Database\Eloquent\Model; // jika pakai eloquent
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
-use App\Models\Organisasi;
 use Illuminate\View\View;
+use App\Models\Organisasi;
+use App\Models\Pendaftaran;
 
 class DashboardController extends Controller
 {
     public function index(): View
     {
-        $jumlah_organisasi = Organisasi::count();
-
+        //query u/ mendapatkan jml kategori organisasi
+        $ar_organisasi = Organisasi::count();
+        $ar_pendaftaran = Pendaftaran::count();
         return view(
             'backend.dashboard',
-            compact('jumlah_organisasi')
+            compact(
+                'ar_organisasi',
+                'ar_pendaftaran'
+            )
         );
     }
 }
