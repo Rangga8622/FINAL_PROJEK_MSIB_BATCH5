@@ -17,11 +17,19 @@ class DashboardController extends Controller
         //query u/ mendapatkan jml kategori organisasi
         $ar_organisasi = Organisasi::count();
         $ar_pendaftaran = Pendaftaran::count();
+
+        $ar_graph_organisasi = DB::table('organisasi as o')
+            ->select('o.nama as nama_organisasi', DB::raw('COUNT(p.id) as total_pendaftaran'))
+            ->join('pendaftaran as p', 'o.id', '=', 'p.idorganisasi')
+            ->groupBy('o.id', 'o.nama')
+            ->get();
+
         return view(
             'backend.dashboard',
             compact(
                 'ar_organisasi',
-                'ar_pendaftaran'
+                'ar_pendaftaran',
+                'ar_graph_organisasi'
             )
         );
     }

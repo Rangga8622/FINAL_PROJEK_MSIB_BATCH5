@@ -46,7 +46,7 @@
             <div class="col-lg-12 grid-margin grid-margin-lg-0 stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Kategori Organisasi</h4>
+                        <h4 class="card-title">Grafik Pendaftaran dari masing-masing organisasi</h4>
                         <canvas id="myChart"></canvas>
                     </div>
                 </div>
@@ -57,12 +57,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
     <script>
+        var lbl = [
+            @foreach ($ar_graph_organisasi as $gb)
+                '{{ $gb->nama_organisasi }}',
+            @endforeach
+        ];
+        var jml = [
+            @foreach ($ar_graph_organisasi as $gb)
+                {{ $gb->total_pendaftaran }},
+            @endforeach
+        ];
         document.addEventListener('DOMContentLoaded', function() {
             const data = {
-                labels: ['Red', 'Blue', 'Yellow'],
+                labels: lbl,
                 datasets: [{
-                    label: 'My First Dataset',
-                    data: [300, 50, 100],
+                    label: 'Perbandingan Jumlah pendaftaran',
+                    data: jml,
                     backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
                     hoverOffset: 4
                 }]
