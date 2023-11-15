@@ -5,7 +5,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        @if ($errors->any())
+                        {{--@if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -13,7 +13,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
+                        @endif--}}
                         <h4 class="card-title">Form Mahasiswa</h4>
                         <form class="forms-sample" method="POST" action="{{ route('pendaftaran.store') }}">
                             @csrf
