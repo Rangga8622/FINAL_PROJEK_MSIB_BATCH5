@@ -88,7 +88,7 @@ class JurusanController extends Controller
             ],
             [
                 'kode.required' => 'Kode Wajib Diisi',
-                'kode.integer' => 'Kode Wajib Dipilih',
+                'kode.integer' => 'Kode Maksimal 5 karakter',
                 'nama.required' => 'Nama Wajib Diisi',
                 'nama.max' => 'Nama Maksimal 45 Karakter',
             ]
