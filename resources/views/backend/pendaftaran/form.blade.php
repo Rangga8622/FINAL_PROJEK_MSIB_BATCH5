@@ -19,42 +19,63 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputName1">Name</label>
-                                <select name="idmahasiswa" class="form-select">
+                                <select name="idmahasiswa" class="form-select @error('idmahasiswa') is-invalid @else is-valid @enderror">
                                     <option>-- Pilih Nama --</option>
                                     @foreach ($ar_mahasiswa as $m)
-                                        <option value="{{ $m->id }}">{{ $m->nama }}</option>
+                                        @php $sel = (old('idmahasiswa') == $m->id) ? 'selected' : ''; @endphp
+                                        <option value="{{ $m->id }}" {{ $sel }}>{{ $m->nama }}</option>
                                     @endforeach
                                 </select>
+                                @error('idmahasiswa')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputOrg">Organisasi</label>
-                                <select name="idorganisasi" class="form-select">
+                                <select name="idorganisasi" class="form-select @error('idorganisasi') is-invalid @else is-valid @enderror">
                                     <option>-- Pilih Organisasi --</option>
                                     @foreach ($ar_organisasi as $o)
-                                        <option value="{{ $o->id }}">{{ $o->nama }}</option>
+                                        @php $sel = (old('idorganisasi') == $o->id) ? 'selected' : ''; @endphp
+                                        <option value="{{ $o->id }}" {{ $sel }}>{{ $o->nama }}</option>
                                     @endforeach
                                 </select>
+                                @error('idorganisasi')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="exampleInputSmt">Tanggal Pendaftaran</label>
-                                <input type="date" name="tanggal_pendaftaran" class="form-control" id="exampleInputSmt">
+                                <input type="date" name="tanggal_pendaftaran" class="form-control @error('tanggal_pendaftaran') is-invalid @else is-valid @enderror" 
+                                id="exampleInputSmt" value="{{ old('tanggal_pendaftaran') }}" placeholder="Tanggal Pendaftaran">
+                                @error('tanggal_pendaftaran')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="form-group">
                                 <fieldset class="row mb-3">
                                     <legend class="col-form-label col-sm-2 pt-0">Status</legend>
                                     <div class="col-sm-10">
                                         @foreach ($ar_status as $s)
+                                            @php $cekStatus = (old('status_pendaftaran') == $s) ? 'checked' : ''; @endphp
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="status_pendaftaran"
-                                                    value="{{ $s }}">
-                                                <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="status_pendaftaran" 
+                                                value="{{ $s }}" {{ $cekStatus }} id="{{ $s }}">
+                                                <label class="form-check-label" for="{{ $s }}">
                                                     {{ $s }}
                                                 </label>
                                             </div>
                                         @endforeach
                                     </div>
                                 </fieldset>
+
+                                @error('status_pendaftaran')
+                                    <font color="red">{{ $message }}</font>
+                                @enderror
                             </div>
+
+
                             <div class="form-group">
                                 <label for="ket">Keterangan</label>
                                 <textarea class="form-control" name="keterangan" id="keterangan" rows="5" placeholder="Keterangan"></textarea>
