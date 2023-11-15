@@ -31,7 +31,7 @@
                         <a class="nav-link" href="{{ url('pendaftaran') }}">Pendaftaran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary ml-lg-2" href="{{ url('admin') }}">Log in</a>
+                        <a class="btn btn-primary ml-lg-2" href="{{ url('dashboard') }}">Log in</a>
                     </li>
                 </ul>
             </div>

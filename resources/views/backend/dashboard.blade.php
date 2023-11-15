@@ -1,4 +1,5 @@
 @extends('backend.index')
+
 @section('content')
     <div class="content-wrapper">
         <div class="row">
@@ -7,10 +8,10 @@
                     <div>
                         <h4 class="font-weight-bold mb-0">Dashboard</h4>
                     </div>
-
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
@@ -21,11 +22,11 @@
                             <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ $ar_organisasi }}</h3>
                             <i class="bi bi-diagram-3-fill icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                         </div>
-                        <p class="mb-0 mt-2 text-danger">Jumlah organisasi
-                        </p>
+                        <p class="mb-0 mt-2 text-danger">Jumlah organisasi</p>
                     </div>
                 </div>
             </div>
+
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -35,23 +36,44 @@
                             <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ $ar_pendaftaran }}</h3>
                             <i class="bi bi-people-fill icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                         </div>
-                        <p class="mb-0 mt-2 text-danger">Jumlah Pendaftaran
-                        </p>
+                        <p class="mb-0 mt-2 text-danger">Jumlah Pendaftaran</p>
                     </div>
                 </div>
             </div>
-
         </div>
+
         <div class="row">
             <div class="col-lg-12 grid-margin grid-margin-lg-0 stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Kategori Organisasi</h4>
-                        <canvas id="pieChart"></canvas>
+                        <canvas id="myChart"></canvas>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = {
+                labels: ['Red', 'Blue', 'Yellow'],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [300, 50, 100],
+                    backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                    hoverOffset: 4
+                }]
+            };
+
+            const config = {
+                type: 'doughnut',
+                data: data,
+            };
+
+            const myChart = new Chart(document.getElementById('myChart'), config);
+        });
+    </script>
 @endsection
