@@ -69,6 +69,10 @@ Route::get('/table', function () {
 Route::get('/form', function () {
     return view('backend.form');
 });
+Route::get('/form_mhs', function () {
+    return view('backend.mahasiswa.form');
+});
+
 
 
 

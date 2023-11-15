@@ -4,6 +4,7 @@
         $ar_judul = ['No', 'Kode', 'Nama'];
         $no = 1;
     @endphp
+
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">

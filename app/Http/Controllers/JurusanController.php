@@ -46,12 +46,51 @@ class JurusanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     $validatedData = $request->validate(
+    //         [
+    //             'kode' => 'required|integer',
+    //             'nama' => 'required|max:45',
+    //         ],
+    //         [
+    //             'kode.required' => 'Kode Wajib Diisi',
+    //             'kode.integer' => 'Kode Maksimal 5 karakter',
+    //             'nama.required' => 'Nama Wajib Diisi',
+    //             'nama.max' => 'Nama Maksimal 45 Karakter',
+    //         ]
+
+    //     );
+
+    //     try {
+    //         DB::table('jurusan')->insert([
+    //             'kode' => $request->kode,
+    //             'nama' => $request->nama,
+    //         ]);
+
+
+    //         return redirect()->route('jurusan.index')
+    //             ->with('success', 'Data Organisasi Berhasil Di Simpan');
+    //     } catch (\Exception $e) {
+    //         return redirect()->route('jurusan.index')
+    //             ->with('error', 'Terjadi Kesalahan Saat Input Data!');
+    //     }
+    // }
+
+    // di dalam controller
+
     public function store(Request $request)
     {
         $validatedData = $request->validate(
             [
                 'kode' => 'required|integer',
                 'nama' => 'required|max:45',
+            ],
+            [
+                'kode.required' => 'Kode Wajib Diisi',
+                'kode.integer' => 'Kode Wajib Dipilih',
+                'nama.required' => 'Nama Wajib Diisi',
+                'nama.max' => 'Nama Maksimal 45 Karakter',
             ]
 
         );
@@ -66,7 +105,7 @@ class JurusanController extends Controller
             return redirect()->route('jurusan.index')
                 ->with('success', 'Data Organisasi Berhasil Di Simpan');
         } catch (\Exception $e) {
-            return redirect()->route('organisasi.index')
+            return redirect()->route('jurusan.index')
                 ->with('error', 'Terjadi Kesalahan Saat Input Data!');
         }
     }
