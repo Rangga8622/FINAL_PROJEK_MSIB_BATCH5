@@ -17,6 +17,18 @@
                             <i class="bi bi-clipboard-plus"></i> Tambah
                         </a>
                     </div>
+                    <div>
+                        <a href="{{ route('pendaftaran.create') }}" class="btn btn-primary btn-xs"
+                            title="Eksport Data Pendaftaran">
+                            <i class="bi bi-filetype-pdf"></i> PDF
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{{ route('pendaftaran.create') }}" class="btn btn-primary btn-xs"
+                            title="Tambah Data Pendaftaran">
+                            <i class="bi bi-filetype-xls"></i> EXCEL
+                        </a>
+                    </div>
 
                     <div>
                         <form action="{{ url('pendaftaran') }}" method="get" class="d-flex">
