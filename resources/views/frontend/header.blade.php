@@ -28,7 +28,7 @@
                     </li>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('pendaftaran') }}">Pendaftaran</a>
+                        <a class="nav-link" href="{{ url('pendaftaran_user') }}">Pendaftaran</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-primary ml-lg-2" href="{{ url('dashboard') }}">Log in</a>

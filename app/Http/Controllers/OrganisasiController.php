@@ -20,15 +20,24 @@ class OrganisasiController extends Controller
         $search = $request->query('search');
 
         // query eloquent
-        $ar_organisasi = Organisasi::query();
-
-        if ($search) {
-            $ar_organisasi = $ar_organisasi->where('nama', 'like', '%' . $search . '%');
-        }
-
-        $ar_organisasi = $ar_organisasi->paginate(10);
-        return view('backend.organisasi.index', [ 'ar_organisasi' =>  $ar_organisasi]);
+        $ar_organisasi = Organisasi::query()
+            ->with('kategori')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($subQuery) use ($search) {
+                    $subQuery->whereHas('kategori', function ($subSubQuery) use ($search) {
+                        $subSubQuery->where('nama', 'LIKE', '%' . $search . '%');
+                    });
+                })->orWhere('nama', 'LIKE', '%' . $search . '%');
+            })
+            ->paginate(10);
+        return view('backend.organisasi.index', ['ar_organisasi' =>  $ar_organisasi]);
     }
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -114,27 +123,29 @@ class OrganisasiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validated = $request->validate([
-            'kode' => 'required|max:5',
-            'nama' => 'required|max:45',
-            'deskripsi' => 'required',
-            'email' => 'required|email',
-            'hp' => 'required|max:45',
-            'idkategori' => 'required|integer',
-        ],
-        [
-            'kode.required' => 'Kode Wajib Diisi',
-            'kode.max' => 'Kode Maksimal 5 karakter',
-            'nama.required' => 'Nama Wajib Diisi',
-            'nama.max' => 'Nama Maksimal 45 Karakter',
-            'deskripsi.required' => 'Deskripsi Wajib Diisi',
-            'email.required' => 'Email Wajib Diisi',
-            'email.max' => 'Email Maksimal 45 Karakter',
-            'hp.required' => 'No HP Wajib Diisi',
-            'hp.max' => 'No HP Maksimal 45 Karakter',
-            'idkategori.required' => 'Kategori Wajib Diisi',
-            'idkategori.integer' => 'Kategori Wajib Dipilih',
-        ]);
+        $validated = $request->validate(
+            [
+                'kode' => 'required|max:5',
+                'nama' => 'required|max:45',
+                'deskripsi' => 'required',
+                'email' => 'required|email',
+                'hp' => 'required|max:45',
+                'idkategori' => 'required|integer',
+            ],
+            [
+                'kode.required' => 'Kode Wajib Diisi',
+                'kode.max' => 'Kode Maksimal 5 karakter',
+                'nama.required' => 'Nama Wajib Diisi',
+                'nama.max' => 'Nama Maksimal 45 Karakter',
+                'deskripsi.required' => 'Deskripsi Wajib Diisi',
+                'email.required' => 'Email Wajib Diisi',
+                'email.max' => 'Email Maksimal 45 Karakter',
+                'hp.required' => 'No HP Wajib Diisi',
+                'hp.max' => 'No HP Maksimal 45 Karakter',
+                'idkategori.required' => 'Kategori Wajib Diisi',
+                'idkategori.integer' => 'Kategori Wajib Dipilih',
+            ]
+        );
 
         try {
             Organisasi::where('id', $id)->update([

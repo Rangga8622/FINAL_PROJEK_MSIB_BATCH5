@@ -49,7 +49,7 @@ Route::get('/contact', function () {
     return view('frontend.contact');
 });
 
-Route::get('/pendaftaran', function () {
+Route::get('/pendaftaran_user', function () {
     return view('frontend.pendaftaran');
 });
 

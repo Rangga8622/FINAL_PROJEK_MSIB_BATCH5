@@ -15,12 +15,22 @@ class MahasiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ar_mahasiswa = Mahasiswa::query();
+        $search = $request->query('search');
 
-        $ar_mahasiswa = $ar_mahasiswa->paginate(10);
-        return view('backend.mahasiswa.index', compact('ar_mahasiswa'));
+        // query eloquent
+        $ar_mahasiswa = Mahasiswa::query()
+            ->with('jurusan')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($subQuery) use ($search) {
+                    $subQuery->whereHas('jurusan', function ($subSubQuery) use ($search) {
+                        $subSubQuery->where('nama', 'LIKE', '%' . $search . '%');
+                    });
+                })->orWhere('nama', 'LIKE', '%' . $search . '%')->orWhere('semester', 'LIKE', '%' . $search . '%');
+            })
+            ->paginate(10);
+        return view('backend.mahasiswa.index', ['ar_mahasiswa' =>  $ar_mahasiswa]);
     }
 
     /**
