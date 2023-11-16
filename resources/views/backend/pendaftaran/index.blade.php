@@ -18,14 +18,14 @@
                         </a>
                     </div>
                     <div>
-                        <a href="{{ route('pendaftaran.create') }}" class="btn btn-primary btn-xs"
+                        <a href="{{ route('pendaftaran.pdf') }}" class="btn btn-primary btn-xs"
                             title="Eksport Data Pendaftaran">
                             <i class="bi bi-filetype-pdf"></i> PDF
                         </a>
                     </div>
                     <div>
-                        <a href="{{ route('pendaftaran.create') }}" class="btn btn-primary btn-xs"
-                            title="Tambah Data Pendaftaran">
+                        <a href="{{ route('pendaftaran.excel') }}" class="btn btn-primary btn-xs"
+                            title="Export To Excel">
                             <i class="bi bi-filetype-xls"></i> EXCEL
                         </a>
                     </div>

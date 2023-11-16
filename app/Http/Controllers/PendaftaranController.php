@@ -9,7 +9,10 @@ use App\Models\Organisasi; // Import the Jurusan model
 use Illuminate\Support\Facades\DB; // jika pakai query builder
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
-
+use App\Exports\AssetExport;
+use App\Exports\PendaftaranExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 class PendaftaranController extends Controller
 {
     /**
@@ -163,5 +166,15 @@ class PendaftaranController extends Controller
         Pendaftaran::where('id', $id)->delete();
         return redirect()->route('pendaftaran.index')
             ->with('success', 'Data Pendaftaran Berhasil Dihapus');
+    }
+    public function pendaftaranExcel() 
+    {
+        return Excel::download(new PendaftaranExport, 'data_pendaftaran_'.date('d-m-Y_H:i:s').'.xlsx');
+    }
+    public function pendaftaranPDF(){
+        $rs = Pendaftaran::all();
+        $pdf = PDF::loadView('backend.pendaftaran.PDF', 
+                              ['ar_pendaftaran'=>$rs]);
+        return $pdf->download('data_pendaftaran_'.date('d-m-Y_H:i:s').'.pdf');
     }
 }
