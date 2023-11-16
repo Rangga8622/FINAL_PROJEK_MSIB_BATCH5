@@ -37,8 +37,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputSmt">Semester</label>
-                                <input type="number" name="semester" class="form-control @error('semester') is-invalid @else is-valid @enderror" id="exampleInputSmt" value="{{old('semester')}}" id="exampleInputSmt"
-                                    placeholder="Name" value="{{ $rs->semester }}">
+                                <input type="number" name="semester" class="form-control @error('semester') is-invalid @else is-valid @enderror" id="exampleInputSmt"  id="exampleInputSmt"
+                                    placeholder="Semester" value="{{ $rs->semester }}">
                                     @error('semester')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                   @enderror
@@ -66,7 +66,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputHP">No. Hp</label>
-                                <input type="text" name="nohp" class="form-control  @error('nohp') is-invalid @else is-valid @enderror" id="exampleInputHP" placeholder="No HP" value="{{old('nohp')}}" id="exampleInputHP"
+                                <input type="text" name="nohp" class="form-control  @error('nohp') is-invalid @else is-valid @enderror" id="exampleInputHP" placeholder="No HP"  id="exampleInputHP"
                                     placeholder="Name" value="{{ $rs->nohp }}">
                                     @error('nohp')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -74,25 +74,25 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail3">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @else is-valid @enderror" name="email" id="exampleInputEmail3" placeholder="Email" value="{{old('email')}}" name="email" id="exampleInputEmail3"
+                                <input type="email" class="form-control @error('email') is-invalid @else is-valid @enderror" name="email" id="exampleInputEmail3" placeholder="Email"  name="email" id="exampleInputEmail3"
                                     placeholder="Email" value="{{ $rs->email }}">
                                     @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                             </div>
                             <div class="form-group">
-                                <label for="basic-url" class="form-label @error('cv') is-invalid @else is-valid @enderror" name="cv" value="{{old('cv')}}">CV</label>
+                                <label for="basic-url" class="form-label @error('cv') is-invalid @else is-valid @enderror" name="cv" >CV</label>
                                 <input type="file" class="form-control" name="cv" />
                                 @error('cv')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="basic-url" class="form-label @error('foto') is-invalid @else is-valid @enderror" name="foto"  value="{{old('foto')}}">Foto</label>
+                                <label for="basic-url" class="form-label @error('foto') is-invalid @else is-valid @enderror" name="foto"  >Foto</label>
                                 <input type="file" class="form-control" name="foto" />
                                 @error('foto')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                             </div>
                             <button type="submit" class="btn btn-primary me-2">Update</button>
                             <a href="{{ route('mahasiswa.index') }}" class="btn btn-light">Cancel</a>

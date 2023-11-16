@@ -6,7 +6,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        @if ($errors->any())
+                        {{-- @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -14,7 +14,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif
+                        @endif --}}
 
                         <h4 class="card-title">Form Input Organisasi</h4>
 
@@ -22,44 +22,57 @@
                             @csrf
 
                             <div class="form-group">
-                                <label for="kode">Kode Organisasi <i class="mdi mdi-help-circle" data-toggle="tooltip"
-                                        title="Kode unik organisasi maksimal 5 karakter"></i></label>
-                                <input type="text" name="kode" class="form-control" id="kode"
-                                    placeholder="Masukkan kode organisasi" autofocus>
+                                <label for="kode">Kode Organisasi</label>
+                                <input type="text" name="kode" class="form-control  @error('kode') is-invalid @else is-valid @enderror"  value="{{old('kode')}}"  id="kode" placeholder="Masukkan kode organisasi">
+                                @error('kode')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
-                                <label for="nama">Nama Organisasi <i class="mdi mdi-help-circle" data-toggle="tooltip"
-                                        title="Nama lengkap organisasi maksimal 100 karakter"></i></label>
-                                <input type="text" name="nama" class="form-control" id="nama"
-                                    placeholder="Masukkan nama organisasi">
+                                <label for="nama">Nama Organisasi </label>
+                                <input type="text" name="nama" class="form-control  @error('nama') is-invalid @else is-valid @enderror"  value="{{old('nama')}}" id="nama" placeholder="Masukkan nama organisasi">
+                                @error('nama')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi Organisasi</label>
-                                <textarea class="form-control" name="deskripsi" id="deskripsi" rows="5" placeholder="Deskripsi organisasi"></textarea>
+                                <textarea class="form-control @error('deskripsi') is-invalid @else is-valid @enderror" value="{{old('nama')}}" name="deskripsi" id="deskripsi" rows="5" placeholder="Deskripsi organisasi"></textarea>
+                                @error('deskripsi')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email Organisasi</label>
-                                <input type="email" name="email" class="form-control" id="email"
-                                    placeholder="Masukkan email organisasi">
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @else is-valid @enderror" value="{{old('email')}}" id="email" placeholder="Masukkan email organisasi">
+                                @error('email')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="hp">No HP Organisasi</label>
-                                <input type="text" name="hp" class="form-control" id="hp"
-                                    placeholder="Masukkan no HP organisasi">
+                                <input type="text" name="hp" class="form-control @error('hp') is-invalid @else is-valid @enderror" value="{{old('hp')}}" id="hp" placeholder="Masukkan no HP organisasi">
+                                @error('hp')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <label for="kategori">Kategori Organisasi</label>
-                                <select class="form-control" name="idkategori" id="kategori">
+                                <select name="idkategori" class="form-select @error('idkategori') is-invalid @else is-valid @enderror">
                                     <option>-- Pilih Kategori --</option>
-                                    @foreach ($ar_kategori as $data)
-                                        <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                    @foreach ($ar_kategori as $k)
+                                    @php $sel = (old('idkategori') == $k->id) ? 'selected' : ''; @endphp
+                                        <option value="{{ $k->id }}" {{ $sel }}>{{ $k->nama }}</option>
                                     @endforeach
                                 </select>
+                                @error('idkategori')
+                                <div class="invalid-feedback">{{$message}}</div>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-primary mr-2">Simpan</button>
