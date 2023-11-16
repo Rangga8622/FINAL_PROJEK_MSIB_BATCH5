@@ -15,13 +15,26 @@ class PendaftaranController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $ar_pendaftaran = Pendaftaran::query(); //eloquent
 
-        $ar_pendaftaran = $ar_pendaftaran->paginate(10);
-        return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
-    }
+     public function index(Request $request)
+     {
+         $search = $request->input('search');
+     
+         $ar_pendaftaran = Pendaftaran::query()
+             ->with('mahasiswa', 'organisasi') 
+             ->when($search, function ($query) use ($search) {
+                 $query->whereHas('mahasiswa', function ($subQuery) use ($search) {
+                     $subQuery->where('nama', 'LIKE', '%' . $search . '%');
+                 })->orWhereHas('organisasi', function ($subQuery) use ($search) {
+                     $subQuery->where('nama', 'LIKE', '%' . $search . '%');
+                 })->orWhere('status_pendaftaran', 'LIKE', '%' . $search . '%');
+             })
+             ->paginate(10);
+     
+         return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
+     }
+     
+
 
 
     /**
