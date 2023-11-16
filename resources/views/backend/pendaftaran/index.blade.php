@@ -7,11 +7,34 @@
 
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-            <div class="card-body">
+        <div class="card-body">
                 <h4 class="card-title">Tabel Pendaftaran</h4>
-                <a href="{{ route('pendaftaran.create') }}" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
-                    <i class="bi bi-clipboard-plus"></i> Tambah
-                </a>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <div>
+                        <a href="{{ route('pendaftaran.create') }}" class="btn btn-primary btn-xs"
+                            title="Tambah Data Pendaftaran">
+                            <i class="bi bi-clipboard-plus"></i> Tambah
+                        </a>
+                    </div>
+
+                    <div>
+                        <form action="{{ url('pendaftaran') }}" method="get" class="d-flex">
+
+                            <input type="text" name="search" class="form-control form-control-xs" />
+
+                            <button type="submit" class="btn btn-primary ">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-search"></i>
+                                    <span class="ms-1">Cari</span>
+                                </div>
+
+                            </button>
+
+                        </form>
+                    </div>
+
+                </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -59,7 +82,6 @@
                         {{ $ar_pendaftaran->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 @endsection
