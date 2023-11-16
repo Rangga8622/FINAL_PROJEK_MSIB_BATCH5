@@ -83,3 +83,5 @@ Route::resource('/mahasiswa', MahasiswaController::class);
 Route::resource('/pendaftaran', PendaftaranController::class);
 Route::resource('/kategori', KategoriController::class);
 Route::resource('/organisasi', OrganisasiController::class);
+Route::get('/pendaftaran-excel', [PendaftaranController::class, 'pendaftaranExcel'])->name('pendaftaran.excel');
+Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
