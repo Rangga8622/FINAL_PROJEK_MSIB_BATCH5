@@ -83,7 +83,7 @@ class JurusanController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'kode' => 'required|integer',
+                'kode' => 'required|integer:5',
                 'nama' => 'required|max:45',
             ],
             [

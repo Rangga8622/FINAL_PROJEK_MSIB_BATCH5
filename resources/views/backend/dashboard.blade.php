@@ -73,8 +73,24 @@
                 datasets: [{
                     label: 'Perbandingan Jumlah pendaftaran',
                     data: jml,
-                    backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-                    hoverOffset: 4
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(255, 159, 64)',
+                        'rgb(120, 120, 120)',
+                        'rgb(220, 20, 60)',
+                        'rgb(0, 128, 128)',
+                        'rgb(255, 0, 0)',
+                        'rgb(0, 0, 255)',
+                        'rgb(46, 139, 87)',
+                        'rgb(255, 140, 0)',
+                        'rgb(0, 255, 0)',
+                        'rgb(70, 130, 180)',
+                        'rgb(128, 0, 128)'
+                    ],
+                    hoverOffset: 14
                 }]
             };
 
