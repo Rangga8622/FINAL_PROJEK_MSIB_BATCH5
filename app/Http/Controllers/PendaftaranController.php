@@ -13,29 +13,30 @@ use App\Exports\AssetExport;
 use App\Exports\PendaftaranExport;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+
 class PendaftaranController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
 
-     public function index(Request $request)
-     {
-         $search = $request->input('search');
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
 
-         $ar_pendaftaran = Pendaftaran::query()
-             ->with('mahasiswa', 'organisasi')
-             ->when($search, function ($query) use ($search) {
-                 $query->whereHas('mahasiswa', function ($subQuery) use ($search) {
-                     $subQuery->where('nama', 'LIKE', '%' . $search . '%');
-                 })->orWhereHas('organisasi', function ($subQuery) use ($search) {
-                     $subQuery->where('nama', 'LIKE', '%' . $search . '%');
-                 })->orWhere('status_pendaftaran', 'LIKE', '%' . $search . '%');
-             })
-             ->paginate(10);
+        $ar_pendaftaran = Pendaftaran::query()
+            ->with('mahasiswa', 'organisasi')
+            ->when($search, function ($query) use ($search) {
+                $query->whereHas('mahasiswa', function ($subQuery) use ($search) {
+                    $subQuery->where('nama', 'LIKE', '%' . $search . '%');
+                })->orWhereHas('organisasi', function ($subQuery) use ($search) {
+                    $subQuery->where('nama', 'LIKE', '%' . $search . '%');
+                })->orWhere('status_pendaftaran', 'LIKE', '%' . $search . '%');
+            })
+            ->paginate(10);
 
-         return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
-     }
+        return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
+    }
 
 
 
@@ -169,12 +170,15 @@ class PendaftaranController extends Controller
     }
     public function pendaftaranExcel()
     {
-        return Excel::download(new PendaftaranExport, 'data_pendaftaran_'.date('d-m-Y_H:i:s').'.xlsx');
+        return Excel::download(new PendaftaranExport, 'data_pendaftaran_' . date('d-m-Y_H:i:s') . '.xlsx');
     }
-    public function pendaftaranPDF(){
+    public function pendaftaranPDF()
+    {
         $ar_pendaftaran_pdf = Pendaftaran::all();
-        $pdf = PDF::loadView('backend.pendaftaran.PDF',
-                            ['ar_pendaftaran_pdf'=>$ar_pendaftaran_pdf]);
-        return $pdf->download('data_pendaftaran_'.date('d-m-Y_H:i:s').'.pdf');
+        $pdf = PDF::loadView(
+            'backend.pendaftaran.PDF',
+            ['ar_pendaftaran_pdf' => $ar_pendaftaran_pdf]
+        );
+        return $pdf->download('data_pendaftaran_' . date('d-m-Y_H:i:s') . '.pdf');
     }
 }

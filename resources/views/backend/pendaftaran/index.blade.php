@@ -10,42 +10,41 @@
             <div class="card-body">
                 <h4 class="card-title">Tabel Pendaftaran</h4>
 
-                <div class="d-flex justify-content-between mb-2">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-2">
+
                     <div>
                         <a href="{{ route('pendaftaran.create') }}" class="btn btn-primary btn-xs"
                             title="Tambah Data Pendaftaran">
-                            <i class="bi bi-clipboard-plus"></i> Tambah
+                            <i class="bi bi-clipboard-plus"></i>
+                            Tambah
                         </a>
-                    </div>
-                    <div>
-                        <a href="{{ route('pendaftaran.pdf') }}" class="btn btn-primary btn-xs"
+
+                        <a href="{{ route('pendaftaran.pdf') }}" class="btn btn-danger btn-xs"
                             title="Eksport Data Pendaftaran">
-                            <i class="bi bi-filetype-pdf"></i> PDF
+                            <i class="bi bi-filetype-pdf"></i>
+                            PDF
+                        </a>
+
+                        <a href="{{ route('pendaftaran.excel') }}" class="btn btn-success btn-xs" title="Export To Excel">
+                            <i class="bi bi-filetype-xls"></i>
+                            EXCEL
                         </a>
                     </div>
-                    <div>
-                        <a href="{{ route('pendaftaran.excel') }}" class="btn btn-primary btn-xs" title="Export To Excel">
-                            <i class="bi bi-filetype-xls"></i> EXCEL
-                        </a>
-                    </div>
 
-                    <div>
-                        <form action="{{ url('pendaftaran') }}" method="get" class="d-flex">
+                    <form action="{{ url('pendaftaran') }}" method="get" class="d-flex">
+                        <input type="text" name="search" class="form-control form-control-sm" />
 
-                            <input type="text" name="search" class="form-control form-control-xs" />
-
-                            <button type="submit" class="btn btn-primary ">
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-search"></i>
-                                    <span class="ms-1">Cari</span>
-                                </div>
-
-                            </button>
-
-                        </form>
-                    </div>
+                        <button type="submit" class="btn btn-primary btn-xs">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-search"></i>
+                                <span class="ms-1">Cari</span>
+                            </div>
+                        </button>
+                    </form>
 
                 </div>
+
+
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
