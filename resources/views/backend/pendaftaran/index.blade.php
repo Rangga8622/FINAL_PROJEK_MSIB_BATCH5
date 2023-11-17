@@ -7,7 +7,7 @@
 
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
-        <div class="card-body">
+            <div class="card-body">
                 <h4 class="card-title">Tabel Pendaftaran</h4>
 
                 <div class="d-flex justify-content-between mb-2">
@@ -24,8 +24,7 @@
                         </a>
                     </div>
                     <div>
-                        <a href="{{ route('pendaftaran.excel') }}" class="btn btn-primary btn-xs"
-                            title="Export To Excel">
+                        <a href="{{ route('pendaftaran.excel') }}" class="btn btn-primary btn-xs" title="Export To Excel">
                             <i class="bi bi-filetype-xls"></i> EXCEL
                         </a>
                     </div>
@@ -94,6 +93,6 @@
                         {{ $ar_pendaftaran->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-@endsection
+    @endsection
