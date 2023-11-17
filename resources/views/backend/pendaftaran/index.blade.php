@@ -20,7 +20,7 @@
                         </a>
 
                         <a href="{{ route('pendaftaran.pdf') }}" class="btn btn-danger btn-xs"
-                            title="Eksport Data Pendaftaran">
+                            title="Eksport PDF Data Pendaftaran">
                             <i class="bi bi-filetype-pdf"></i>
                             PDF
                         </a>
