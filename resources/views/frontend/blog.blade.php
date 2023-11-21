@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="body">
-                                <h5 class="post-title"><a href="#">{{ $artikel->judul }}</a></h5>
+                                <h5 class="post-title"><a href="{{ route('artikel.show', $artikel->id) }}">{{ $artikel->judul }}</a></h5>
                                 <div class="post-date">Posted on <a href="#">{{ $artikel->tanggal }}</a></div>
                             </div>
                         </div>
