@@ -165,7 +165,6 @@ class PendaftaranController extends Controller
     public function destroy(string $id)
     {
         Pendaftaran::where('id', $id)->delete();
-        if (!empty($post->foto)) unlink('backend/pendaftaran/foto/' . $post->foto);
         return redirect()->route('pendaftaran.index')
             ->with('success', 'Data Pendaftaran Berhasil Dihapus');
     }

@@ -158,6 +158,9 @@ class ArtikelController extends Controller
      */
     public function destroy(string $id)
     {
+        $post = Artikel::find($id);
+        if (!empty($post->foto_header)) unlink('backend/artikel/foto_header/' . $post->foto_header);
+        if (!empty($post->foto_profile)) unlink('backend/artikel/foto_profile/' . $post->foto_profile);
         Artikel::where('id', $id)->delete();
         return redirect()->route('artikel.index')
             ->with('success', 'Data Artikel Berhasil Dihapus');
