@@ -134,7 +134,8 @@ class ArtikelController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $rs = Artikel::find($id);
+        return view('frontend.view_artikel.index', compact('rs'));
     }
 
     /**
