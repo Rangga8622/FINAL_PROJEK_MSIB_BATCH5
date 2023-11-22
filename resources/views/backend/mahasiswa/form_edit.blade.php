@@ -12,7 +12,7 @@
                             @method('PUT')
 
                             <div class="form-group">
-                                <label for="nama">Name <i class="mdi mdi-help-circle" data-toggle="tooltip"
+                                <label for="nama">Nama <i class="mdi mdi-help-circle" data-toggle="tooltip"
                                         title="Nama lengkap maksimal 100 karakter"></i></label>
                                 <input type="text" name="nama"
                                     class="form-control  @error('nama') is-invalid @else is-valid @enderror" id="nama"
@@ -28,7 +28,7 @@
                                     <option>-- Pilih Jurusan --</option>
                                     @foreach ($ar_jurusan as $j)
                                         <option value="{{ $j->id }}"
-                                            @if ($j->id == $rs->idjurusan) selected @endif>
+                                            {{ $j->id == $rs->idjurusan ? 'selected' : '' }}>
                                             {{ $j->nama }}
                                         </option>
                                     @endforeach
@@ -38,13 +38,14 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputOrg">Organisasi</label>
+                                <label for="idorganisasi">Organisasi</label>
                                 <select name="idorganisasi"
                                     class="form-select @error('idorganisasi') is-invalid @else is-valid @enderror">
                                     <option>-- Pilih Organisasi --</option>
-                                    @foreach ($ar_jurusan as $j)
-                                        @php $sel = (old('idorganisasi') == $j->id) ? 'selected' : ''; @endphp
-                                        <option value="{{ $j->id }}" {{ $sel }}>{{ $j->nama }}
+                                    @foreach ($ar_organisasi as $j)
+                                        <option value="{{ $j->id }}"
+                                            {{ $j->id == $rs->idorganisasi ? 'selected' : '' }}>
+                                            {{ $j->nama }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -53,11 +54,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputSmt">Semester</label>
+                                <label for="semester">Semester</label>
                                 <input type="number" name="semester"
                                     class="form-control @error('semester') is-invalid @else is-valid @enderror"
-                                    id="exampleInputSmt" id="exampleInputSmt" placeholder="Semester"
-                                    value="{{ $rs->semester }}">
+                                    id="semester" placeholder="Semester" value="{{ $rs->semester }}">
                                 @error('semester')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -69,8 +69,7 @@
                                         @foreach ($ar_gender as $g)
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="gender"
-                                                    value="{{ $g }}"
-                                                    @if ($g == $rs->gender) checked @endif>
+                                                    value="{{ $g }}" {{ $g == $rs->gender ? 'checked' : '' }}>
                                                 <label class="form-check-label">
                                                     {{ $g }}
                                                 </label>
@@ -84,46 +83,44 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputHP">No. Hp</label>
+                                <label for="nohp">No. Hp</label>
                                 <input type="text" name="nohp"
-                                    class="form-control  @error('nohp') is-invalid @else is-valid @enderror"
-                                    id="exampleInputHP" placeholder="No HP" id="exampleInputHP" placeholder="Name"
-                                    value="{{ $rs->nohp }}">
+                                    class="form-control  @error('nohp') is-invalid @else is-valid @enderror" id="nohp"
+                                    placeholder="No HP" value="{{ $rs->nohp }}">
                                 @error('nohp')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail3">Email</label>
+                                <label for="email">Email</label>
                                 <input type="email"
                                     class="form-control @error('email') is-invalid @else is-valid @enderror" name="email"
-                                    id="exampleInputEmail3" placeholder="Email" name="email" id="exampleInputEmail3"
-                                    placeholder="Email" value="{{ $rs->email }}">
+                                    id="email" placeholder="Email" value="{{ $rs->email }}">
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputSmt">Tanggal Pendaftaran</label>
+                                <label for="tanggal_pendaftaran">Tanggal Pendaftaran</label>
                                 <input type="date" name="tanggal_pendaftaran"
                                     class="form-control @error('tanggal_pendaftaran') is-invalid @else is-valid @enderror"
-                                    id="exampleInputSmt" value="{{ $rs->tanggal_pendaftaran }}"
+                                    id="tanggal_pendaftaran" value="{{ $rs->tanggal_pendaftaran }}"
                                     placeholder="Tanggal Pendaftaran">
                                 @error('tanggal_pendaftaran')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="basic-url" class="form-label @error('cv') is-invalid @else is-valid @enderror"
-                                    name="cv">CV</label>
+                                <label for="cv"
+                                    class="form-label @error('cv') is-invalid @else is-valid @enderror">CV</label>
                                 <input type="file" class="form-control" name="cv" />
                                 @error('cv')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="basic-url" class="form-label @error('foto') is-invalid @else is-valid @enderror"
-                                    name="foto">Foto</label>
+                                <label for="foto"
+                                    class="form-label @error('foto') is-invalid @else is-valid @enderror">Foto</label>
                                 <input type="file" class="form-control" name="foto" />
                                 @error('foto')
                                     <div class="invalid-feedback">{{ $message }}</div>

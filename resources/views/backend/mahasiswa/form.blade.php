@@ -44,10 +44,10 @@
                                 <label for="exampleInputOrg">Organisasi</label>
                                 <select name="idorganisasi"
                                     class="form-select @error('idorganisasi') is-invalid @else is-valid @enderror">
-                                    <option>-- Pilih Organisasi --</option>
-                                    @foreach ($ar_jurusan as $j)
-                                        @php $sel = (old('idorganisasi') == $j->id) ? 'selected' : ''; @endphp
-                                        <option value="{{ $j->id }}" {{ $sel }}>{{ $j->nama }}
+                                    <option value="" disabled selected>-- Pilih Organisasi --</option>
+                                    @foreach ($ar_organisasi as $organisasi)
+                                        @php $sel = (old('idorganisasi') == $organisasi->id) ? 'selected' : ''; @endphp
+                                        <option value="{{ $organisasi->id }}" {{ $sel }}>{{ $organisasi->nama }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -55,11 +55,12 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label for="exampleInputSmt">Semester</label>
                                 <input type="number" name="semester"
                                     class="form-control  @error('semester') is-invalid @else is-valid @enderror"
-                                    id="exampleInputSmt" value="{{ old('semester') }}" placeholder="Name">
+                                    id="exampleInputSmt" value="{{ old('semester') }}" placeholder="Semester">
                                 @error('semester')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

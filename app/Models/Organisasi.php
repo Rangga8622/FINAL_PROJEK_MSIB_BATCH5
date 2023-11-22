@@ -19,8 +19,7 @@ class Organisasi extends Model
     {
         return $this->belongsTo(Kategori::class, 'idkategori');
     }
-
-    public function mahasiswa(): HasMany
+    public function mahasiswa()
     {
         return $this->hasMany(Mahasiswa::class);
     }

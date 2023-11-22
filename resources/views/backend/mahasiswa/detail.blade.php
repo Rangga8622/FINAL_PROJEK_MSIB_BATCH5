@@ -27,7 +27,7 @@
                                 <strong>Jurusan:</strong> {{ $rs->jurusan->nama }}
                             </li>
                             <li class="list-group-item">
-                                {{-- <strong>Daftar Organisasi:</strong> {{ $rs->organisasi->nama }} --}}
+                                <strong>Daftar Organisasi:</strong> {{ $rs->organisasi->nama }}
                             </li>
                             <li class="list-group-item">
                                 <strong>Semester:</strong> {{ $rs->semester }}

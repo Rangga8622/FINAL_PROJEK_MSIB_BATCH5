@@ -23,6 +23,11 @@
 
 
                             <tr>
+                                <td><strong>Pendaftaran Organisasi</strong></td>
+                                <td>{{ $rs->mahasiswa->organisasi->nama }}</td>
+                            </tr>
+
+                            <tr>
                                 <td><strong>Status Pendaftaran</strong></td>
                                 <td>{{ $rs->status_pendaftaran }}</td>
                             </tr>

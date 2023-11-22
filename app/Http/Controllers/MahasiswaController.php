@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 use App\Models\Jurusan;
+use App\Models\Organisasi;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +20,7 @@ class MahasiswaController extends Controller
     {
         $search = $request->query('search');
 
-        // query eloquent
+
         $ar_mahasiswa = Mahasiswa::query()
             ->with('jurusan')
             ->when($search, function ($query) use ($search) {
@@ -29,9 +30,12 @@ class MahasiswaController extends Controller
                     });
                 })->orWhere('nama', 'LIKE', '%' . $search . '%')->orWhere('semester', 'LIKE', '%' . $search . '%');
             })
+            ->orderBy('id', 'desc')
             ->paginate(10);
+
         return view('backend.mahasiswa.index', ['ar_mahasiswa' =>  $ar_mahasiswa]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,9 +43,13 @@ class MahasiswaController extends Controller
     public function create()
     {
         //ambil master data kategori u/ dilooping di select option form
+        $ar_organisasi = Organisasi::all();
+
+        // Ambil master data kategori untuk di-looping di select option form
         $ar_jurusan = Jurusan::all();
         $ar_gender = ['L', 'P'];
-        return view('backend.mahasiswa.form', compact('ar_jurusan', 'ar_gender'));
+
+        return view('backend.mahasiswa.form', compact('ar_jurusan', 'ar_gender', 'ar_organisasi'));
     }
 
     /**
@@ -129,6 +137,7 @@ class MahasiswaController extends Controller
     public function show(string $id)
     {
         $rs = Mahasiswa::find($id);
+
         return view('backend.mahasiswa.detail', compact('rs'));
     }
 
@@ -138,10 +147,11 @@ class MahasiswaController extends Controller
     public function edit(string $id)
     {
         $rs = Mahasiswa::find($id);
+        $ar_organisasi = Organisasi::all();
         $ar_jurusan = Jurusan::all();
         $ar_gender = ['L', 'P'];
 
-        return view('backend.mahasiswa.form_edit', compact('rs', 'ar_jurusan', 'ar_gender'));
+        return view('backend.mahasiswa.form_edit', compact('rs', 'ar_jurusan', 'ar_gender', 'ar_organisasi'));
     }
 
     /**

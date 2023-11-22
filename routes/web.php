@@ -96,3 +96,4 @@ Route::get('/pendaftaran-excel', [PendaftaranController::class, 'pendaftaranExce
 Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
 
 Route::resource('/artikel', ArtikelController::class);
+// Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');

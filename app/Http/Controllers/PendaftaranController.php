@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use App\Models\Pendaftaran; //panggil model
-use App\Models\Mahasiswa; // Import the Jurusan model
-use App\Models\Organisasi; // Import the Jurusan model
-use Illuminate\Support\Facades\DB; // jika pakai query builder
+use App\Models\Pendaftaran;
+use App\Models\Mahasiswa;
+use App\Models\Organisasi;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
-use App\Exports\AssetExport;
 use App\Exports\PendaftaranExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Pagination\LengthAwarePaginator;
 use PDF;
 
 class PendaftaranController extends Controller
@@ -19,18 +20,32 @@ class PendaftaranController extends Controller
     /**
      * Display a listing of the resource.
      */
-
     public function index(Request $request)
     {
         $search = $request->input('search');
 
+        // Inisialisasi query builder
         $ar_pendaftaran = Pendaftaran::query();
 
+        // Filter data berdasarkan pencarian
+        if (!empty($search)) {
+            $ar_pendaftaran->where(function (Builder $query) use ($search) {
+                $query->whereHas('mahasiswa', function (Builder $subQuery) use ($search) {
+                    $subQuery->where('nama', 'like', '%' . $search . '%');
+                })
+                    ->orWhereHas('mahasiswa.organisasi', function (Builder $subQuery) use ($search) {
+                        $subQuery->where('nama', 'like', '%' . $search . '%');
+                    })
+                    ->orWhere('status_pendaftaran', 'like', '%' . $search . '%');
+            });
+        }
 
+        // Gunakan paginate untuk mendapatkan objek LengthAwarePaginator
+        $ar_pendaftaran = $ar_pendaftaran->paginate(10); // Sesuaikan jumlah item per halaman
+
+        // Lanjutkan dengan pengaturan dan penampilan data seperti biasa
         return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
     }
-
-
 
 
     /**
@@ -52,38 +67,26 @@ class PendaftaranController extends Controller
         $validated = $request->validate(
             [
                 'idmahasiswa' => 'required|integer',
-                // 'idorganisasi' => 'required|integer',
-                // 'tanggal_pendaftaran' => 'required',
                 'status_pendaftaran' => 'required',
-                'ket' => 'nullable',
-
+                'keterangan' => 'nullable',
             ],
             [
                 'idmahasiswa.required' => 'Nama Wajib Diisi',
                 'idmahasiswa.integer' => 'Nama Wajib Diisi',
-                // 'idorganisasi.required' => 'Organisasi Wajib Diisi',
-                // 'idorganisasi.integer' => 'Organisasi Wajib Diisi',
-                // 'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
                 'status_pendaftaran.required' => 'Status Wajib Diisi',
-
             ]
         );
+
         try {
-            DB::table('pendaftaran')->insert(
-                [
-                    'idmahasiswa' => $request->idmahasiswa,
-                    // 'idorganisasi' => $request->idorganisasi,
-                    // 'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
-                    'status_pendaftaran' => $request->status_pendaftaran,
-                    'keterangan' => $request->keterangan
-                ]
-            );
-            return redirect()->route('pendaftaran.index')
-                ->with('success', 'Data Asset Baru Berhasil Di Simpan');
+            Pendaftaran::create([
+                'idmahasiswa' => $request->idmahasiswa,
+                'status_pendaftaran' => $request->status_pendaftaran,
+                'keterangan' => $request->keterangan,
+            ]);
+
+            return redirect()->route('pendaftaran.index')->with('success', 'Data Pendaftaran Baru Berhasil Disimpan');
         } catch (\Exception $e) {
-            //return redirect()->back()
-            return redirect()->route('pendaftaran.index')
-                ->with('error', 'Terjadi Kesalahan Saat Input Data!');
+            return redirect()->route('pendaftaran.index')->with('error', 'Terjadi Kesalahan Saat Input Data!');
         }
     }
 
@@ -116,30 +119,20 @@ class PendaftaranController extends Controller
         $validated = $request->validate(
             [
                 'idmahasiswa' => 'required|integer',
-                // 'idorganisasi' => 'required|integer',
-                // 'tanggal_pendaftaran' => 'required',
                 'status_pendaftaran' => 'required',
-                'ket' => 'nullable',
+                'keterangan' => 'nullable',
             ],
             [
                 'idmahasiswa.required' => 'Nama Wajib Diisi',
                 'idmahasiswa.integer' => 'Nama Wajib Diisi',
-                // 'idorganisasi.required' => 'Organisasi Wajib Diisi',
-                // 'idorganisasi.integer' => 'Organisasi Wajib Diisi',
-                // 'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
                 'status_pendaftaran.required' => 'Status Wajib Diisi',
             ]
         );
 
         try {
-            // Find the record by its ID
             $pendaftaran = Pendaftaran::find($id);
-
-            // Update the record using Eloquent's update method
             $pendaftaran->update([
                 'idmahasiswa' => $request->idmahasiswa,
-                // 'idorganisasi' => $request->idorganisasi,
-                // 'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
                 'status_pendaftaran' => $request->status_pendaftaran,
                 'keterangan' => $request->keterangan,
             ]);
@@ -150,27 +143,43 @@ class PendaftaranController extends Controller
         }
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         Pendaftaran::where('id', $id)->delete();
-        return redirect()->route('pendaftaran.index')
-            ->with('success', 'Data Pendaftaran Berhasil Dihapus');
+        return redirect()->route('pendaftaran.index')->with('success', 'Data Pendaftaran Berhasil Dihapus');
     }
+
     public function pendaftaranExcel()
     {
         return Excel::download(new PendaftaranExport, 'data_pendaftaran_' . date('d-m-Y_H:i:s') . '.xlsx');
     }
-    public function pendaftaranPDF()
+
+    public function pendaftaranPDF(Request $request)
     {
-        $ar_pendaftaran_pdf = Pendaftaran::all();
-        $pdf = PDF::loadView(
-            'backend.pendaftaran.PDF',
-            ['ar_pendaftaran_pdf' => $ar_pendaftaran_pdf]
-        );
+        $search = $request->input('search');
+
+        $ar_pendaftaran_pdf = Pendaftaran::query();
+
+        if (!empty($search)) {
+            $ar_pendaftaran_pdf->where(function (Builder $query) use ($search) {
+                $query->whereHas('mahasiswa', function (Builder $subQuery) use ($search) {
+                    $subQuery->where('nama', 'like', '%' . $search . '%');
+                })
+                    ->orWhereHas('mahasiswa.organisasi', function (Builder $subQuery) use ($search) {
+                        $subQuery->where('nama', 'like', '%' . $search . '%');
+                    })
+                    ->orWhere('status_pendaftaran', 'like', '%' . $search . '%');
+            });
+        }
+
+        $ar_pendaftaran_pdf = $ar_pendaftaran_pdf->get();
+
+        // Pass the search term to the PDF view
+        $pdf = PDF::loadView('backend.pendaftaran.PDF', ['ar_pendaftaran_pdf' => $ar_pendaftaran_pdf, 'search' => $search]);
+
         return $pdf->download('data_pendaftaran_' . date('d-m-Y_H:i:s') . '.pdf');
     }
 }

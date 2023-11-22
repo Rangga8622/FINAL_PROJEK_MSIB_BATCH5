@@ -16,17 +16,19 @@ class Mahasiswa extends Model
         'cv', 'foto', 'barcode'
     ];
     public $timestamps = false;
-    public function jurusan()
+
+    public function jurusan(): BelongsTo
     {
         return $this->belongsTo(Jurusan::class, 'idjurusan');
     }
+
     public function pendaftaran(): HasMany
     {
         return $this->hasMany(Pendaftaran::class);
     }
-    public function organisasi()
+
+    public function organisasi(): BelongsTo
     {
         return $this->belongsTo(Organisasi::class, 'idorganisasi');
     }
-
 }

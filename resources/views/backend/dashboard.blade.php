@@ -52,54 +52,53 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
-    <script>
-        var lbl = [
-            @foreach ($ar_graph_organisasi as $gb)
-                '{{ $gb->nama_organisasi }}',
-            @endforeach
-        ];
-        var jml = [
-            @foreach ($ar_graph_organisasi as $gb)
-                '{{ $gb->total_pendaftaran_mahasiswa }}',
-            @endforeach
-        ];
-        document.addEventListener('DOMContentLoaded', function() {
-            const data = {
-                labels: lbl,
-                datasets: [{
-                    label: 'Perbandingan Jumlah pendaftaran',
-                    data: jml,
-                    backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(255, 159, 64)',
-                        'rgb(120, 120, 120)',
-                        'rgb(220, 20, 60)',
-                        'rgb(0, 128, 128)',
-                        'rgb(255, 0, 0)',
-                        'rgb(0, 0, 255)',
-                        'rgb(46, 139, 87)',
-                        'rgb(255, 140, 0)',
-                        'rgb(0, 255, 0)',
-                        'rgb(70, 130, 180)',
-                        'rgb(128, 0, 128)'
-                    ],
-                    hoverOffset: 14
-                }]
-            };
+        <script>
+            var lbl = [
+                @foreach ($ar_graph_organisasi as $gb)
+                    '{{ $gb->nama_organisasi }}',
+                @endforeach
+            ];
+            var jml = [
+                @foreach ($ar_graph_organisasi as $gb)
+                    '{{ $gb->total_pendaftaran_mahasiswa }}',
+                @endforeach
+            ];
+            document.addEventListener('DOMContentLoaded', function() {
+                const data = {
+                    labels: lbl,
+                    datasets: [{
+                        label: 'Perbandingan Jumlah pendaftaran',
+                        data: jml,
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(153, 102, 255)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 0, 0)',
+                            'rgb(0, 255, 0)',
+                            'rgb(0, 0, 255)',
+                            'rgb(128, 128, 0)',
+                            'rgb(255, 128, 0)',
+                            'rgb(128, 0, 128)',
+                            'rgb(0, 128, 128)',
+                            'rgb(128, 128, 128)',
+                            'rgb(0, 0, 0)',
+                        ],
+                        hoverOffset: 14
+                    }]
+                };
 
-            const config = {
-                type: 'doughnut',
-                data: data,
-            };
+                const config = {
+                    type: 'doughnut',
+                    data: data,
+                };
 
-            const myChart = new Chart(document.getElementById('myChart'), config);
-        });
-    </script>
-@endsection
+                const myChart = new Chart(document.getElementById('myChart'), config);
+            });
+        </script>
+    @endsection
