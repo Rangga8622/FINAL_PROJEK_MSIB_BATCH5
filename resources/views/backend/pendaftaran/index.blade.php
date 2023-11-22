@@ -1,7 +1,7 @@
 @extends('backend.index')
 @section('content')
     @php
-        $ar_judul = ['No', 'Mahasiswa', 'Organisasi', 'Tanggal Pendaftaran', 'Status Pendaftaran', 'Keterangan', 'Action'];
+        $ar_judul = ['No', 'Mahasiswa','Status Pendaftaran', 'Keterangan', 'Action'];
         $no = 1;
     @endphp
 
@@ -55,7 +55,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php $no = $ar_pendaftaran->firstItem() - 0 ; @endphp
+                            {{-- @php $no = $ar_pendaftaran->firstItem() - 0 ; @endphp --}}
                             @foreach ($ar_pendaftaran as $p)
                                 <tr>
                                     <td>{{ $no++ }}</td>
@@ -89,7 +89,7 @@
                     </table>
                     <div class="d-flex justify-content-end mt-5">
 
-                        {{ $ar_pendaftaran->links('pagination::bootstrap-5') }}
+                        {{-- {{ $ar_pendaftaran->links('pagination::bootstrap-5') }} --}}
                     </div>
                 </div>
             </div>

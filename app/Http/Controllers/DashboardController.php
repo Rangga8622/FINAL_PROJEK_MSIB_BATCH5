@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Organisasi;
-use App\Models\Pendaftaran;
+use App\Models\Mahasiswa;
 
 class DashboardController extends Controller
 {
@@ -16,11 +16,11 @@ class DashboardController extends Controller
     {
         //query u/ mendapatkan jml kategori organisasi
         $ar_organisasi = Organisasi::count();
-        $ar_pendaftaran = Pendaftaran::count();
+        $ar_mahasiswa = Mahasiswa::count();
 
         $ar_graph_organisasi = DB::table('organisasi as o')
-            ->select('o.nama as nama_organisasi', DB::raw('COUNT(p.id) as total_pendaftaran'))
-            ->join('pendaftaran as p', 'o.id', '=', 'p.idorganisasi')
+            ->select('o.nama as nama_organisasi', DB::raw('COUNT(m.id) as total_pendaftaran_mahasiswa'))
+            ->join('mahasiswa as m', 'o.id', '=', 'm.idorganisasi')
             ->groupBy('o.id', 'o.nama')
             ->get();
 
@@ -28,7 +28,7 @@ class DashboardController extends Controller
             'backend.dashboard',
             compact(
                 'ar_organisasi',
-                'ar_pendaftaran',
+                'ar_mahasiswa',
                 'ar_graph_organisasi'
             )
         );

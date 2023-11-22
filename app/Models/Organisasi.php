@@ -20,8 +20,8 @@ class Organisasi extends Model
         return $this->belongsTo(Kategori::class, 'idkategori');
     }
 
-    public function pendaftaran(): HasMany
+    public function mahasiswa(): HasMany
     {
-        return $this->hasMany(Pendaftaran::class);
+        return $this->hasMany(Mahasiswa::class);
     }
 }

@@ -33,7 +33,7 @@
                         <p class="card-title text-md-center text-xl-left">Pendaftaran</p>
                         <div
                             class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ $ar_pendaftaran }}</h3>
+                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ $ar_mahasiswa }}</h3>
                             <i class="bi bi-people-fill icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                         </div>
                         <p class="mb-0 mt-2 text-danger">Jumlah Pendaftaran</p>
@@ -64,7 +64,7 @@
         ];
         var jml = [
             @foreach ($ar_graph_organisasi as $gb)
-                {{ $gb->total_pendaftaran }},
+                '{{ $gb->total_pendaftaran_mahasiswa }}',
             @endforeach
         ];
         document.addEventListener('DOMContentLoaded', function() {

@@ -27,6 +27,9 @@
                                 <strong>Jurusan:</strong> {{ $rs->jurusan->nama }}
                             </li>
                             <li class="list-group-item">
+                                {{-- <strong>Daftar Organisasi:</strong> {{ $rs->organisasi->nama }} --}}
+                            </li>
+                            <li class="list-group-item">
                                 <strong>Semester:</strong> {{ $rs->semester }}
                             </li>
                             <li class="list-group-item">
@@ -39,6 +42,10 @@
                                 <strong>Email:</strong> {{ $rs->email }}
                             </li>
                             <li class="list-group-item">
+                                <strong>Tanggal Pendaftaran:</strong> {{ $rs->tanggal_pendaftaran }}
+                            </li>
+
+                            <li class="list-group-item">
                                 <strong>CV:</strong>
                                 @if ($rs->cv)
                                     <a href="{{ asset('backend/mhs/cv') }}/{{ $rs->cv }}" target="_blank"
@@ -48,8 +55,6 @@
 
                                     <embed src="{{ asset('backend/mhs/cv') }}/{{ $rs->cv }}" type="application/pdf"
                                         style="display: none;" />
-
-                                    
                                 @else
                                     <span class="text-muted">Tidak Ada CV</span>
                                 @endif

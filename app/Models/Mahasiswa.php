@@ -12,7 +12,7 @@ class Mahasiswa extends Model
     use HasFactory;
     protected $table = 'mahasiswa';
     protected $fillable = [
-        'idjurusan', 'nama', 'semester', 'gender', 'nohp', 'email',
+        'idjurusan', 'idorganisasi', 'nama', 'semester', 'gender', 'nohp', 'email', 'tanggal_pendaftaran',
         'cv', 'foto', 'barcode'
     ];
     public $timestamps = false;
@@ -24,4 +24,9 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(Pendaftaran::class);
     }
+    public function organisasi()
+    {
+        return $this->belongsTo(Organisasi::class, 'idorganisasi');
+    }
+
 }

@@ -11,15 +11,15 @@ class Pendaftaran extends Model
     use HasFactory;
     protected $table = 'pendaftaran';
     protected $fillable = [
-        'idmahasiswa', 'idorganisasi', 'tanggal_pendaftaran', 'status_pendaftaran', 'keterangan'
+        'idmahasiswa', 'status_pendaftaran', 'keterangan'
     ];
     public $timestamps = false;
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'idmahasiswa');
     }
-    public function organisasi()
-    {
-        return $this->belongsTo(Organisasi::class, 'idorganisasi');
-    }
+    // public function organisasi()
+    // {
+    //     return $this->belongsTo(Organisasi::class, 'idorganisasi');
+    // }
 }

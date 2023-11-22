@@ -20,15 +20,7 @@
                                 <td>{{ $rs->mahasiswa->nama }}</td>
                             </tr>
 
-                            <tr>
-                                <td style="width: 150px"><strong>Organisasi</strong></td>
-                                <td>{{ $rs->organisasi->nama }}</td>
-                            </tr>
 
-                            <tr>
-                                <td><strong>Tanggal Pendaftaran</strong></td>
-                                <td>{{ $rs->tanggal_pendaftaran }}</td>
-                            </tr>
 
                             <tr>
                                 <td><strong>Status Pendaftaran</strong></td>

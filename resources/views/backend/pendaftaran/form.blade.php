@@ -34,31 +34,8 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputOrg">Organisasi</label>
-                                <select name="idorganisasi"
-                                    class="form-select @error('idorganisasi') is-invalid @else is-valid @enderror">
-                                    <option>-- Pilih Organisasi --</option>
-                                    @foreach ($ar_organisasi as $o)
-                                        @php $sel = (old('idorganisasi') == $o->id) ? 'selected' : ''; @endphp
-                                        <option value="{{ $o->id }}" {{ $sel }}>{{ $o->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('idorganisasi')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputSmt">Tanggal Pendaftaran</label>
-                                <input type="date" name="tanggal_pendaftaran"
-                                    class="form-control @error('tanggal_pendaftaran') is-invalid @else is-valid @enderror"
-                                    id="exampleInputSmt" value="{{ old('tanggal_pendaftaran') }}"
-                                    placeholder="Tanggal Pendaftaran">
-                                @error('tanggal_pendaftaran')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+
+                            
                             <div class="form-group">
                                 <fieldset class="row mb-3">
                                     <legend class="col-form-label col-sm-2 pt-0">Status</legend>

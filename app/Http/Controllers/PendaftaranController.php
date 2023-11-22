@@ -24,16 +24,8 @@ class PendaftaranController extends Controller
     {
         $search = $request->input('search');
 
-        $ar_pendaftaran = Pendaftaran::query()
-            ->with('mahasiswa', 'organisasi')
-            ->when($search, function ($query) use ($search) {
-                $query->whereHas('mahasiswa', function ($subQuery) use ($search) {
-                    $subQuery->where('nama', 'LIKE', '%' . $search . '%');
-                })->orWhereHas('organisasi', function ($subQuery) use ($search) {
-                    $subQuery->where('nama', 'LIKE', '%' . $search . '%');
-                })->orWhere('status_pendaftaran', 'LIKE', '%' . $search . '%');
-            })
-            ->paginate(10);
+        $ar_pendaftaran = Pendaftaran::query();
+
 
         return view('backend.pendaftaran.index', compact('ar_pendaftaran'));
     }
@@ -60,8 +52,8 @@ class PendaftaranController extends Controller
         $validated = $request->validate(
             [
                 'idmahasiswa' => 'required|integer',
-                'idorganisasi' => 'required|integer',
-                'tanggal_pendaftaran' => 'required',
+                // 'idorganisasi' => 'required|integer',
+                // 'tanggal_pendaftaran' => 'required',
                 'status_pendaftaran' => 'required',
                 'ket' => 'nullable',
 
@@ -69,9 +61,9 @@ class PendaftaranController extends Controller
             [
                 'idmahasiswa.required' => 'Nama Wajib Diisi',
                 'idmahasiswa.integer' => 'Nama Wajib Diisi',
-                'idorganisasi.required' => 'Organisasi Wajib Diisi',
-                'idorganisasi.integer' => 'Organisasi Wajib Diisi',
-                'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
+                // 'idorganisasi.required' => 'Organisasi Wajib Diisi',
+                // 'idorganisasi.integer' => 'Organisasi Wajib Diisi',
+                // 'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
                 'status_pendaftaran.required' => 'Status Wajib Diisi',
 
             ]
@@ -80,8 +72,8 @@ class PendaftaranController extends Controller
             DB::table('pendaftaran')->insert(
                 [
                     'idmahasiswa' => $request->idmahasiswa,
-                    'idorganisasi' => $request->idorganisasi,
-                    'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
+                    // 'idorganisasi' => $request->idorganisasi,
+                    // 'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
                     'status_pendaftaran' => $request->status_pendaftaran,
                     'keterangan' => $request->keterangan
                 ]
@@ -124,17 +116,17 @@ class PendaftaranController extends Controller
         $validated = $request->validate(
             [
                 'idmahasiswa' => 'required|integer',
-                'idorganisasi' => 'required|integer',
-                'tanggal_pendaftaran' => 'required',
+                // 'idorganisasi' => 'required|integer',
+                // 'tanggal_pendaftaran' => 'required',
                 'status_pendaftaran' => 'required',
                 'ket' => 'nullable',
             ],
             [
                 'idmahasiswa.required' => 'Nama Wajib Diisi',
                 'idmahasiswa.integer' => 'Nama Wajib Diisi',
-                'idorganisasi.required' => 'Organisasi Wajib Diisi',
-                'idorganisasi.integer' => 'Organisasi Wajib Diisi',
-                'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
+                // 'idorganisasi.required' => 'Organisasi Wajib Diisi',
+                // 'idorganisasi.integer' => 'Organisasi Wajib Diisi',
+                // 'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
                 'status_pendaftaran.required' => 'Status Wajib Diisi',
             ]
         );
@@ -146,8 +138,8 @@ class PendaftaranController extends Controller
             // Update the record using Eloquent's update method
             $pendaftaran->update([
                 'idmahasiswa' => $request->idmahasiswa,
-                'idorganisasi' => $request->idorganisasi,
-                'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
+                // 'idorganisasi' => $request->idorganisasi,
+                // 'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
                 'status_pendaftaran' => $request->status_pendaftaran,
                 'keterangan' => $request->keterangan,
             ]);

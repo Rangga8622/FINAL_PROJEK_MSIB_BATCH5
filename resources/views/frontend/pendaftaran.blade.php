@@ -33,17 +33,24 @@
 
                                     <!-- Form input -->
 
-                                    <div class="form-group">
-                                        <label>Id Mahasiswa</label>
-                                        <input type="id" name="" class="form-control" placeholder="Masukan Id">
-                                    </div>
+
                                     <div class="form-group">
                                         <label>Jurusan</label>
                                         <input type="text" name="" class="form-control"
                                             placeholder="Masukan Jurusan">
                                     </div>
                                     <div class="form-group">
+                                        <label>Daftar Organisasi</label>
+                                        <input type="text" name="" class="form-control"
+                                            placeholder="Masukan Jurusan">
+                                    </div>
+                                    <div class="form-group">
                                         <label>Nama Lengkap</label>
+                                        <input type="text" name="" class="form-control"
+                                            placeholder="Masukan Nama Lengkap">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Semester</label>
                                         <input type="text" name="" class="form-control"
                                             placeholder="Masukan Nama Lengkap">
                                     </div>
@@ -71,7 +78,17 @@
                                             placeholder="Masukan Email">
                                     </div>
                                     <div class="form-group">
-                                        <label>Pengalaman</label>
+                                        <label>Tanggal Pendaftaran</label>
+                                        <input type="text" name="" class="form-control"
+                                            placeholder="Masukan Pengalaman">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>cv</label>
+                                        <input type="text" name="" class="form-control"
+                                            placeholder="Masukan Pengalaman">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>foto</label>
                                         <input type="text" name="" class="form-control"
                                             placeholder="Masukan Pengalaman">
                                     </div>
