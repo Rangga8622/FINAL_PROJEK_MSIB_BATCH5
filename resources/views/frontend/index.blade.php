@@ -29,6 +29,7 @@
     @include('frontend.header')
 
     <main>
+        
 
         @yield('content')
 

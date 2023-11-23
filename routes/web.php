@@ -52,11 +52,9 @@ Route::get('/contact', function () {
     return view('frontend.contact');
 });
 
-
-
-// Route::get('/pendaftaran_user', function () {
-//     return view('frontend.formpendaftaran.pendaftaran');
-// });
+Route::get('/pendaftaran_user', function () {
+    return view('frontend.formpendaftaran.pendaftaran');
+});
 
 Route::get('/blog', [ArtikelController::class, 'index_artikel']);
 
@@ -87,6 +85,7 @@ Route::get('/form_mhs', function () {
 Route::resource('/jurusan', JurusanController::class);
 Route::resource('/mahasiswa', MahasiswaController::class);
 Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
+
 
 
 Route::resource('/pendaftaran', PendaftaranController::class);

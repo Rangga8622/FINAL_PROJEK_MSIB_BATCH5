@@ -21,7 +21,7 @@
         <div class="page-section">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <div class="card border-0">
                             <div class="card-header bg-primary text-center">
                                 <h4 class="text-white">Isi Formulir Pendaftaran</h4>

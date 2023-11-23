@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Mahasiswa;
 use App\Models\Jurusan;
 use App\Models\Organisasi;
+use App\Models\Pendaftaran;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
@@ -21,9 +22,11 @@ class MahasiswaFrontendController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('frontend.formpendaftaran.index');
-    }
+{
+    $pendaftarans = Pendaftaran::all();
+    return view('frontend.formpendaftaran.index', compact('pendaftarans'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -110,12 +113,10 @@ class MahasiswaFrontendController extends Controller
                     'foto' => $fileName,
                 ]
             );
-            return redirect()->route('formpendaftaran.index')
-                ->with('success', 'Data Asset Baru Berhasil Di Simpan');
+            return redirect()->route('form_mahasiswa.index')->with('success', 'Data Pendaftaran Berhasil Di Simpan');
         } catch (\Exception $e) {
             //return redirect()->back()
-            return redirect()->route('formpendaftaran.index')
-                ->with('error', 'Terjadi Kesalahan Saat Input Data!');
+            return redirect()->route('form_mahasiswa.index')->with('success', 'Data Pendaftaran Gagal Di Simpan');
         }
     }
 
