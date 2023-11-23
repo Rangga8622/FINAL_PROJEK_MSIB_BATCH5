@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Pendaftaran;
 use App\Models\Mahasiswa;
 use App\Models\Organisasi;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
@@ -58,6 +59,7 @@ class PendaftaranController extends Controller
         $ar_status = ['diproses', 'diterima', 'ditolak'];
         return view('backend.pendaftaran.form', compact('ar_mahasiswa', 'ar_organisasi', 'ar_status'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -177,7 +179,7 @@ class PendaftaranController extends Controller
 
         $ar_pendaftaran_pdf = $ar_pendaftaran_pdf->get();
 
-        // Pass the search term to the PDF view
+
         $pdf = PDF::loadView('backend.pendaftaran.PDF', ['ar_pendaftaran_pdf' => $ar_pendaftaran_pdf, 'search' => $search]);
 
         return $pdf->download('data_pendaftaran_' . date('d-m-Y_H:i:s') . '.pdf');

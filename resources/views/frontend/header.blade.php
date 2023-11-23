@@ -18,9 +18,6 @@
                         <a class="nav-link" href="{{ url('about') }}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('service') }}">Services</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('blog') }}">Blog</a>
                     </li>
                     <li class="nav-item">
@@ -28,7 +25,7 @@
                     </li>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('pendaftaran_user') }}">Pendaftaran</a>
+                        <a class="nav-link" href="{{ route('form_mahasiswa.create') }}">Pendaftaran</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-primary ml-lg-2" href="{{ url('dashboard') }}">Log in</a>

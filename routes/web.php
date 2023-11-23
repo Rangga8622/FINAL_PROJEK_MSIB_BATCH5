@@ -10,6 +10,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\MahasiswaFrontendController;
 
 
 
@@ -35,10 +36,6 @@ Route::get('/home', function () {
     return view('frontend.home');
 });
 
-Route::get('/service', function () {
-    return view('frontend.service');
-});
-
 Route::get('/about', function () {
     return view('frontend.about');
 });
@@ -55,13 +52,13 @@ Route::get('/contact', function () {
     return view('frontend.contact');
 });
 
-Route::get('/pendaftaran_user', function () {
-    return view('frontend.pendaftaran');
-});
+
+
+// Route::get('/pendaftaran_user', function () {
+//     return view('frontend.formpendaftaran.pendaftaran');
+// });
 
 Route::get('/blog', [ArtikelController::class, 'index_artikel']);
-
-
 
 
 // ==================Admin Dasboard ==================
@@ -89,6 +86,9 @@ Route::get('/form_mhs', function () {
 // ==================Controller resource ==================
 Route::resource('/jurusan', JurusanController::class);
 Route::resource('/mahasiswa', MahasiswaController::class);
+Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
+
+
 Route::resource('/pendaftaran', PendaftaranController::class);
 Route::resource('/kategori', KategoriController::class);
 Route::resource('/organisasi', OrganisasiController::class);

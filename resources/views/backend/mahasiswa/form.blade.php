@@ -28,6 +28,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="exampleInputName1">Jurusan</label>
                                 <select name="idjurusan"
                                     class="form-select  @error('idjurusan') is-invalid @else is-valid @enderror">
                                     <option>-- Pilih Jurusan --</option>

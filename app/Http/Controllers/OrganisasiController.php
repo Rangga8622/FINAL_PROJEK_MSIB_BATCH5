@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Organisasi;
 use App\Models\Kategori;
+use App\Models\Jurusan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
@@ -33,12 +34,6 @@ class OrganisasiController extends Controller
         return view('backend.organisasi.index', ['ar_organisasi' =>  $ar_organisasi]);
     }
 
-
-
-
-
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -47,6 +42,18 @@ class OrganisasiController extends Controller
         $ar_kategori = Kategori::all();
 
         return view('backend.organisasi.form', compact('ar_kategori'));
+    }
+
+    public function create_frontend()
+    {
+        //ambil master data kategori u/ dilooping di select option form
+        $ar_organisasi = Organisasi::all();
+
+        // Ambil master data kategori untuk di-looping di select option form
+        $ar_jurusan = Jurusan::all();
+        $ar_gender = ['L', 'P'];
+
+        return view('frontend.pendaftaran', compact('ar_jurusan', 'ar_gender', 'ar_organisasi'));
     }
 
     /**
