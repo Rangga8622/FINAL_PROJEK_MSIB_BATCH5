@@ -50,7 +50,7 @@
                             <img src="{{ asset('team/img/person_1.jpg') }}" alt="">
                         </div>
 
-                        <h4>Ketua Kelompok</h4>
+                        <h4>Anggota Kelompok</h4>
                         <h5>Rangga Ekklesia Gabriel Anugrahnu</h5>
                     </div>
                 </div>
