@@ -83,7 +83,7 @@
                     </td>
                     <td>{{ optional($p->mahasiswa)->nama }}</td>
                     <td>{{ optional($p->mahasiswa->organisasi)->nama }}</td>
-                    <td>{{ $p->tanggal_pendaftaran }}</td>
+                    <td>{{ $p->mahasiswa->tanggal_pendaftaran }}</td>
                     <td>{{ $p->status_pendaftaran }}</td>
                 </tr>
             @endforeach
