@@ -56,6 +56,10 @@ Route::get('/pendaftaran_user', function () {
     return view('frontend.formpendaftaran.pendaftaran');
 });
 
+Route::get('/after-register', function () {
+    return view('frontend.after_register');
+});
+
 Route::get('/blog', [ArtikelController::class, 'index_artikel']);
 
 
@@ -96,3 +100,7 @@ Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])
 
 Route::resource('/artikel', ArtikelController::class);
 // Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
