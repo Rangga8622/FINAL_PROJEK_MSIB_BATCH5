@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Data Pendaftaran</title>
 
-    <!-- Add any additional styling here -->
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -56,7 +56,6 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Foto</th>
                 <th>Nama Mahasiswa</th>
                 <th>Organisasi</th>
                 <th>Tanggal Pendaftaran</th>
@@ -71,16 +70,6 @@
             @foreach ($ar_pendaftaran_pdf as $p)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>
-                        @if (optional($p->mahasiswa)->foto)
-                            <img src="{{ asset('backend/mhs/foto') }}/{{ optional($p->mahasiswa)->foto }}"
-                                class="img-fluid rounded-circle mx-auto d-block"
-                                alt="{{ optional($p->mahasiswa)->nama }}'s Photo">
-                        @else
-                            <img src="{{ asset('backend/mhs/foto/noimage.png') }}"
-                                class="img-fluid rounded-circle mx-auto d-block" alt="Default Image">
-                        @endif
-                    </td>
                     <td>{{ optional($p->mahasiswa)->nama }}</td>
                     <td>{{ optional($p->mahasiswa->organisasi)->nama }}</td>
                     <td>{{ optional($p->mahasiswa)->tanggal_pendaftaran }}</td>

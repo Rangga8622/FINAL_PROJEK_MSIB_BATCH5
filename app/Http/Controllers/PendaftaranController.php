@@ -172,13 +172,12 @@ class PendaftaranController extends Controller
                 })
                     ->orWhereHas('mahasiswa.organisasi', function (Builder $subQuery) use ($search) {
                         $subQuery->where('nama', 'like', '%' . $search . '%');
-                    });
-
+                    })
+                    ->orWhere('status_pendaftaran', 'like', '%' . $search . '%');
             });
         }
 
         $ar_pendaftaran_pdf = $ar_pendaftaran_pdf->get();
-
 
         $pdf = PDF::loadView('backend.pendaftaran.PDF', ['ar_pendaftaran_pdf' => $ar_pendaftaran_pdf, 'search' => $search]);
 
