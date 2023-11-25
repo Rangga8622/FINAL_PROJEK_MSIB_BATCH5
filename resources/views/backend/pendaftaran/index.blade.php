@@ -4,7 +4,13 @@
         $ar_judul = ['No', 'Mahasiswa', 'Organisasi Pendaftaran', 'Status Pendaftaran', 'Keterangan', 'Action'];
         $no = $ar_pendaftaran->firstItem();
     @endphp
-
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-light p-3 rounded">
+            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"
+                class="text-primary">Dashboard</a></li>
+            <li class="breadcrumb-item active">Daftar Pendaftaran</li>
+        </ol>
+    </nav>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">

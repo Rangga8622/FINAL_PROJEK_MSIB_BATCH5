@@ -2,6 +2,16 @@
 
 @section('content')
     <div class="content-wrapper">
+    <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light p-3 rounded">
+                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"
+                    class="text-primary">Dashboard</a></li>
+                <li class="breadcrumb-item">
+                <a href="{{ url('/organisasi') }}"
+                    class="text-primary">Daftar Organisasi</a></li>
+                <li class="breadcrumb-item active">Form Edit</a></li>
+            </ol>
+        </nav>
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">

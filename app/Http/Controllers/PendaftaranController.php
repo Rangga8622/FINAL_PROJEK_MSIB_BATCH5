@@ -172,8 +172,8 @@ class PendaftaranController extends Controller
                 })
                     ->orWhereHas('mahasiswa.organisasi', function (Builder $subQuery) use ($search) {
                         $subQuery->where('nama', 'like', '%' . $search . '%');
-                    })
-                    ->orWhere('status_pendaftaran', 'like', '%' . $search . '%');
+                    });
+
             });
         }
 

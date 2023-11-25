@@ -1,13 +1,25 @@
 @extends('backend.index')
 
 @section('content')
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card shadow">
-                <div class="card-header text-white d-flex align-items-center justify-content-center">
-                    <h1 class="card-title text-center fw-bold fs-2 m-0">{{ $rs->nama }}</h1>
-                </div>
+
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-light p-3 rounded">
+            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"
+                class="text-primary">Dashboard</a></li>
+            <li class="breadcrumb-item">
+            <a href="{{ url('/mahasiswa') }}"
+                class="text-primary">Daftar Mahasiswa</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detail</li>
+        </ol>
+    </nav>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header text-white d-flex align-items-center justify-content-center">
+                        <h1 class="card-title text-center fw-bold fs-2 m-0">{{ $rs->nama }}</h1>
+                    </div>
+
 
                 <div class="card-body">
                     <div class="text-center">
