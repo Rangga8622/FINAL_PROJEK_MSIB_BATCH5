@@ -5,7 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin</title>
+    <title>ADMIN - ORGENROLL</title>
+    <link href="{{ asset('backend/img/logo.png') }}" rel="icon">
     
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('backend/vendors/ti-icons/css/themify-icons.css') }}">
@@ -17,9 +18,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('backend/img/logo.jpg') }}" />
-
-
+    <link rel="shortcut icon" href="{{ asset('backend/img/logo1.jpg') }}"  />
 
 </head>
 
@@ -35,13 +34,13 @@
             <div class="content-wrapper">
                 <div class="row mb-3">
                     <div class="col-md-12">
-                        <nav aria-label="breadcrumb">
+                        <!-- <nav aria-label="breadcrumb">
                             <ol class="breadcrumb bg-light p-3 rounded">
                                 <li class="breadcrumb-item"><a href="{{ url('/admin') }}"
                                         class="text-primary">Dasboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Library</li>
                             </ol>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
 
