@@ -1,6 +1,16 @@
 @extends('backend.index')
 
 @section('content')
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-light p-3 rounded">
+            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"
+                class="text-primary">Dashboard</a></li>
+            <li class="breadcrumb-item">
+            <a href="{{ url('/mahasiswa') }}"
+                class="text-primary">Daftar Mahasiswa</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detail</li>
+        </ol>
+    </nav>
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
