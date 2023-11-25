@@ -10,6 +10,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MahasiswaFrontendController;
 
 
@@ -95,11 +96,13 @@ Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
 Route::resource('/pendaftaran', PendaftaranController::class);
 Route::resource('/kategori', KategoriController::class);
 Route::resource('/organisasi', OrganisasiController::class);
+Route::resource('/user', UserController::class);
 Route::get('/pendaftaran-excel', [PendaftaranController::class, 'pendaftaranExcel'])->name('pendaftaran.excel');
 Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
 
 Route::resource('/artikel', ArtikelController::class);
 // Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
+Route::get('/after-register', function () {return view('frontend.after_register');});
 
 Auth::routes();
 
