@@ -19,15 +19,34 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item">
-                        {{ Auth::user()->name }}
+                    <a class="dropdown-item" style="font-size: 20px">
+                        @if(empty(Auth::user()->name))
+                        {{''}}
+                        @else
+                        {{Auth::user()->name}}
+                        @endif
+                        
 
                     </a>
-                    <a class="dropdown-item">
+                    <span class="dropdown-item">
+                        @if(empty(Auth::user()->role))
+                            ''
+                        @else
+                            {{ Auth::user()->role }}
+                        @endif
+                    </span>
+                    @if(Auth::user()->role == 'admin')
+                    <a class="dropdown-item" href="{{ url('/user') }}">
                         <i class="ti-settings text-primary"></i>
-                        Settings
+                        Kelola User
                     </a>
-                    <a class="dropdown-item href="{{ route('logout') }}"
+                    @elseif(Auth::user()->role == 'staff')
+                    <a class="dropdown-item" href="">
+                        <i class="ti-settings text-primary"></i>
+                        Edit Profil
+                    </a>
+                    @endif
+                    <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
 
