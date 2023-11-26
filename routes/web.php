@@ -28,25 +28,27 @@ use App\Http\Controllers\MahasiswaFrontendController;
 
 Route::get('/', function () {
     return view('frontend.home');
-});
+})->middleware('auth');
 
 
 // ==================Lading Page==================
 
 Route::get('/home', function () {
     return view('frontend.home');
-});
+})->middleware('auth');
 
 Route::get('/about', function () {
     return view('frontend.about');
 });
 
-Route::get('/blog', function () {
-    return view('frontend.blog');
-});
+Route::middleware(['peran:admin-staff-mahasiswa'])->group(function () {
+    Route::get('/blog', function () {
+        return view('frontend.blog');
+    });
 
-Route::get('/blog_view', function () {
-    return view('frontend.view_artikel.index');
+    Route::get('/blog_view', function () {
+        return view('frontend.view_artikel.index');
+    });
 });
 
 Route::get('/contact', function () {
@@ -87,23 +89,34 @@ Route::get('/form_mhs', function () {
 
 
 // ==================Controller resource ==================
-Route::resource('/jurusan', JurusanController::class);
-Route::resource('/mahasiswa', MahasiswaController::class);
-Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
+Route::middleware(['peran:admin-staff'])->group(function () {
+
+    Route::resource('/jurusan', JurusanController::class);
+    Route::resource('/mahasiswa', MahasiswaController::class);
+    Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
 
 
 
-Route::resource('/pendaftaran', PendaftaranController::class);
-Route::resource('/kategori', KategoriController::class);
-Route::resource('/organisasi', OrganisasiController::class);
-Route::resource('/user', UserController::class);
-Route::get('/pendaftaran-excel', [PendaftaranController::class, 'pendaftaranExcel'])->name('pendaftaran.excel');
-Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
+    Route::resource('/pendaftaran', PendaftaranController::class);
+    Route::resource('/kategori', KategoriController::class);
+    Route::resource('/organisasi', OrganisasiController::class);
+    Route::resource('/user', UserController::class);
+    Route::get('/pendaftaran-excel', [PendaftaranController::class, 'pendaftaranExcel'])->name('pendaftaran.excel');
+    Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
+});
+
 
 Route::resource('/artikel', ArtikelController::class);
 // Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
-Route::get('/after-register', function () {return view('frontend.after_register');});
+Route::get('/after-register', function () {
+    return view('frontend.after_register');
+});
 
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/access-denied', function () {
+    return view('frontend.access_denied');
+})->middleware('auth');

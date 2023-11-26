@@ -10,7 +10,7 @@
                         <p class="text-lg text-grey mb-5">Selamat Registrasi Akun Telah Berhasil,Harap Tunggu Konfirmasi dari
                             Admin Kami </p>
                         <a href="{{ url('home') }}" class="btn btn-primary btn-split">Terima Kasih<div class="fab"><span
-                                    class="bi bi-caret-right-fill"></span></div></a>
+                                    class="bi bi-emoji-laughing-fill"></span></div></a>
                     </div>
 
                 </div>
