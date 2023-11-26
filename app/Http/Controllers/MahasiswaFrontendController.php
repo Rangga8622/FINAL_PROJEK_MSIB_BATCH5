@@ -22,10 +22,10 @@ class MahasiswaFrontendController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $pendaftarans = Pendaftaran::all();
-    return view('frontend.formpendaftaran.index', compact('pendaftarans'));
-}
+    {
+        $pendaftarans = Pendaftaran::all();
+        return view('frontend.formpendaftaran.index', compact('pendaftarans'));
+    }
 
 
     /**
@@ -57,7 +57,7 @@ class MahasiswaFrontendController extends Controller
                 'gender' => 'required',
                 'nohp' => 'required|max:45',
                 'email' => 'required|max:45',
-                'tanggal_pendaftaran' => 'required',
+                // 'tanggal_pendaftaran' => 'required',
                 'cv' => 'nullable|mimes:pdf,doc|min:2|max:10000',
                 'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|min:2|max:9000',
 
@@ -76,7 +76,7 @@ class MahasiswaFrontendController extends Controller
                 'nohp.max' => 'No HP Maksimal 45 Karakter',
                 'email.required' => 'Email Wajib Diisi',
                 'email.max' => 'Email Maksimal 45 Karakter',
-                'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
+                // 'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
                 'cv.mimes' => 'Format CV Wajib PDF/DOC',
                 'cv.min' => 'Ukuran Minimum CV 2 KB',
                 'cv.max' => 'Ukuran Maximum CV 10 MB',
@@ -98,6 +98,8 @@ class MahasiswaFrontendController extends Controller
             $fileName = '';
         }
 
+        $tanggal = date('Y-m-d H:i:s');
+
         try {
             DB::table('mahasiswa')->insert(
                 [
@@ -108,15 +110,15 @@ class MahasiswaFrontendController extends Controller
                     'gender' => $request->gender,
                     'nohp' => $request->nohp,
                     'email' => $request->email,
-                    'tanggal_pendaftaran' => $request->tanggal_pendaftaran,
+                    'tanggal_pendaftaran' => $tanggal,
                     'cv' => $fileNamee,
                     'foto' => $fileName,
                 ]
             );
-            return redirect()->route('form_mahasiswa.index')->with('success', 'Data Pendaftaran Berhasil Di Simpan');
+            return redirect()->route('form_mahasiswa.index')->with('success', 'Pendaftaran Organisasi Telah Berhasil Dilakukan');
         } catch (\Exception $e) {
             //return redirect()->back()
-            return redirect()->route('form_mahasiswa.index')->with('success', 'Data Pendaftaran Gagal Di Simpan');
+            return redirect()->route('form_mahasiswa.index')->with('success', 'Pendaftaran Gagal Dilakukan Coba Lagi');
         }
     }
 

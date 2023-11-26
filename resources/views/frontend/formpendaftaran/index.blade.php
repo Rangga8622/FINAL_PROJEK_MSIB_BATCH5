@@ -7,7 +7,7 @@
                 <div class="col-md-6">
                     <nav aria-label="Breadcrumb">
                         <ul class="breadcrumb justify-content-center py-0 bg-transparent">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('/home') }}">Home</a></li>
                             <li class="breadcrumb-item active">Pengumuman</li>
                         </ul>
                     </nav>
@@ -24,14 +24,14 @@
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             <p>{{ $message }}</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
                         </div>
                     @endif
 
                     @if ($message = Session::get('error'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <p>{{ $message }}</p>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            {{-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> --}}
                         </div>
                     @endif
                 </div>

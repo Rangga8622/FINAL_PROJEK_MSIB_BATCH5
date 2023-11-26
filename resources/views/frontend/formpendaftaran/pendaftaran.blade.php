@@ -104,7 +104,7 @@
                                             </div>
                                         </fieldset>
                                         @error('gender')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <font color="red">{{ $message }}</font>
                                         @enderror
                                     </div>
 
@@ -128,12 +128,12 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group" hidden>
                                         <label>Tanggal Pendaftaran</label>
                                         <input type="date" name="tanggal_pendaftaran"
                                             class="form-control {{ $errors->has('tanggal_pendaftaran') ? 'is-invalid' : '' }}"
-                                            placeholder="Masukkan Tanggal Pendaftaran"
-                                            value="{{ old('tanggal_pendaftaran') }}">
+                                            placeholder="Masukkan Tanggal Pendaftaran" readonly
+                                            value="{{ date('d-F-Y H:i') }} WIB">
                                         @error('tanggal_pendaftaran')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
