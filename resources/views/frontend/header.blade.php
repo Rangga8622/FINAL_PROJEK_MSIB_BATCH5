@@ -10,7 +10,6 @@
 
             <div class="navbar-collapse collapse" id="navbarContent">
                 <ul class="navbar-nav ml-auto">
-                    @if (Auth::user()->role == 'admin')
                         <li class="nav-item ">
                             <a class="nav-link" href="{{ url('home') }}">Home</a>
                         </li>
@@ -24,7 +23,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('contact') }}">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary ml-lg-2" href="{{ url('login') }}">Log in</a>
                         </li>
+                    @if (Auth::user()->role == 'mahasiswa')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('form_mahasiswa.create') }}">Pendaftaran</a>
                         </li>
@@ -42,9 +44,7 @@
                             </form>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="btn btn-primary ml-lg-2" href="{{ url('login') }}">Log in</a>
-                        </li>
+                        
                     @endif
                 </ul>
             </div>
