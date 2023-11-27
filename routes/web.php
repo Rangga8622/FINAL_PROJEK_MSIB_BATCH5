@@ -28,14 +28,14 @@ use App\Http\Controllers\MahasiswaFrontendController;
 
 Route::get('/', function () {
     return view('frontend.home');
-})->middleware('auth');
+});
 
 
 // ==================Lading Page==================
 
 Route::get('/home', function () {
     return view('frontend.home');
-})->middleware('auth');
+});
 
 Route::get('/about', function () {
     return view('frontend.about');
@@ -95,10 +95,6 @@ Route::middleware(['peran:admin-staff'])->group(function () {
 
     Route::resource('/jurusan', JurusanController::class);
     Route::resource('/mahasiswa', MahasiswaController::class);
-    Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
-
-
-
     Route::resource('/pendaftaran', PendaftaranController::class);
     Route::resource('/kategori', KategoriController::class);
     Route::resource('/organisasi', OrganisasiController::class);
@@ -107,6 +103,9 @@ Route::middleware(['peran:admin-staff'])->group(function () {
     Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
 });
 
+Route::middleware(['peran:admin-mahasiswa'])->group(function () {
+    Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
+});
 
 Route::resource('/artikel', ArtikelController::class);
 // Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
