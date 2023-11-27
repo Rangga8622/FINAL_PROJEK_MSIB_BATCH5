@@ -45,19 +45,24 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Mahasiswa</th>
+                                <th>Organisasi</th>
                                 <th>Status Pendaftaran</th>
                                 {{-- <th>Keterangan</th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pendaftarans as $pendaftaran)
+                            @foreach ($pendaftaran as $pendaftaran)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pendaftaran->mahasiswa->nama }}</td>
-                                    <td>{{ $pendaftaran->status_pendaftaran }}</td>
-                                    {{-- <td>{{ $pendaftaran->keterangan ?? 'Belum ada keterangan' }}</td> --}}
+                                    <td>{{ $pendaftaran->mahasiswa->organisasi->nama }}</td>
+                                    <td>{{ $pendaftaran->status_pendaftaran ?: 'Belum diinput' }}</td>
                                 </tr>
                             @endforeach
+
+
+
+
                         </tbody>
                     </table>
                 </div>

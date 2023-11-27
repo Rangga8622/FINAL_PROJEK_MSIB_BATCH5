@@ -72,26 +72,10 @@ Route::get('/blog', [ArtikelController::class, 'index_artikel']);
 // });
 Route::get('/login', [LoginController::class, 'index']);
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
-
-Route::get('/table', function () {
-    return view('backend.table');
-});
-Route::get('/form', function () {
-    return view('backend.form');
-});
-Route::get('/form_mhs', function () {
-    return view('backend.mahasiswa.form');
-});
-
-
-
-
-
-
-
 // ==================Controller resource ==================
 Route::middleware(['peran:admin-staff'])->group(function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index']);
 
     Route::resource('/jurusan', JurusanController::class);
     Route::resource('/mahasiswa', MahasiswaController::class);
