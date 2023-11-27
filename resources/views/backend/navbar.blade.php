@@ -16,12 +16,10 @@
 
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                     @if(empty(Auth::user()->foto))
-                          <img src="{{ asset('backend/img/nophoto.jpg') }}" alt="Profile"
-                              class="rounded-circle">
-                      @else        
-                          <img src="{{ asset('backend/img') }}/{{ Auth::user()->foto }}" alt="Profile"
-                              class="rounded-circle">
-                    @endif                
+                    <img src="{{ asset('backend/img/nophoto.jpg') }}" alt="Profile" class="rounded-circle">
+                    @else
+                    <img src="{{ asset('backend/img') }}/{{ Auth::user()->foto }}" alt="Profile" class="rounded-circle">
+                    @endif
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -34,9 +32,9 @@
                     </a>
                     <span class="dropdown-item">
                         @if(empty(Auth::user()->role))
-                            ''
+                        ''
                         @else
-                            {{ Auth::user()->role }}
+                        {{ Auth::user()->role }}
                         @endif
                     </span>
                     @if(Auth::user()->role == 'admin')
@@ -45,13 +43,12 @@
                         Kelola User
                     </a>
                     @elseif(Auth::user()->role == 'staff')
-                    <a class="dropdown-item" href="">
+                    <a class="dropdown-item" href="{{ route('user.edit', ['user' => Auth::user()->id]) }}">
                         <i class="ti-settings text-primary"></i>
                         Edit Profil
                     </a>
                     @endif
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
 
                         <i class="ti-power-off text-primary"></i>
