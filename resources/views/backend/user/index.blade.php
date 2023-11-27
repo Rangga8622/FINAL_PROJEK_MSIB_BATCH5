@@ -2,7 +2,7 @@
 @extends('backend.index')
 @section('content')
 @php
-$ar_judul = ['No','Nama','Email','Role','IsActive','Action'];
+$ar_judul = ['No','Nama','Email','Role','IsActive','Terakhir Diubah','Action'];
 $no = 1;
 @endphp
     <nav aria-label="breadcrumb">
@@ -17,11 +17,7 @@ $no = 1;
             <div class="card-body">
                 <h4 class="card-title">Kelola User</h4>
                 <div class="d-flex justify-content-between mb-2">
-                    <div>
-                        <a href="" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
-                            <i class="bi bi-clipboard-plus"></i> Tambah
-                        </a>
-                    </div>
+                    
                     
                 </div>
                 <div class="table-responsive">
@@ -41,17 +37,20 @@ $no = 1;
                             <td>{{ $u->email }}</td>
                             <td>{{ $u->role }}</td>
                             <td>{{ $u->isactive }}</td>
+                            <td>{{ $u->updated_at }}</td>
                                     <td>
-                              <form method="POST" action="">
+                              <form method="POST" action="{{ route('user.destroy', $u->id) }}">
                               @csrf
                                         @method('DELETE')		
                               
-                                        <a class="btn btn-warning btn-sm" href="" title="Ubah User">
+                                        <a class="btn btn-warning btn-sm" href="{{ route('user.edit', $u->id) }}" title="Ubah User">
                                             <i class="bi bi-pencil-fill"></i>
                                         </a>
-                              <button type="submit" class="btn btn-danger btn-sm show-alert-delete-box" title="Hapus User">
-                                <i class="bi bi-trash"></i>
-                              </button>
+                                        <button type="submit" title="Hapus User" class="btn btn-danger btn-sm"
+                                        name="proses" value="hapus"
+                                        onclick="return confirm('Anda Yakin diHapus?')">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
                               </form>
                             </td>
                           </tr>
