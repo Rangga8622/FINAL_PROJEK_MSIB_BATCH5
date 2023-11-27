@@ -15,7 +15,13 @@
             <li class="nav-item nav-profile dropdown">
 
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                    <img src="{{ asset('bakcend/kimages/faces/face28.jpg') }}" alt="profile" />
+                    @if(empty(Auth::user()->foto))
+                          <img src="{{ asset('backend/img/nophoto.jpg') }}" alt="Profile"
+                              class="rounded-circle">
+                      @else        
+                          <img src="{{ asset('backend/img') }}/{{ Auth::user()->foto }}" alt="Profile"
+                              class="rounded-circle">
+                    @endif                
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -25,8 +31,6 @@
                         @else
                         {{Auth::user()->name}}
                         @endif
-                        
-
                     </a>
                     <span class="dropdown-item">
                         @if(empty(Auth::user()->role))

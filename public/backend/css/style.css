@@ -19835,7 +19835,7 @@ code {
 
 /* Footer */
 .footer {
-  background: #dddce1;
+  background: #f9f9f9;
   color: color(dark);
   padding: 30px 2.45rem;
   transition: all 0.25s ease;
@@ -21869,7 +21869,7 @@ dl li {
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 70px);
-  background: #dddce1;
+  background: #ffffff;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   padding: 0;

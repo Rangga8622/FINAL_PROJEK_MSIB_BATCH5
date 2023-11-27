@@ -70,6 +70,8 @@ Route::get('/blog', [ArtikelController::class, 'index_artikel']);
 // Route::get('/admin', function () {
 //     return view('backend.dashboard');
 // });
+Route::get('/login', [LoginController::class, 'index']);
+
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/table', function () {
