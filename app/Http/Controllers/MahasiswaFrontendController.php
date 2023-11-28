@@ -22,24 +22,38 @@ class MahasiswaFrontendController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // MahasiswaFrontendController
     public function index()
     {
-        $pendaftaran = collect();
+        $userEmail = Auth::user()->email;
 
-        if (Auth::user()->role == 'mahasiswa') {
-            $mahasiswa = Mahasiswa::where('email', Auth::user()->email)->first();
+        $ar_mahasiswa = Mahasiswa::where('email', $userEmail)->get();
 
-            if ($mahasiswa) {
-                // If the mahasiswa exists, fetch the related pendaftaran data
-                $pendaftaran = Pendaftaran::where('idmahasiswa', $mahasiswa->id)->get();
+        $pendaftaransGrouped = [];
+
+        foreach ($ar_mahasiswa as $mahasiswa) {
+            $mahasiswaPendaftarans = Pendaftaran::where('idmahasiswa', $mahasiswa->id)->get();
+
+            foreach ($mahasiswaPendaftarans as $pendaftaran) {
+                $organisasi = $pendaftaran->mahasiswa->organisasi->nama;
+
+                // Create an array for each organization if it doesn't exist
+                if (!isset($pendaftaransGrouped[$organisasi])) {
+                    $pendaftaransGrouped[$organisasi] = [];
+                }
+
+                // Add the registration to the array for the organization
+                $pendaftaransGrouped[$organisasi][] = $pendaftaran;
             }
-        } else {
-            // If admin or staff, display all pendaftaran data
-            $pendaftaran = Pendaftaran::all();
         }
 
-        return view('frontend.formpendaftaran.index', compact('pendaftaran'));
+        return view('frontend.formpendaftaran.index', [
+            'ar_mahasiswa' => $ar_mahasiswa,
+            'pendaftaransGrouped' => $pendaftaransGrouped
+        ]);
     }
+
+
 
 
 

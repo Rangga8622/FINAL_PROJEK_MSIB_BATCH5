@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="{{ asset('library/animate.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,900" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{{ asset('acces_denied/acces_denied.css') }}" />
+
 
 </head>
 
