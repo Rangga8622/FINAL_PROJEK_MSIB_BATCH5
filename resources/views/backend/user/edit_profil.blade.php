@@ -13,7 +13,7 @@
                             <h5 class="card-title">{{ Auth::user()->email }}</h5>
                         </div>
 
-                        <form method="POST" action="{{ route('user.update', Auth::user()->id) }}">
+                        <form method="POST" action="{{ route('user.update_profile', Auth::user()->id) }}">
                             @csrf
                             @method('PUT')
 

@@ -47,18 +47,89 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit_profile($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('backend.user.edit_profil', compact('user'));
+    }
+    public function update_profile(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ]);
+
+        try {
+            $user = User::findOrFail($id);
+
+            $user->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+            ]);
+            return redirect()->route('user.index')->with('success', 'Profile Berhasil Di update');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error updating user: ' . $e->getMessage());
+        }
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function edit($id)
     {
-        //
+
+        $rs=User::find($id);
+        $ar_role = ['admin', 'staff', 'mahasiswa'];
+        $ar_isactive = ['yes', 'no','banned'];
+
+        return view('backend.user.form_edit', compact('rs', 'ar_role', 'ar_isactive'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required',
+                'role' => 'required',
+                'isactive' => 'required',
+                'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|min:2|max:9000',
+
+            ],
+            [
+                'nama.required' => 'Nama Wajib Diisi',
+                'email.required' => 'Email Wajib Diisi',
+                'role.required' => 'Role Wajib Dipilih',
+                'isactive.required' => 'Isactive Wajib Dipilih',
+                'foto.image' => 'Foto Harus Berupa Gambar',
+                'foto.mimes' => 'Foto Harus Format JPG, JPEG, PNG, GIF, SVG'
+            ]
+
+            );
+            $foto = DB::table('users')->select('foto')->where('id', $id)->get();
+            foreach ($foto as $f) {
+                $namaFileFotoLama = $f->foto;
+            }
+            if (!empty($request->foto)) {
+                if (!empty($namaFileFotoLama)) unlink('backend/img/dashboard/user/' . $namaFileFotoLama);
+                $fileName = 'user_' . date("Ymd_h-i-s") . '.' . $request->foto->extension();
+                $request->foto->move(public_path('backend/img/dashboard/user/'), $fileName);
+            } else {
+                $fileName = $namaFileFotoLama;
+            }
+
+            DB::table('users')->where('id', $id)->update(
+                [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'role' => $request->role,
+                    'isactive' => $request->isactive,
+                    'foto' => $fileName,
+                    'updated_at' => $request->updated_at,
+                ]
+                );
+                return redirect('/user' . '/')
+            ->with('success', 'Data User Berhasil Diubah');
+    }
+
 
     /**
      * Remove the specified resource from storage.

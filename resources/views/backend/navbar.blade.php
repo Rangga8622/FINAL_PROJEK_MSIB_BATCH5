@@ -42,11 +42,12 @@
                         <i class="ti-settings text-primary"></i>
                         Kelola User
                     </a>
-                    @elseif(Auth::user()->role == 'staff')
-                    <a class="dropdown-item" href="{{ route('user.edit', ['user' => Auth::user()->id]) }}">
+                    @elseif(Auth::check() && Auth::user()->role == 'staff')
+                    <a class="dropdown-item" href="{{ route('user.edit_profile', ['id' => Auth::user()->id]) }}">
                         <i class="ti-settings text-primary"></i>
                         Edit Profil
                     </a>
+
                     @endif
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
