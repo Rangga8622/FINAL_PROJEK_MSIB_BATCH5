@@ -30,7 +30,7 @@ class MahasiswaFrontendController extends Controller
             $mahasiswa = Mahasiswa::where('email', Auth::user()->email)->first();
 
             if ($mahasiswa) {
-                // If the mahasiswa exists, fetch the related pendaftaran data
+                // If the mahasiswa exists, fetch all related pendaftaran data
                 $pendaftaran = Pendaftaran::where('idmahasiswa', $mahasiswa->id)->get();
             }
         } else {
@@ -40,6 +40,7 @@ class MahasiswaFrontendController extends Controller
 
         return view('frontend.formpendaftaran.index', compact('pendaftaran'));
     }
+
 
 
 

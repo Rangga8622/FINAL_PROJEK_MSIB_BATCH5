@@ -41,6 +41,7 @@ class PendaftaranController extends Controller
             });
         }
 
+        $ar_pendaftaran->orderBy('id', 'desc');
         // Gunakan paginate untuk mendapatkan objek LengthAwarePaginator
         $ar_pendaftaran = $ar_pendaftaran->paginate(10); // Sesuaikan jumlah item per halaman
 
