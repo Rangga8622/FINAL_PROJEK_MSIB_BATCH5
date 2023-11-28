@@ -84,8 +84,14 @@ Route::middleware(['peran:admin-staff'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::get('/pendaftaran-excel', [PendaftaranController::class, 'pendaftaranExcel'])->name('pendaftaran.excel');
     Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
+
+    Route::get('/user/{id}/edit_profile', [UserController::class, 'edit_profile'])->name('user.edit_profile');
+    Route::put('/user/{id}/update_profile', [UserController::class, 'update_profile'])->name('user.update_profile');
+});
+
     Route::resource('/artikel', ArtikelController::class);
 })->middleware('auth');
+
 
 Route::middleware(['peran:admin'])->group(function () {
     Route::resource('/kategori', KategoriController::class);
@@ -108,3 +114,4 @@ Auth::routes();
 Route::get('/access-denied', function () {
     return view('frontend.access_denied');
 })->middleware('auth');
+

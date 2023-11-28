@@ -47,8 +47,35 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit_profile($id)
     {
+        $user = User::findOrFail($id);
+        return view('backend.user.edit_profil', compact('user'));
+    }
+    public function update_profile(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ]);
+
+        try {
+            $user = User::findOrFail($id);
+
+            $user->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+            ]);
+            return redirect()->route('user.index')->with('success', 'Profile Berhasil Di update');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error updating user: ' . $e->getMessage());
+        }
+
+    }
+
+    public function edit($id)
+    {
+
         $rs=User::find($id);
         $ar_role = ['admin', 'staff', 'mahasiswa'];
         $ar_isactive = ['yes', 'no','banned'];
@@ -56,10 +83,7 @@ class UserController extends Controller
         return view('backend.user.form_edit', compact('rs', 'ar_role', 'ar_isactive'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate(
             [
@@ -105,6 +129,7 @@ class UserController extends Controller
                 return redirect('/user' . '/')
             ->with('success', 'Data User Berhasil Diubah');
     }
+
 
     /**
      * Remove the specified resource from storage.
