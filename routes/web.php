@@ -49,7 +49,7 @@ Route::middleware(['peran:admin-staff-mahasiswa'])->group(function () {
     Route::get('/blog_view', function () {
         return view('frontend.view_artikel.index');
     });
-});
+})->middleware('auth');
 
 Route::get('/contact', function () {
     return view('frontend.contact');
@@ -63,14 +63,14 @@ Route::get('/after-register', function () {
     return view('frontend.after_register');
 });
 
-Route::get('/blog', [ArtikelController::class, 'index_artikel']);
+Route::get('/blog', [ArtikelController::class, 'index_artikel'])->middleware('auth');
 
 
 // ==================Admin Dasboard ==================
 // Route::get('/admin', function () {
 //     return view('backend.dashboard');
 // });
-Route::get('/login', [LoginController::class, 'index']);
+// Route::get('/login', [LoginController::class, 'index']);
 
 // ==================Controller resource ==================
 Route::middleware(['peran:admin-staff'])->group(function () {
@@ -80,18 +80,21 @@ Route::middleware(['peran:admin-staff'])->group(function () {
     Route::resource('/jurusan', JurusanController::class);
     Route::resource('/mahasiswa', MahasiswaController::class);
     Route::resource('/pendaftaran', PendaftaranController::class);
-    Route::resource('/kategori', KategoriController::class);
-    Route::resource('/organisasi', OrganisasiController::class);
+
     Route::resource('/user', UserController::class);
     Route::get('/pendaftaran-excel', [PendaftaranController::class, 'pendaftaranExcel'])->name('pendaftaran.excel');
     Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
-});
+    Route::resource('/artikel', ArtikelController::class);
+})->middleware('auth');
 
+Route::middleware(['peran:admin'])->group(function () {
+    Route::resource('/kategori', KategoriController::class);
+    Route::resource('/organisasi', OrganisasiController::class);
+})->middleware('auth');
 Route::middleware(['peran:admin-mahasiswa'])->group(function () {
     Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
-});
+})->middleware('auth');
 
-Route::resource('/artikel', ArtikelController::class);
 // Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
 Route::get('/after-register', function () {
     return view('frontend.after_register');
