@@ -76,7 +76,7 @@ Route::get('/blog', [ArtikelController::class, 'index_artikel'])->middleware('au
 Route::middleware(['peran:admin-staff'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
-
+    
     Route::resource('/jurusan', JurusanController::class);
     Route::resource('/mahasiswa', MahasiswaController::class);
     Route::resource('/pendaftaran', PendaftaranController::class);
@@ -89,8 +89,7 @@ Route::middleware(['peran:admin-staff'])->group(function () {
     Route::put('/user/{id}/update_profile', [UserController::class, 'update_profile'])->name('user.update_profile');
 });
 
-    Route::resource('/artikel', ArtikelController::class);
-})->middleware('auth');
+Route::resource('/artikel', ArtikelController::class)->middleware('auth');
 
 
 Route::middleware(['peran:admin'])->group(function () {
@@ -114,4 +113,3 @@ Auth::routes();
 Route::get('/access-denied', function () {
     return view('frontend.access_denied');
 })->middleware('auth');
-

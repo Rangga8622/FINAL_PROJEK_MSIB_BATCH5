@@ -66,19 +66,18 @@ class UserController extends Controller
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
             ]);
-            return redirect()->route('user.index')->with('success', 'Profile Berhasil Di update');
+            return redirect()->route('pendaftaran.index')->with('success', 'Profile Berhasil Di update');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error updating user: ' . $e->getMessage());
         }
-
     }
 
     public function edit($id)
     {
 
-        $rs=User::find($id);
+        $rs = User::find($id);
         $ar_role = ['admin', 'staff', 'mahasiswa'];
-        $ar_isactive = ['yes', 'no','banned'];
+        $ar_isactive = ['yes', 'no', 'banned'];
 
         return view('backend.user.form_edit', compact('rs', 'ar_role', 'ar_isactive'));
     }
@@ -103,30 +102,30 @@ class UserController extends Controller
                 'foto.mimes' => 'Foto Harus Format JPG, JPEG, PNG, GIF, SVG'
             ]
 
-            );
-            $foto = DB::table('users')->select('foto')->where('id', $id)->get();
-            foreach ($foto as $f) {
-                $namaFileFotoLama = $f->foto;
-            }
-            if (!empty($request->foto)) {
-                if (!empty($namaFileFotoLama)) unlink('backend/img/dashboard/user/' . $namaFileFotoLama);
-                $fileName = 'user_' . date("Ymd_h-i-s") . '.' . $request->foto->extension();
-                $request->foto->move(public_path('backend/img/dashboard/user/'), $fileName);
-            } else {
-                $fileName = $namaFileFotoLama;
-            }
+        );
+        $foto = DB::table('users')->select('foto')->where('id', $id)->get();
+        foreach ($foto as $f) {
+            $namaFileFotoLama = $f->foto;
+        }
+        if (!empty($request->foto)) {
+            if (!empty($namaFileFotoLama)) unlink('backend/img/dashboard/user/' . $namaFileFotoLama);
+            $fileName = 'user_' . date("Ymd_h-i-s") . '.' . $request->foto->extension();
+            $request->foto->move(public_path('backend/img/dashboard/user/'), $fileName);
+        } else {
+            $fileName = $namaFileFotoLama;
+        }
 
-            DB::table('users')->where('id', $id)->update(
-                [
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'role' => $request->role,
-                    'isactive' => $request->isactive,
-                    'foto' => $fileName,
-                    'updated_at' => $request->updated_at,
-                ]
-                );
-                return redirect('/user' . '/')
+        DB::table('users')->where('id', $id)->update(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => $request->role,
+                'isactive' => $request->isactive,
+                'foto' => $fileName,
+                'updated_at' => $request->updated_at,
+            ]
+        );
+        return redirect('/user' . '/')
             ->with('success', 'Data User Berhasil Diubah');
     }
 

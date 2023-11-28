@@ -9,7 +9,7 @@
 
                         <div class="mb-4">
                             <h5 class="card-title">{{ Auth::user()->name }}</h5>
-                            <br/>
+                            <br />
                             <h5 class="card-title">{{ Auth::user()->email }}</h5>
                         </div>
 
@@ -19,12 +19,14 @@
 
                             <div class="form-group">
                                 <label for="name">Nama</label>
-                                <input type="text" class="form-control" id="name" name="name" value="{{ Auth::user()->name }}" required>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="{{ Auth::user()->name }}" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ Auth::user()->email }}" required>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="{{ Auth::user()->email }}" required>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Update Profil</button>
@@ -34,5 +36,6 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection
