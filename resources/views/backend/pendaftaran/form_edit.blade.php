@@ -1,15 +1,14 @@
 @extends('backend.index')
 @section('content')
-<nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-light p-3 rounded">
-                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"
-                    class="text-primary">Dashboard</a></li>
-                <li class="breadcrumb-item">
-                <a href="{{ url('/pendaftaran') }}"
-                    class="text-primary">Daftar Pendaftaran</a></li>
-                <li class="breadcrumb-item active">Form Edit</a></li>
-            </ol>
-        </nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-light p-3 rounded">
+            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}" class="text-primary">Dashboard</a></li>
+            <li class="breadcrumb-item">
+                <a href="{{ url('/pendaftaran') }}" class="text-primary">Daftar Pendaftaran</a>
+            </li>
+            <li class="breadcrumb-item active">Form Edit</a></li>
+        </ol>
+    </nav>
     <div class="content-wrapper">
         <div class="row">
             <div class="col-12 grid-margin stretch-card">
@@ -30,7 +29,8 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label for="exampleInputName1">Name</label>
-                                <select name="idmahasiswa" class="form-select @error('idmahasiswa') is-invalid @else is-valid @enderror">
+                                <select name="idmahasiswa"
+                                    class="form-select @error('idmahasiswa') is-invalid @else is-valid @enderror">
                                     <option>-- Pilih Nama --</option>
                                     @foreach ($ar_mahasiswa as $m)
                                         <option value="{{ $m->id }}"
@@ -46,10 +46,12 @@
 
                             <div class="form-group">
                                 <label for="exampleInputOrg">Organisasi</label>
-                                <select name="idorganisasi" class="form-select @error('idorganisasi') is-invalid @else is-valid @enderror">
+                                <select name="idorganisasi"
+                                    class="form-select @error('idorganisasi') is-invalid @else is-valid @enderror">
                                     <option>-- Pilih Organisasi --</option>
                                     @foreach ($ar_organisasi as $o)
-                                        <option value="{{ $o->id }}" @if ($o->id == $rs->idorganisasi) selected @endif>
+                                        <option value="{{ $o->id }}"
+                                            @if ($o->id == $rs->idorganisasi) selected @endif>
                                             {{ $o->nama }}
                                         </option>
                                     @endforeach
@@ -59,14 +61,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputTanggal">Tanggal Pendaftaran</label>
-                                <input type="date" name="tanggal_pendaftaran" class="form-control @error('tanggal_pendaftaran') is-invalid @else is-valid @enderror" id="exampleInputTanggal" placeholder="Tanggal Pendaftaran" value="{{ old('tanggal_pendaftaran', $rs->tanggal_pendaftaran) }}">
-                                
-                                @error('tanggal_pendaftaran')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
+
                             <div class="form-group">
                                 <fieldset class="row mb-3">
                                     <legend class="col-form-label col-sm-2 pt-0">Status</legend>
