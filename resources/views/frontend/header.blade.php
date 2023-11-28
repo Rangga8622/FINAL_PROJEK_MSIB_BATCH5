@@ -31,10 +31,17 @@
                             <a class="nav-link" href="{{ url('blog') }}">Blog</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('form_mahasiswa.create') }}">Pendaftaran</a>
-                        </li>
+
                         @if (Auth::user()->role == 'mahasiswa')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('form_mahasiswa.create') }}">Pendaftaran</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('form_mahasiswa.index') }}">Pengumuman</a>
+                            </li>
+
+
                             <li class="nav-item">
                                 <a class="btn btn-primary ml-lg-2" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

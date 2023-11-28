@@ -49,44 +49,26 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('backend.user.edit', compact('user'));
+        //
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
     {
-        // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            // Add more validation rules for other fields if needed
-        ]);
-
-        try {
-            // Find the user by ID
-            $user = User::findOrFail($id);
-
-            // Update the user information
-            $user->update([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                // Add more fields as needed
-            ]);
-
-            // Redirect with a success message
-            return redirect()->route('user.index')->with('success', 'User updated successfully');
-        } catch (\Exception $e) {
-            // Redirect with an error message if something goes wrong
-            return redirect()->back()->with('error', 'Error updating user: ' . $e->getMessage());
-        }
+        //
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $post = User::find($id);
+        if (!empty($post->foto)) unlink('backend/img/dashboard/user/' . $post->foto);
+        User::where('id', $id)->delete();
+        return redirect()->route('user.index')
+            ->with('success', 'User Berhasil Dihapus');
     }
 }

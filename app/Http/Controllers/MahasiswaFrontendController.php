@@ -11,6 +11,7 @@ use App\Models\Mahasiswa;
 use App\Models\Jurusan;
 use App\Models\Organisasi;
 use App\Models\Pendaftaran;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
@@ -23,9 +24,23 @@ class MahasiswaFrontendController extends Controller
      */
     public function index()
     {
-        $pendaftarans = Pendaftaran::all();
-        return view('frontend.formpendaftaran.index', compact('pendaftarans'));
+        $pendaftaran = collect();
+
+        if (Auth::user()->role == 'mahasiswa') {
+            $mahasiswa = Mahasiswa::where('email', Auth::user()->email)->first();
+
+            if ($mahasiswa) {
+                // If the mahasiswa exists, fetch the related pendaftaran data
+                $pendaftaran = Pendaftaran::where('idmahasiswa', $mahasiswa->id)->get();
+            }
+        } else {
+            // If admin or staff, display all pendaftaran data
+            $pendaftaran = Pendaftaran::all();
+        }
+
+        return view('frontend.formpendaftaran.index', compact('pendaftaran'));
     }
+
 
 
     /**
