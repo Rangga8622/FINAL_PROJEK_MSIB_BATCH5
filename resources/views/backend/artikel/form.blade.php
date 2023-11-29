@@ -1,14 +1,20 @@
 @extends('backend.index')
 
 @section('content')
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+
+    <style>
+        .ck-editor__editable_inline {
+            height: 500px;
+        }
+    </style>
     <div class="content-wrapper">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-light p-3 rounded">
-                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"
-                    class="text-primary">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}" class="text-primary">Dashboard</a></li>
                 <li class="breadcrumb-item">
-                <a href="{{ url('/artikel') }}"
-                    class="text-primary">Daftar Artikel</a></li>
+                    <a href="{{ url('/artikel') }}" class="text-primary">Daftar Artikel</a>
+                </li>
                 <li class="breadcrumb-item active">Form Input</a></li>
             </ol>
         </nav>
@@ -72,8 +78,8 @@
 
                             <div class="form-group">
                                 <label>Isi Artikel</label>
-                                <textarea name="isi_artikel" class="form-control  @error('isi_artikel') is-invalid @else is-valid @enderror"
-                                    rows="5">{{ old('isi_artikel') }}</textarea>
+                                <textarea id="editor" name="isi_artikel"
+                                    class="form-control  @error('isi_artikel') is-invalid @else is-valid @enderror" rows="5">{{ old('isi_artikel') }}</textarea>
                                 @error('isi_artikel')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -109,4 +115,11 @@
         </div>
 
     </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection
