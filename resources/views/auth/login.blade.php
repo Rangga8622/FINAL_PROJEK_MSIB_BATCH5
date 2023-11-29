@@ -26,8 +26,8 @@
                 <div class="row w-100 mx-0">
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                            <div class="brand-logo">
-                                <img src="../../img/logo1.png" alt="">
+                            <div class="brand-logo" align="center">
+                                <img src="backend/img/logo1.png" alt="">
                             </div>
 
                             <h5 align="center">WELCOME TO ORGENROLL</h4>

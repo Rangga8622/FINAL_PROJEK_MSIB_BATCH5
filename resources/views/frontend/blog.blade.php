@@ -51,10 +51,12 @@
                 @endforeach
             </div>
 
-            <div class="col-12 mt-4 text-center wow fadeInUp">
+</br>
+            <nav aria-label="Page Navigation">
+                <ul class="pagination justify-content-center">
                 {{ $ar_artikel->links('pagination::bootstrap-5') }}
-            </div>
+                </ul>
+            </nav>
         </div>
-    </div>
     </div>
 @endsection
