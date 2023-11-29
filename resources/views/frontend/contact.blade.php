@@ -1,4 +1,5 @@
 @extends('frontend.index')
+
 @section('content')
     <div class="container">
         <div class="page-banner">
@@ -15,32 +16,52 @@
             </div>
         </div>
     </div>
+
     <div class="page-section">
         <div class="container">
-
-            <div class="row text-center align-items-center">
+            <div class="row">
+                <!-- Address Card -->
                 <div class="col-lg-4 py-3">
-                    <div class="display-4 text-center text-primary"><span class="mai-pin"></span></div>
-                    <p class="mb-3 font-weight-medium text-lg">Address</p>
-                    <p class="mb-0 text-secondary">203 Fake St. Mountain View, San Francisco, California, USA</p>
-                </div>
-                <div class="col-lg-4 py-3">
-                    <div class="display-4 text-center text-primary"><span class="mai-call"></span></div>
-                    <p class="mb-3 font-weight-medium text-lg">Phone</p>
-                    <p class="mb-0"><a href="#" class="text-secondary">+1 232 3235 324</a></p>
-                    <p class="mb-0"><a href="#" class="text-secondary">+00 1122 3344 5566</a></p>
-                </div>
-                <div class="col-lg-4 py-3">
-                    <div class="display-4 text-center text-primary"><span class="mai-mail"></span></div>
-                    <p class="mb-3 font-weight-medium text-lg">Email Address</p>
-                    <p class="mb-0"><a href="#" class="text-secondary">support@seogram.com</a></p>
-                    <p class="mb-0"><a href="#" class="text-secondary">hello@seogram.com</a></p>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="display-4 text-center text-primary"><span class="mai-pin"></span></div>
+                            <h5 class="card-title mb-3 font-weight-medium text-lg">Address</h5>
+                            <p class="card-text text-secondary">203 Fake St. Mountain View, San Francisco, California, USA</p>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Phone Card -->
+                <div class="col-lg-4 py-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="display-4 text-center text-primary"><span class="mai-call"></span></div>
+                            <h5 class="card-title mb-3 font-weight-medium text-lg">Phone</h5>
+                            <p class="card-text text-secondary">Rangga Ekklesia Gabriel Anugrahnu: 083143508517</p>
+                            <p class="card-text text-secondary">Dimas Andhika Firmansyah: 089630147925</p>
+                            <p class="card-text text-secondary">Shafa Salsabila Febriani: 08957065103095</p>
+                            <p class="card-text text-secondary">Milda Khusnul Khotimah: 087863533945</p>
+                            <p class="card-text text-secondary">Jhofy Ricardo P. Sitindaon: 082218994202</p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Card -->
+                <div class="col-lg-4 py-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="display-4 text-center text-primary"><span class="mai-mail"></span></div>
+                            <h5 class="card-title mb-3 font-weight-medium text-lg">Email Address</h5>
+                            <p class="card-text text-secondary">Rangga Ekklesia Gabriel Anugrahnu: ranggaekkle20020806@gmail.com</p>
+                            <p class="card-text text-secondary">Dimas Andhika Firmansyah: dmsandhika87@students.unnes.ac.id</p>
+                            <p class="card-text text-secondary">Shafa Salsabila Febriani: shafafebriani4@gmail.com</p>
+                            <p class="card-text text-secondary">Milda Khusnul Khotimah: mildakhusnul999@gmail.com</p>
+                            <p class="card-text text-secondary">Jhofy Ricardo P. Sitindaon: jhofyricardo@icloud.com  </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </>
-
-
         </div>
     </div>
 @endsection
