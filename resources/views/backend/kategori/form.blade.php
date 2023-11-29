@@ -12,7 +12,8 @@
                     @csrf
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama Kategori</label>
-                        <input type="text" class="form-control" id="nama" name="nama" required>
+                        <input type="text" class="form-control" id="nama" name="nama" required oninvalid="this.setCustomValidity('Nama Kategori tidak boleh kosong')"
+                            oninput="setCustomValidity('')">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>
