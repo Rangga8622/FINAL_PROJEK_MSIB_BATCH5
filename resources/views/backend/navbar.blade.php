@@ -15,41 +15,43 @@
             <li class="nav-item nav-profile dropdown">
 
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                    @if(empty(Auth::user()->foto))
-                    <img src="{{ asset('backend/img/nophoto.jpg') }}" alt="Profile" class="rounded-circle">
+                    @if (empty(Auth::user()->foto))
+                        <img src="{{ asset('backend/img/nophoto.jpg') }}" alt="Profile" class="rounded-circle">
                     @else
-                    <img src="{{ asset('backend/img') }}/{{ Auth::user()->foto }}" alt="Profile" class="rounded-circle">
+                        <img src="{{ asset('backend/img/dashboard/user/' . Auth::user()->foto) }}" alt="Profile"
+                            class="rounded-circle">
                     @endif
                 </a>
 
+
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item" style="font-size: 20px">
-                        @if(empty(Auth::user()->name))
-                        {{''}}
+                        @if (empty(Auth::user()->name))
+                            {{ '' }}
                         @else
-                        {{Auth::user()->name}}
+                            {{ Auth::user()->name }}
                         @endif
                     </a>
                     <span class="dropdown-item">
-                        @if(empty(Auth::user()->role))
-                        ''
+                        @if (empty(Auth::user()->role))
+                            {{ '' }}
                         @else
-                        {{ Auth::user()->role }}
+                            {{ Auth::user()->role }}
                         @endif
                     </span>
-                    @if(Auth::user()->role == 'admin')
-                    <a class="dropdown-item" href="{{ url('/user') }}">
-                        <i class="ti-settings text-primary"></i>
-                        Kelola User
-                    </a>
+                    @if (Auth::user()->role == 'admin')
+                        <a class="dropdown-item" href="{{ url('/user') }}">
+                            <i class="ti-settings text-primary"></i>
+                            Kelola User
+                        </a>
                     @elseif(Auth::check() && Auth::user()->role == 'staff')
-                    <a class="dropdown-item" href="{{ route('user.edit_profile', ['id' => Auth::user()->id]) }}">
-                        <i class="ti-settings text-primary"></i>
-                        Edit Profil
-                    </a>
-
+                        <a class="dropdown-item" href="{{ route('user.edit_profile', ['id' => Auth::user()->id]) }}">
+                            <i class="ti-settings text-primary"></i>
+                            Edit Profil
+                        </a>
                     @endif
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
 
                         <i class="ti-power-off text-primary"></i>

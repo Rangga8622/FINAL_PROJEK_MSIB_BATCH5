@@ -57,19 +57,42 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|min:2|max:9000',
         ]);
 
-        try {
-            $user = User::findOrFail($id);
-
-            $user->update([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-            ]);
-            return redirect()->route('pendaftaran.index')->with('success', 'Profile Berhasil Di update');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Error updating user: ' . $e->getMessage());
+        $foto = DB::table('users')->select('foto')->where('id', $id)->get();
+        foreach ($foto as $f) {
+            $namaFileFotoLama = $f->foto;
         }
+        if (!empty($request->foto)) {
+            if (!empty($namaFileFotoLama)) unlink('backend/img/dashboard/user/' . $namaFileFotoLama);
+            $fileName = 'user_' . date("Ymd_h-i-s") . '.' . $request->foto->extension();
+            $request->foto->move(public_path('backend/img/dashboard/user/'), $fileName);
+        } else {
+            $fileName = $namaFileFotoLama;
+        }
+
+        // try {
+        //     $user = User::findOrFail($id);
+
+        //     $user->update([
+        //         'name' => $request->input('name'),
+        //         'email' => $request->input('email'),
+        //         'foto' => $fileName,
+        //     ]);
+        //     return redirect()->route('pendaftaran.index')->with('success', 'Profile Berhasil Di update');
+        // } catch (\Exception $e) {
+        //     return redirect()->back()->with('error', 'Error updating user: ' . $e->getMessage());
+        // }
+
+        DB::table('users')->where('id', $id)->update(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'foto' => $fileName,
+            ]
+        );
+        return redirect()->route('pendaftaran.index')->with('success', 'Profile Berhasil Di update');
     }
 
     public function edit($id)

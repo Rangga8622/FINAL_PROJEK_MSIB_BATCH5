@@ -76,12 +76,12 @@ Route::get('/blog', [ArtikelController::class, 'index_artikel'])->middleware('au
 Route::middleware(['peran:admin-staff'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
-    
+
     Route::resource('/jurusan', JurusanController::class);
     Route::resource('/mahasiswa', MahasiswaController::class);
     Route::resource('/pendaftaran', PendaftaranController::class);
 
-    Route::resource('/user', UserController::class);
+
     Route::get('/pendaftaran-excel', [PendaftaranController::class, 'pendaftaranExcel'])->name('pendaftaran.excel');
     Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
 
@@ -93,11 +93,15 @@ Route::resource('/artikel', ArtikelController::class)->middleware('auth');
 
 
 Route::middleware(['peran:admin'])->group(function () {
+    Route::resource('/user', UserController::class);
     Route::resource('/kategori', KategoriController::class);
     Route::resource('/organisasi', OrganisasiController::class);
 })->middleware('auth');
+
+
 Route::middleware(['peran:admin-mahasiswa'])->group(function () {
     Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
+
 })->middleware('auth');
 
 // Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
