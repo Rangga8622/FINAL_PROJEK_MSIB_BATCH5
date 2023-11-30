@@ -43,7 +43,7 @@ class ArtikelController extends Controller
         // query eloquent
         $ar_artikel = Artikel::query();
 
-        $ar_artikel = $ar_artikel->paginate(9);
+        $ar_artikel = $ar_artikel->paginate(3);
 
         return view('frontend.blog', [
             'ar_artikel' => $ar_artikel

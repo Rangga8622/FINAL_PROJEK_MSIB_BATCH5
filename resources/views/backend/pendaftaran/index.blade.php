@@ -26,7 +26,7 @@
 
                         <a href="{{ route('pendaftaran.pdf', ['search' => request('search')]) }}"
                             class="btn btn-danger btn-xs" title="Eksport PDF Data Pendaftaran">
-                            <i class="bi bi-file-type-pdf"></i>
+                            <i class="bi bi-file-earmark-pdf"></i>
                             PDF
                         </a>
 
