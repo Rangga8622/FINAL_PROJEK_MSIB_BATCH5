@@ -101,13 +101,15 @@ Route::middleware(['peran:admin'])->group(function () {
 
 Route::middleware(['peran:admin-mahasiswa'])->group(function () {
     Route::resource('/form_mahasiswa', MahasiswaFrontendController::class);
-
 })->middleware('auth');
 
 // Route::get('/pendaftaran-pdf', [PendaftaranController::class, 'pendaftaranPDF'])->name('pendaftaran.pdf');
-Route::get('/after-register', function () {
-    return view('frontend.after_register');
-});
+// Route::middleware(['peran:mahasiswa'])->group(function () {
+//     Route::get('/after-register', function () {
+//         return view('frontend.after_register');
+//     });
+// });
+
 
 Auth::routes();
 
