@@ -1,8 +1,6 @@
 @extends('backend.index')
 
 @section('content')
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
-
     <style>
         .ck-editor__editable_inline {
             height: 500px;
@@ -69,8 +67,7 @@
 
                             <div class="form-group">
                                 <label for="kategori">Kategori</label>
-                                <select
-                                    class="form-control @error('idkategori') is-invalid @else is-valid @enderror"
+                                <select class="form-control @error('idkategori') is-invalid @else is-valid @enderror"
                                     name="idkategori" id="kategori">
                                     <option>-- Pilih Kategori --</option>
                                     @foreach ($ar_kategori as $kategori)
@@ -89,8 +86,8 @@
 
                             <div class="form-group">
                                 <label>Isi Artikel</label>
-                                <textarea id="editor" name="isi_artikel" class="form-control  @error('isi_artikel') is-invalid @else is-valid @enderror"
-                                    rows="5">{{ old('isi_artikel', $rs->isi_artikel) }}</textarea>
+                                <textarea id="editor" name="isi_artikel"
+                                    class="form-control  @error('isi_artikel') is-invalid @else is-valid @enderror" rows="5">{{ old('isi_artikel', $rs->isi_artikel) }}</textarea>
                                 @error('isi_artikel')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -126,11 +123,16 @@
         </div>
 
     </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
-            .create(document.querySelector('#editor'))
+            .create(document.querySelector('#editor'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('ckeditor.upload') . '?_token=' . csrf_token() }}',
+                }
+            })
             .catch(error => {
-                console.error(error);
+
             });
     </script>
 @endsection
