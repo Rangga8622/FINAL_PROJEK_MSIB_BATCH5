@@ -83,12 +83,12 @@ class JurusanController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'kode' => 'required|integer:5',
+                'kode' => 'required|max:5',
                 'nama' => 'required|max:45',
             ],
             [
                 'kode.required' => 'Kode Wajib Diisi',
-                'kode.integer' => 'Kode Maksimal 5 karakter',
+                'kode.max' => 'Kode Maksimal 5 karakter',
                 'nama.required' => 'Nama Wajib Diisi',
                 'nama.max' => 'Nama Maksimal 45 Karakter',
             ]

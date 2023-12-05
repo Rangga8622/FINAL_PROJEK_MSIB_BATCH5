@@ -225,6 +225,13 @@ class ArtikelController extends Controller
         $post = Artikel::find($id);
         if (!empty($post->foto_header)) unlink('backend/artikel/foto_header/' . $post->foto_header);
         if (!empty($post->foto_profile)) unlink('backend/artikel/foto_profile/' . $post->foto_profile);
+        if (!empty($post->isi_artikel)) {
+            $isiArtikelPath = public_path('backend/artikel/isi_artikel/' . $post->isi_artikel);
+            if (file_exists($isiArtikelPath)) {
+                unlink($isiArtikelPath);
+            }
+        }
+
         Artikel::where('id', $id)->delete();
         return redirect()->route('artikel.index')
             ->with('success', 'Data Artikel Berhasil Dihapus');
@@ -238,11 +245,11 @@ class ArtikelController extends Controller
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName . '_' . time() . '.' . $extension;
 
-            $request->file('upload')->move(public_path('media'), $fileName);
+            $request->file('upload')->move(public_path('backend/artikel/isi_artikel'), $fileName);
 
-            $url = asset('media/' . $fileName);
+            $url = asset('backend/artikel/isi_artikel/' . $fileName);
 
-            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
+            return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
         }
     }
 }
