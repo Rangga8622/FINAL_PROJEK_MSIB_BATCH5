@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\JurusanController;
 use App\Http\Controllers\Api\OrganisasiController;
+use App\Http\Controllers\Api\MahasiswaController;
+use App\Http\Controllers\Api\PendaftaranController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,3 +38,17 @@ Route::get('/organisasi/{id}', [OrganisasiController::class, 'show']);
 Route::post('/organisasi-create', [OrganisasiController::class, 'store']);
 Route::put('/organisasi/{id}', [OrganisasiController::class, 'update']);
 Route::delete('/organisasi/{id}', [OrganisasiController::class, 'destroy']);
+
+//------------------route Rest API Mahasiswa----------//
+Route::get('/mahasiswaall', [MahasiswaController::class, 'index']);
+Route::get('/mahasiswa/{id}', [MahasiswaController::class, 'show']);
+Route::post('/mahasiswa-create', [MahasiswaController::class, 'store']);
+Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update']);
+Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy']);
+
+//------------------route Rest API Mahasiswa----------//
+Route::get('/pemdaftaranall', [PendaftaranController::class, 'index']);
+Route::get('/pendaftaran/{id}', [PendaftaranController::class, 'show']);
+Route::post('/pendaftaran-create', [PendaftaranController::class, 'store']);
+Route::put('/Pendaftaran/{id}', [PendaftaranController::class, 'update']);
+Route::delete('/Pendaftaran/{id}', [PendaftaranController::class, 'destroy']);
