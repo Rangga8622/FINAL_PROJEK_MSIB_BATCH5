@@ -86,7 +86,6 @@ class MahasiswaFrontendController extends Controller
                 'gender' => 'required',
                 'nohp' => 'required|max:45',
                 'email' => 'required|max:45',
-                // 'tanggal_pendaftaran' => 'required',
                 'cv' => 'nullable|mimes:pdf,doc|min:2|max:10000',
                 'foto' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|min:2|max:9000',
 
@@ -105,7 +104,6 @@ class MahasiswaFrontendController extends Controller
                 'nohp.max' => 'No HP Maksimal 45 Karakter',
                 'email.required' => 'Email Wajib Diisi',
                 'email.max' => 'Email Maksimal 45 Karakter',
-                // 'tanggal_pendaftaran.required' => 'Tanggal Wajib Diisi',
                 'cv.mimes' => 'Format CV Wajib PDF/DOC',
                 'cv.min' => 'Ukuran Minimum CV 2 KB',
                 'cv.max' => 'Ukuran Maximum CV 10 MB',
