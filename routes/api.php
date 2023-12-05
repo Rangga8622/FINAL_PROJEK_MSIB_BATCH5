@@ -47,7 +47,7 @@ Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update']);
 Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy']);
 
 //------------------route Rest API Mahasiswa----------//
-Route::get('/pemdaftaranall', [PendaftaranController::class, 'index']);
+Route::get('/pendaftaranall', [PendaftaranController::class, 'index']);
 Route::get('/pendaftaran/{id}', [PendaftaranController::class, 'show']);
 Route::post('/pendaftaran-create', [PendaftaranController::class, 'store']);
 Route::put('/Pendaftaran/{id}', [PendaftaranController::class, 'update']);
