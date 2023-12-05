@@ -1,8 +1,6 @@
 @extends('backend.index')
 
 @section('content')
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
-
     <style>
         .ck-editor__editable_inline {
             height: 500px;
@@ -115,11 +113,16 @@
         </div>
 
     </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
-            .create(document.querySelector('#editor'))
+            .create(document.querySelector('#editor'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('ckeditor.upload') . '?_token=' . csrf_token() }}',
+                }
+            })
             .catch(error => {
-                console.error(error);
+
             });
     </script>
 @endsection

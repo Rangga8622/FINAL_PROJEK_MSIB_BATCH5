@@ -87,9 +87,10 @@ Route::middleware(['peran:admin-staff'])->group(function () {
 
     Route::get('/user/{id}/edit_profile', [UserController::class, 'edit_profile'])->name('user.edit_profile');
     Route::put('/user/{id}/update_profile', [UserController::class, 'update_profile'])->name('user.update_profile');
+    Route::resource('/artikel', ArtikelController::class)->middleware('auth');
+    Route::post('ckeditor/upload', [ArtikelController::class, 'upload'])->name('ckeditor.upload');
 });
 
-Route::resource('/artikel', ArtikelController::class)->middleware('auth');
 
 
 Route::middleware(['peran:admin'])->group(function () {
