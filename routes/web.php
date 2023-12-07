@@ -49,6 +49,8 @@ Route::middleware(['peran:admin-staff-mahasiswa'])->group(function () {
     Route::get('/blog_view', function () {
         return view('frontend.view_artikel.index');
     });
+
+    Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
 })->middleware('auth');
 
 Route::get('/contact', function () {
@@ -87,8 +89,30 @@ Route::middleware(['peran:admin-staff'])->group(function () {
 
     Route::get('/user/{id}/edit_profile', [UserController::class, 'edit_profile'])->name('user.edit_profile');
     Route::put('/user/{id}/update_profile', [UserController::class, 'update_profile'])->name('user.update_profile');
-    Route::resource('/artikel', ArtikelController::class)->middleware('auth');
-    Route::post('ckeditor/upload', [ArtikelController::class, 'upload'])->name('ckeditor.upload');
+    // Route::resource('/artikel', ArtikelController::class)->middleware('auth');
+    Route::middleware(['auth'])->group(function () {
+
+        Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+
+
+        Route::get('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
+
+
+        Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store');
+
+        Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
+
+
+        Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
+
+
+        Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
+
+
+        Route::post('/ckeditor/upload', [ArtikelController::class, 'upload'])->name('ckeditor.upload');
+    });
+
+    // Route::post('ckeditor/upload', [ArtikelController::class, 'upload'])->name('ckeditor.upload');
 });
 
 
@@ -120,5 +144,3 @@ Auth::routes();
 Route::get('/access-denied', function () {
     return view('frontend.access_denied');
 })->middleware('auth');
-
-
