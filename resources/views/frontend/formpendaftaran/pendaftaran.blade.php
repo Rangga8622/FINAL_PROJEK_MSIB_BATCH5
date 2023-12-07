@@ -33,7 +33,7 @@
                                     @csrf
 
                                     <!-- Form input -->
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label>Nama Lengkap</label>
                                         <input type="text" name="nama"
                                             class="form-control {{ $errors->has('nama') ? 'is-invalid' : '' }}"
@@ -41,6 +41,12 @@
                                         @error('nama')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
+                                    </div> --}}
+
+                                    <div class="form-group">
+                                        <label>Nama Lengkap</label>
+                                        <input type="text" name="nama" class="form-control"
+                                            placeholder="Masukkan Nama Lengkap" value="{{ Auth::user()->name }}" readonly>
                                     </div>
 
                                     <div class="form-group">
@@ -118,7 +124,7 @@
                                         @enderror
                                     </div>
 
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label>Email</label>
                                         <input type="email" name="email"
                                             class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
@@ -126,6 +132,12 @@
                                         @error('email')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
+                                    </div> --}}
+
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="email" name="email" class="form-control"
+                                            placeholder="Masukkan Email" value="{{ Auth::user()->email }}" readonly>
                                     </div>
 
                                     <div class="form-group" hidden>

@@ -27,7 +27,7 @@
                         <form class="forms-sample" method="POST" action="{{ route('pendaftaran.update', $rs->id) }}">
                             @csrf
                             @method('PUT')
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="exampleInputName1">Name</label>
                                 <select name="idmahasiswa"
                                     class="form-select @error('idmahasiswa') is-invalid @else is-valid @enderror">
@@ -59,6 +59,17 @@
                                 @error('idorganisasi')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div> --}}
+
+                            <div class="form-group">
+                                <label for="exampleInputName1">Name</label>
+                                <input type="text" class="form-control" value="{{ $rs->mahasiswa->nama }}" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputOrg">Organisasi</label>
+                                <input type="text" class="form-control" value="{{ $rs->mahasiswa->organisasi->nama }}"
+                                    readonly>
                             </div>
 
 

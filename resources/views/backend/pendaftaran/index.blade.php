@@ -1,13 +1,12 @@
 @extends('backend.index')
 @section('content')
     @php
-        $ar_judul = ['No', 'Mahasiswa', 'Organisasi Pendaftaran', 'Status Pendaftaran', 'Keterangan', 'Action'];
+        $ar_judul = ['No', 'Mahasiswa', 'Organisasi Pendaftaran', 'Status Pendaftaran', 'Action'];
         $no = $ar_pendaftaran->firstItem();
     @endphp
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-light p-3 rounded">
-            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"
-                class="text-primary">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}" class="text-primary">Dashboard</a></li>
             <li class="breadcrumb-item active">Daftar Pendaftaran</li>
         </ol>
     </nav>
@@ -66,7 +65,7 @@
                                     <td>{{ $p->mahasiswa->nama }}</td>
                                     <td>{{ $p->mahasiswa->organisasi->nama }}</td>
                                     <td>{{ $p->status_pendaftaran }}</td>
-                                    <td>{{ $p->keterangan }}</td>
+
                                     <td>
                                         <form method="POST" action="{{ route('pendaftaran.destroy', $p->id) }}">
                                             @csrf

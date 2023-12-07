@@ -120,3 +120,5 @@ Auth::routes();
 Route::get('/access-denied', function () {
     return view('frontend.access_denied');
 })->middleware('auth');
+
+

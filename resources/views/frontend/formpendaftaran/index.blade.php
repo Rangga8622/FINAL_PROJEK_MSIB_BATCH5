@@ -51,7 +51,7 @@
                         <div class="card my-3 p-3">
                             <div class="card-header bg-primary px-3 pt-3 pb-2">
                                 <h5 class="card-title mb-0 text-white" style="font-size: 1.2rem;">
-                                    Pendaftaran
+                                    Pendaftaran :
                                     <strong>
                                         @foreach ($ar_mahasiswa as $mahasiswa)
                                             @if ($mahasiswa->organisasi->nama == $organisasi)
