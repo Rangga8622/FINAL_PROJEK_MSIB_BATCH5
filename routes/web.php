@@ -41,17 +41,7 @@ Route::get('/about', function () {
     return view('frontend.about');
 });
 
-Route::middleware(['peran:admin-staff-mahasiswa'])->group(function () {
-    Route::get('/blog', function () {
-        return view('frontend.blog');
-    });
 
-    Route::get('/blog_view', function () {
-        return view('frontend.view_artikel.index');
-    });
-
-    Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
-})->middleware('auth');
 
 Route::get('/contact', function () {
     return view('frontend.contact');
@@ -95,7 +85,7 @@ Route::middleware(['peran:admin-staff'])->group(function () {
         Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
 
 
-        Route::get('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
+        Route::get('/artikel/create_data', [ArtikelController::class, 'create'])->name('artikel.create_data');
 
 
         Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store');
@@ -114,6 +104,18 @@ Route::middleware(['peran:admin-staff'])->group(function () {
 
     // Route::post('ckeditor/upload', [ArtikelController::class, 'upload'])->name('ckeditor.upload');
 });
+
+Route::middleware(['peran:admin-staff-mahasiswa'])->group(function () {
+    Route::get('/blog', function () {
+        return view('frontend.blog');
+    });
+
+    Route::get('/blog_view', function () {
+        return view('frontend.view_artikel.index');
+    });
+
+    Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
+})->middleware('auth');
 
 
 

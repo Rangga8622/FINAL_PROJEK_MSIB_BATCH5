@@ -6,8 +6,7 @@
     @endphp
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-light p-3 rounded">
-            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"
-                class="text-primary">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}" class="text-primary">Dashboard</a></li>
             <li class="breadcrumb-item active">Daftar Artikel</li>
         </ol>
     </nav>
@@ -17,9 +16,11 @@
                 <h4 class="card-title">Daftar Artikel</h4>
                 <div class="d-flex justify-content-between mb-2">
                     <div>
-                        <a href="{{ route('artikel.create') }}" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
+                        <a href="/artikel/create_data" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
                             <i class="bi bi-clipboard-plus"></i> Tambah
                         </a>
+
+
                     </div>
                     <div>
                         <form action="{{ url('artikel') }}" method="get" class="d-flex">

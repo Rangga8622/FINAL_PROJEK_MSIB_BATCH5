@@ -3,11 +3,10 @@
     <div class="content-wrapper">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-light p-3 rounded">
-                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}"
-                    class="text-primary">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}" class="text-primary">Dashboard</a></li>
                 <li class="breadcrumb-item">
-                <a href="{{ url('/mahasiswa') }}"
-                    class="text-primary">Daftar Artikel</a></li>
+                    <a href="{{ url('/mahasiswa') }}" class="text-primary">Daftar Mahasiswa</a>
+                </li>
                 <li class="breadcrumb-item active">Form Input</a></li>
             </ol>
         </nav>
@@ -135,8 +134,8 @@
                             <div class="form-group">
                                 <label for="basic-url" class="form-label">Foto</label>
                                 <input type="file"
-                                    class="form-control  @error('foto') is-invalid @else is-valid @enderror" name="foto"
-                                    value="{{ old('foto') }}" />
+                                    class="form-control  @error('foto') is-invalid @else is-valid @enderror"
+                                    name="foto" value="{{ old('foto') }}" />
                                 @error('foto')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

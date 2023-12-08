@@ -27,39 +27,7 @@
                         <form class="forms-sample" method="POST" action="{{ route('pendaftaran.update', $rs->id) }}">
                             @csrf
                             @method('PUT')
-                            {{-- <div class="form-group">
-                                <label for="exampleInputName1">Name</label>
-                                <select name="idmahasiswa"
-                                    class="form-select @error('idmahasiswa') is-invalid @else is-valid @enderror">
-                                    <option>-- Pilih Nama --</option>
-                                    @foreach ($ar_mahasiswa as $m)
-                                        <option value="{{ $m->id }}"
-                                            @if ($m->id == $rs->idmahasiswa) selected @endif>
-                                            {{ $m->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('idmahasiswa')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputOrg">Organisasi</label>
-                                <select name="idorganisasi"
-                                    class="form-select @error('idorganisasi') is-invalid @else is-valid @enderror">
-                                    <option>-- Pilih Organisasi --</option>
-                                    @foreach ($ar_organisasi as $o)
-                                        <option value="{{ $o->id }}"
-                                            @if ($o->id == $rs->idorganisasi) selected @endif>
-                                            {{ $o->nama }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('idorganisasi')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div> --}}
+                            
 
                             <div class="form-group">
                                 <label for="exampleInputName1">Name</label>

@@ -121,13 +121,13 @@ class PendaftaranController extends Controller
     {
         $validated = $request->validate(
             [
-                'idmahasiswa' => 'required|integer',
-                'status_pendaftaran' => 'required',
+                // 'idmahasiswa' => 'required|integer',
+                // 'status_pendaftaran' => 'required',
                 'keterangan' => 'nullable',
             ],
             [
-                'idmahasiswa.required' => 'Nama Wajib Diisi',
-                'idmahasiswa.integer' => 'Nama Wajib Diisi',
+                // 'idmahasiswa.required' => 'Nama Wajib Diisi',
+                // 'idmahasiswa.integer' => 'Nama Wajib Diisi',
                 'status_pendaftaran.required' => 'Status Wajib Diisi',
             ]
         );
@@ -135,7 +135,7 @@ class PendaftaranController extends Controller
         try {
             $pendaftaran = Pendaftaran::find($id);
             $pendaftaran->update([
-                'idmahasiswa' => $request->idmahasiswa,
+                // 'idmahasiswa' => $request->idmahasiswa,
                 'status_pendaftaran' => $request->status_pendaftaran,
                 'keterangan' => $request->keterangan,
             ]);
