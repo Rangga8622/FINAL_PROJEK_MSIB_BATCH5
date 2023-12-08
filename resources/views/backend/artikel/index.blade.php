@@ -16,7 +16,8 @@
                 <h4 class="card-title">Daftar Artikel</h4>
                 <div class="d-flex justify-content-between mb-2">
                     <div>
-                        <a href="/artikel/create_data" class="btn btn-primary btn-xs" title="Tambah Data Mahasiswa">
+                        <a href="{{ route('artikel.create_data') }}" class="btn btn-primary btn-xs"
+                            title="Tambah Data Mahasiswa">
                             <i class="bi bi-clipboard-plus"></i> Tambah
                         </a>
 
