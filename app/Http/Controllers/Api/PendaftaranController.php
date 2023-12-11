@@ -21,26 +21,28 @@ class PendaftaranController extends Controller
         return new PendaftaranResource(true, 'Data Pendaftaran', $pendaftaran);
     }
 
-   
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),
-        [
-            'idmahasiswa' => 'required|integer',
-            'status_pendaftaran' => 'required',
-            'keterangan' => 'nullable',
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'idmahasiswa' => 'required|integer',
+                'status_pendaftaran' => 'required',
+                'keterangan' => 'nullable',
+            ]
+        );
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
         $pendaftaran = Pendaftaran::create([
-            'idmahasiswa'=>$request->idmahasiswa,
-            'status_pendaftaran'=>$request->status_pendaftaran,
-            'keterangan'=>$request->keterangan,
+            'idmahasiswa' => $request->idmahasiswa,
+            'status_pendaftaran' => $request->status_pendaftaran,
+            'keterangan' => $request->keterangan,
         ]);
         return new PendaftaranResource(true, 'Data Pendaftaran Berhasil Diinput', $pendaftaran);
     }
@@ -51,13 +53,13 @@ class PendaftaranController extends Controller
     public function show(string $id)
     {
         $pendaftaran = Pendaftaran::find($id);
-        if($pendaftaran){
-            return new PendaftaranResource(true,'Detail Data Pendaftaran', $pendaftaran);
+        if ($pendaftaran) {
+            return new PendaftaranResource(true, 'Detail Data Pendaftaran', $pendaftaran);
         } else {
             return response()->json(
                 [
-                    'succes' =>false,
-                    'message'=>"Data Mahasiswa Tidak Ditemukan"
+                    'succes' => false,
+                    'message' => "Data Mahasiswa Tidak Ditemukan"
                 ],
                 404
             );
@@ -71,19 +73,21 @@ class PendaftaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(),
-        [
-            'idmahasiswa' => 'required|integer',
-            'status_pendaftaran' => 'required',
-            'keterangan' => 'nullable',
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'idmahasiswa' => 'required|integer',
+                'status_pendaftaran' => 'required',
+                'keterangan' => 'nullable',
+            ]
+        );
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-        $pendaftaran=Pendaftaran::where($id)->update([
-            'idmahasiswa'=>$request->idmahasiswa,
-            'status_pendaftaran'=>$request->status_pendaftaran,
-            'keterangan'=>$request->keterangan,
+        $pendaftaran = Pendaftaran::whereId($id)->update([
+            'idmahasiswa' => $request->idmahasiswa,
+            'status_pendaftaran' => $request->status_pendaftaran,
+            'keterangan' => $request->keterangan,
         ]);
         return new PendaftaranResource(true, 'Data Pendaftaran Berhasil Diubah', $pendaftaran);
     }
