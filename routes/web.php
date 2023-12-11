@@ -115,6 +115,7 @@ Route::middleware(['peran:admin-staff-mahasiswa'])->group(function () {
     });
 
     Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
+    Route::get('/blog', [ArtikelController::class, 'index_artikel'])->name('blog.index');
 })->middleware('auth');
 
 
