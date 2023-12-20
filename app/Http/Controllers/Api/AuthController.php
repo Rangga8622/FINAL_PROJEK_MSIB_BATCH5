@@ -17,19 +17,47 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $input  = [
-            "name" => $request->name,
-            "password" => Hash::make($request->password),
-            "email" => $request->email,
-        ];
-
-        $user = User::create($input);
-
-        return response()->json([
-            "status" => "success",
-            "message" => "Register success"
+        // Validate user input
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
         ]);
+
+        // Check for validation errors
+        if ($validator->fails()) {
+            return response()->json([
+                "code" => 401,
+                "status" => "error",
+                "message" => "Register failed",
+                "errors" => $validator->errors()
+            ]);
+        }
+
+        // Attempt to create a new user
+        try {
+            $input = [
+                "name" => $request->name,
+                "password" => Hash::make($request->password),
+                "email" => $request->email,
+            ];
+
+            $user = User::create($input);
+
+            return response()->json([
+                "status" => "success",
+                "message" => "Register success"
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                "code" => 401,
+                "status" => "error",
+                "message" => "Register failed",
+                "error" => $e->getMessage()
+            ]);
+        }
     }
+
 
     public function login(Request $request)
     {
